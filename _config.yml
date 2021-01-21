@@ -6,10 +6,10 @@
 name: V-R3x
 
 # Short bio or description (displayed in the header)
-description: A CubeSat mission to demonstrate mesh networking and relative navigation
+description: A trio of networking and navigating CubeSats
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://raw.githubusercontent.com/barryclark/jekyll-now/master/images/jekyll-logo.png
+avatar: https://raw.githubusercontent.com/pycubed/pycubed.github.io/gh-pages/images/vr3x-logo.png
 
 #
 # Flags below are optional
