@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+V-R3x is a CubeSat mission developed by a team of researchers from the [Robotic Exploration Lab](http://roboticexplorationlab.org/) at [Carnegie Mellon](https://www.ri.cmu.edu/) and [Stanford](https://www.stanford.edu/) Universities and [NASA Ames Research Center](https://www.nasa.gov/ames). Three V-R3x spacecraft, named Littlefoot, Petrie, and Cera, will be launched together on the SpaceX Transporter-1 mission in early 2021. After deployment, the three satellites will perform a series of mesh networking and navigation experiments using their UHF and S-band radios as well as GPS. The goal of the mission is to demonstrate new technologies for networked communication, relative navigation, formation flying, and swarming among large groups of small satellites.
 
-### More Information
+![V-R3x CubeSats]({{ site.baseurl }}/images/vr3x_sats.jpg)
 
-A place to include any other types of information that you'd like to include about yourself.
+### Getting Involved
 
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+If you have experience with amateur radio or wireless sensor networks, especially [LoRa](https://en.wikipedia.org/wiki/LoRa), we would love to have your help receiving data from the V-R3x spacecraft. Information on their signals is available [here](https://gitlab.com/librespacefoundation/satnogs-ops/-/issues/142). A packet decoder written in Python is available [here](https://mybinder.org/v2/gh/maholli/VR3X-decoder/main?filepath=notebook.ipynb).
