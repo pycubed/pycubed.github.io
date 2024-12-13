@@ -1,0 +1,694 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Troubleshooting</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="828f6ffc-cee4-4597-a9b8-b6c2ed417fb5" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">❓</span></div><h1 class="page-title">Troubleshooting</h1><p class="page-description"></p></header><div class="page-body"><div id="c4921f4d-48bb-4999-a006-e53ee9b25c25" class="column-list"><div id="4c9315ba-3d9a-4735-ad18-1dd637ecf996" style="width:35.294117647058826%" class="column"><p id="02b7b52a-66f8-4d4f-8c92-f863742a9d96" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="906f6355-94cc-4059-bc1e-a10c60123919" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#42b99f52-a5cb-4225-9eb4-3f39978e1254">Hardware Debugging</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ac483979-2726-4772-a4cb-1b295911258d">Software</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3e0d3b6d-c9ed-40e7-86bf-76a814e64e26">Firmware</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#718ca3a4-267e-4272-af7a-6dcb4f7077e2">Still having trouble? </a></div></nav></div><div id="2ac52f9c-d78d-483b-a988-e6bec8a102d7" style="width:25%" class="column"><p id="0b6d3033-7816-4d56-b7d4-5f6f80adcc47" class="">
+</p></div><div id="d326bda3-e55a-4605-857a-82d9dc0b6c13" style="width:39.705882352941174%" class="column"><div><p id="d5802a9f-2ea3-4197-b3b9-6397d75ea28f" class=""><a href="index.html">↩ Return Home</a></p><p id="424bdd87-6df5-4e2b-b6a2-5424d9b0c869" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p></div></div></div><h1 id="42b99f52-a5cb-4225-9eb4-3f39978e1254" class="">Hardware Debugging</h1><hr id="6ff17db3-814b-4c2a-9c9b-719c1317b16b"/><ul id="bd00e4a5-bd04-427b-9d4b-31a454f3af66" class="toggle"><li><details open=""><summary>Connection issues</summary><div><ol type="1" id="ee197710-1499-4bd2-991e-22772c0d6aaf" class="numbered-list" start="1"><li>Ensure you performed the checks in <a href="Unpacking%20&amp;%20Hardware%20Overview%20fa478fa84a4a4285990e85424cf4935a.html"><img class="icon" src="1.png"/>Unpacking &amp; Hardware Overview</a> </li></ol><ol type="1" id="e2641638-4b0a-4102-a69e-fb3bf46dd817" class="numbered-list" start="2"><li>If your computer doesn&#x27;t see the PyCubed board as a mass storage device<br/>(but the RGB is cycling through a rainbow of colors <br/><a href="Connect%20&amp;%20Verify%207946bb84cabb42c7ac25f53d2a9f6810.html">as described</a>)<ul id="a4c59307-1200-4bd6-8993-3b83271930f6" class="bulleted-list"><li style="list-style-type:disc">Confirm the USB port on your computer isn&#x27;t a &quot;power only&quot; port by plugging another USB device (like a flash drive) into that port.</li></ul></li></ol><ol type="1" id="821057c5-ad21-46cb-a355-fb4a6a533358" class="numbered-list" start="3"><li>If your computer doesn&#x27;t recognize PyCubed and there is no rainbow LED <a href="Connect%20&amp;%20Verify%207946bb84cabb42c7ac25f53d2a9f6810.html">as described</a>. <ul id="1c4d0c4f-a2a9-4f6f-aa33-b714af57f2c4" class="bulleted-list"><li style="list-style-type:disc">It&#x27;s likely the board isn&#x27;t getting power.<ul id="00fe7221-7124-4feb-b770-c5674fd0ca06" class="bulleted-list"><li style="list-style-type:circle">Confirm the USB port is working on your computer by plugging another USB device into that port. </li></ul></li></ul><ul id="612d86db-d6e3-499a-b1d4-8ebd92ae8577" class="bulleted-list"><li style="list-style-type:disc">Visually inspect the board for any foreign debris that may be causing a short-circuit on the board. </li></ul></li></ol></div></details></li></ul><ul id="131c6c42-281d-4d47-807c-05b50f078aa7" class="toggle"><li><details open=""><summary>My board isn&#x27;t generating 3.3V</summary><ul id="81dc88cb-1522-42e8-9488-dcd63349d6f3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Did you build the board yourself? Check that the USB port properly soldered on and plugged into a known-working USB port on your computer.</span><div class="indented"></div></li></ul><ul id="a9a9dc78-e9b8-4918-8359-d950c4b14a1b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Are the mechanical inhibits shorted <a href="Unpacking%20&amp;%20Hardware%20Overview%20fa478fa84a4a4285990e85424cf4935a.html">as described here</a>?</span><div class="indented"></div></li></ul><ul id="b8cf317d-9bcc-40a9-8b77-7ddade3ede60" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Inspect the board for any debris that may be causing an unwanted electrical short.</span><div class="indented"><ul id="b29c3db8-812e-41dd-b1b9-a5aab349969f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">A short between 3.3V and ground will trigger the primary 3.3V regulator&#x27;s short-circuit protection (thereby disabling the 3.3V rail).  </span><div class="indented"></div></li></ul></div></li></ul></details></li></ul><ul id="6bc2f33a-516f-4e35-9c2c-31c3d1d39708" class="toggle"><li><details open=""><summary>The green &quot;CHRG&quot; LED blinks when I plug my board into my computer</summary><p id="698f6448-81f8-4e50-91a3-9e152f60ab7b" class="">This is because the PyCubed hardware hasn&#x27;t been initialized since powering the board via USB</p><ul id="a79d3dd1-5d3e-4557-ba3b-cec7cd2d89df" class="bulleted-list"><li style="list-style-type:disc">Opening the REPL and sending <code>from pycubed import cubesat</code> should make the blinking stop. </li></ul><ul id="14f649ad-0c28-4237-89ef-dd5e0048a79b" class="bulleted-list"><li style="list-style-type:disc">Usually this is handled by <code>main.py</code> since <code>from pycubed import cubesat</code> is typically one of the first things we do.</li></ul><p id="8ab70c9a-790d-41a0-b82e-6367401cc3c0" class="">The blinking is the USB charger saying it doesn&#x27;t see a battery attached. </p><p id="101f5bac-af43-4b2b-b8f3-3eacaf2802b3" class="">
+</p></details></li></ul><ul id="faaf8c1c-269a-4364-a864-baf22a886708" class="toggle"><li><details open=""><summary>My board restarts when I try to transmit using the radio</summary><p id="2c9c2eb4-0325-4670-a943-d7fc82a2f61b" class="">This indicates the radio is starved for power which results in the 3V3 rail dropping.<div class="indented"><h2 id="c53b7ab6-0801-4770-a471-fcf1f572f5ee" class="">Solutions:</h2><ol type="1" id="17ed7f33-7ae4-4d85-9e9c-db28c6fb58ad" class="numbered-list" start="1"><li>If you&#x27;re powering the board via the USB cable and just trying to transmit for testing purposes:<ul id="be1e2451-f7cf-4a00-ae70-86f889103c19" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Make sure the RF regulator is disabled. </span><div class="indented"><ul id="748046fd-6b33-4888-ad36-fd3a5da8d258" class="toggle"><li><details open=""><summary>📄 Because of the global chip shortage of 2021, the RF regulator can be either<strong> </strong>U7 or U21. Instructions on <mark class="highlight-red"><strong>disabling</strong></mark> the RF regulator in software:</summary><ul id="b86d029a-46b6-4d69-abdb-c48d2b882892" class="bulleted-list"><li style="list-style-type:disc">If your board has U7 populated, your regulator should be <span style="border-bottom:0.05em solid">disabled</span> by default, but double check by confirming <code>/lib/pycubed.py</code> line 107 says the following:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b89ad8b7-6693-4054-9b24-ece8957ad915" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.enable_rf.switch_to_output(value=True)</code></pre></li></ul><ul id="521d0de0-7abf-4035-8c7a-72c0fabd3eec" class="bulleted-list"><li style="list-style-type:disc">OR if your board has U21 populated, your regulator is <span style="border-bottom:0.05em solid">enabled</span> by default. Disable it by changing <code>/lib/pycubed.py</code> line 107  to say the following:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="75441d66-b5e9-40c6-b6d9-9276eb8b7a39" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.enable_rf.switch_to_output(value=False)</code></pre></li></ul></details></li></ul></div></li></ul></li></ol><ol type="1" id="1e57eb6e-7921-41ab-ae44-b42635d59d82" class="numbered-list" start="2"><li>If you&#x27;re attempting to transmit using maximum output power (<code>max_output=True</code>):<ul id="a7805f25-e229-45da-b730-a344be41e28b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Ensure you have a 2S li-ion battery (7.2-8.4V) attached.</span><div class="indented"></div></li></ul><ul id="732ffd8e-5245-49b9-87f5-608e033faebf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">If you&#x27;re testing on the bench, ensure that your <code>High Side</code> and <code>Low Side</code> inhibit connectors are bypassed. See <a href="Inhibits%20&amp;%20RBF%20Header%2047a1f6c21af94591843c7cfbfcf2f82e.html"><span class="icon">🔓</span>Inhibits &amp; RBF Header</a> for more details <br/>(you&#x27;ll want the &quot;Benchtop Testing - With Battery&quot; configuration)<br/></span><div class="indented"></div></li></ul><ul id="d2b8f133-1f5b-4210-b547-9fe2b7ecce55" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Confirm that you have an antenna securely attached to the &quot;Radio #1&quot; connector. See <a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html"><span class="icon">📡</span>Antennas</a> for more details.</span><div class="indented"></div></li></ul><ul id="5d469306-c05e-44b3-8789-28f3718f15c2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Ensure your RF regulator is <strong><span style="border-bottom:0.05em solid">enabled</span></strong>:</span><div class="indented"><ul id="10924c84-4f39-4919-8950-0da7a91da7bf" class="toggle"><li><details open=""><summary>📄 Because of the global chip shortage of 2021, the RF regulator can be either<strong> </strong>U7 or U21. Instructions on <mark class="highlight-teal"><strong>enabling</strong></mark> the RF regulator in software:</summary><ul id="54492ff4-3afa-4d14-a96a-8ac9c85564a0" class="bulleted-list"><li style="list-style-type:disc">If your board has U7 populated, your regulator should be disabled by default, enable it by changing <code>/lib/pycubed.py</code> line 107 to say the following:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b724e97-8f96-480a-8478-43a731b890b5" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.enable_rf.switch_to_output(value=False)</code></pre></li></ul><ul id="072cf8ce-e974-4cba-bf42-13537a5fa4b1" class="bulleted-list"><li style="list-style-type:disc">If your board has U21 populated, your regulator should be enabled by default, but double check by confirming <code>/lib/pycubed.py</code> line 107 says the following:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0024abb5-4a15-4922-881f-2fc6d3aff03e" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.enable_rf.switch_to_output(value=True)</code></pre></li></ul></details></li></ul></div></li></ul></li></ol></div></p><h2 id="b1bd962f-f6e0-4b85-88e3-7b3f2f4509ee" class="">High Power Radio Output</h2><p id="6aeb3cf6-048c-4cc6-864c-0f1b514bde82" class="">
+</p></details></li></ul><ul id="d4376f1c-0b88-4b3a-9f66-bbf66cecd3db" class="toggle"><li><details open=""><summary>My RGB LED (neopixel) is acting weird</summary><p id="96cfe866-3a6f-4d89-bbf0-02fe33f10e38" class="">We&#x27;ve noticed lot-variability of RGB LEDs (P/N WS2812-B) from the manufacturer (Worldsemi). Particularly, we&#x27;ve seen some (but not all!) LEDs start acting strange after applying a strong normal force to the top of the LED, possibly causing damage to internal wirebonds (specifically the bond interface). <div class="indented"><ul id="b06e9847-a319-47d9-b2d5-550d9ba4801e" class="bulleted-list"><li style="list-style-type:disc">One fix is to apply a SMALL amount of heat to the LED package (either via a hot air hand piece or touching a soldering iron to each lead). Iterate between applying small amounts of heat and then testing the LED. This fixed about 90% of the LEDs we tried. </li></ul><ul id="2bdafae7-e879-46ce-b43a-cb970998de2a" class="bulleted-list"><li style="list-style-type:disc">We will switch manufacturers once our supply of RGB LEDs is depleted (or we encounter more of these misbehaving LEDs). </li></ul></div></p></details></li></ul><h1 id="ac483979-2726-4772-a4cb-1b295911258d" class="">Software</h1><hr id="2406f7bc-dee5-46db-b728-74f304685321"/><ul id="c390d5fa-bbfc-4740-a86b-abe727e7189d" class="toggle"><li><details open=""><summary>General software development</summary><ol type="1" id="65a8971d-f474-49dd-a7ca-29454b4e28f9" class="numbered-list" start="1"><li>Make sure to work through all of the quick start pages: <a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html"><span class="icon">⚡</span>Hands-On Quick Start</a> </li></ol><ol type="1" id="bff304df-2515-4884-9f57-a261b8a5954e" class="numbered-list" start="2"><li>Visit <a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html"><span class="icon">🖥️</span>Code Examples</a> </li></ol><ol type="1" id="ce8f049e-0366-4958-81da-31d22f5a7f55" class="numbered-list" start="3"><li>Visit <a href="Example%20Flight%20Software%20f5211336a43144db8177d78097774d27.html"><img class="icon" src="6.png"/>Example Flight Software</a> </li></ol><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="5834f0cd-6efe-4cb6-9002-03d957bf7abb"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Remember<br/>Coding and using PyCubed is exactly like using other CircuitPython boards. Learn, troubleshoot, and get inspired by seeking out <br/><a href="https://learn.adafruit.com/search">CircuitPython projects on the web</a>. </div></figure></details></li></ul><ul id="2b2db125-1bd8-4735-bd71-59f52952d131" class="toggle"><li><details open=""><summary>Trouble with Mu</summary><div><ol type="1" id="835f2af4-b296-49e4-8db6-c3b5772f514c" class="numbered-list" start="1"><li>If you get a Mu-specific error, ensure you followed the instructions in <a href="Download%20Mu%205fd6280e8b134f809edf4f7187d3d939.html"><img class="icon" src="2.png"/>Download Mu</a>.</li></ol><ol type="1" id="78a8183e-4ce7-45f1-8f79-e5d9e1b1e18a" class="numbered-list" start="2"><li>Restart your computer after installing Mu.</li></ol><ol type="1" id="b9ca9191-fca4-4fbf-b787-97fed222e95c" class="numbered-list" start="3"><li>Board not recognized?<p id="74b3531a-4dee-4a48-a406-bd2a53aff529" class="">Prior to Mu 1.1.0-beta-4 release, Mu Editor did not recognize PyCubed as a CircuitPython device. If you encounter this, try reinstalling Mu. </p><ul id="f1ca2c8e-171d-47df-8905-ba890dc1a480" class="toggle"><li><details open=""><summary>Still not recognized? </summary><p id="2f0bab7e-98fb-4d0a-be7b-96181d54751e" class="">try an earlier release for Mu: <a href="https://github.com/mu-editor/mu/releases">https://github.com/mu-editor/mu/releases</a></p></details></li></ul><ul id="e45dacc3-c868-4fb1-a8ff-137e95d30fe0" class="toggle"><li><details open=""><summary>How to manually add valid board types to Mu<br/>(no longer necessary)<br/></summary><h3 id="91bc09d3-8bd3-45b1-a47a-b1971c7b4be1" class="">On Mac</h3><ol type="1" id="51b86953-31e2-462c-b1c0-2f4916d82f78" class="numbered-list" start="1"><li>Close Mu (if it&#x27;s open) and navigate to the Mu installation directory (might look something like this: <code>/Applications/mu-editor.app/Contents/Resources/app/mu/modes</code>)</li></ol><ol type="1" id="324dc875-44c6-4cf3-a8b4-f2f4511d819a" class="numbered-list" start="2"><li>Open the <code>/adafruit.py</code> file in a text editor and add <code>(0x04D8, None),</code> to the the <code>valid_boards</code> list (somewhere around line 54) and save. The file should now contain something like:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="afca4679-c167-4e13-bcb8-8703b153ed9f" class="code"><code class="language-Python">...
+  (0x1B4F, 0x8D22),  # SparkFun SAMD21 Mini Breakout
+  (0x1B4F, 0x8D23),  # SparkFun SAMD21 Dev Breakout
+  (0x04D8, None),    # PyCubed related boards
+]</code></pre></li></ol><h3 id="ca4d8c3f-2bc5-4aed-9dd4-6a7cc7badb2e" class="">On PC</h3><ol type="1" id="5a5be695-a611-4dcf-9302-284b18d1cb7b" class="numbered-list" start="1"><li>Follow the same steps as for the mac, except the adafruit.py (it might also be called circuitpython.py) file will be located in a directory similar to...<br/><br/><code>C:\Users\USERNAME\AppData\Local\Mu\pkgs\mu\modes</code> <p id="1e19539d-9a4d-4c92-8a6b-d96b2f1a79e9" class="">(make sure to change &#x27;USERNAME&#x27;). </p></li></ol><ul id="b2b43f92-5447-4a4f-a9bd-893128948d31" class="toggle"><li><details open=""><summary>Can&#x27;t find the <code>circuitpython.py</code> file?</summary><p id="f2e8afe4-ed53-4f11-ae1e-313f18f8f440" class="">If you&#x27;re on PC, try looking for the install location: <code>MU-INSTALL-PATH\pkgs\mu\modes</code></p></details></li></ul></details></li></ul></li></ol></div></details></li></ul><p id="478ab265-3654-4cd7-80f9-247099193ca9" class=""><a href="Accessing%20the%20Serial%20Console%20bfd69dfcd5f544e4b1c1164f29d8c45f.html"><span class="icon">🖱</span>Accessing the Serial Console</a> </p><figure id="8f0453f5-90e2-476f-9085-c2e7c4617880" class="link-to-page"><a href="Erasing%20the%20PyCubed%20Memory%208f0453f590e2476f9085c2e7c4617880.html"><span class="icon">💾</span>Erasing the PyCubed Memory</a></figure><figure id="2fd951eb-02e7-4560-872e-a9308981e24b" class="link-to-page"><a href="Configuring%20Mu%20Editor%20to%20Work%20with%20PyCubed%202fd951eb02e74560872ea9308981e24b.html"><span class="icon">🐍</span>Configuring Mu Editor to Work with PyCubed</a></figure><h1 id="3e0d3b6d-c9ed-40e7-86bf-76a814e64e26" class="">Firmware</h1><hr id="56492697-d979-4f09-b15b-9efb72521e91"/><ul id="167a26f7-bf03-4f8a-be03-4b1e33e78d12" class="toggle"><li><details open=""><summary>Atmel Studio 7 is unable to communicate to the microcontroller via SWD (JTAG)</summary><ul id="2468475f-3abf-4abb-a40e-d6f74dd26ac9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Make sure the enable resistor for the external watch dog timer (WDT) is not soldered on to the board (R42).</span><div class="indented"></div></li></ul><ul id="bae12ed7-a406-453b-add7-3e4b4a5789ca" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Check the voltage on <code>3V3</code>. See <a href="Troubleshooting%20828f6ffccee44597a9b8b6c2ed417fb5.html">this troubleshooting section</a> if it does not read 3.3V +/- 0.2V.</span><div class="indented"></div></li></ul><p id="2ff27c8f-e139-4990-8965-6a2853564a7d" class="">
+</p></details></li></ul><p id="d497c0af-06ba-4c1f-8f57-2ef69c83717d" class="">
+</p><h1 id="718ca3a4-267e-4272-af7a-6dcb4f7077e2" class="">Still having trouble? </h1><hr id="61f5f601-f25e-4a30-aca1-e8a6074bf6d8"/><ol type="1" id="eaad7bbb-8f3e-4072-bebc-a77456a9a6f7" class="numbered-list" start="1"><li>Check the 💬 <a href="https://pycubed.org/forums">PyCubed Forums</a></li></ol><ol type="1" id="86112948-3415-4b3f-bf1a-4b864438acd9" class="numbered-list" start="2"><li>Check the<a href="FAQ%20c8d7c6de743745ef9c2b4cc1ea262f69.html"><span class="icon">❔</span>FAQ</a> </li></ol><ol type="1" id="96c3cfcf-9905-4226-8b56-0dc411797b12" class="numbered-list" start="3"><li><a href="Contact%20Us%2070e805a60ad645fa9ed7383afebe1305.html"><span class="icon">📧</span>Contact Us</a> </li></ol><p id="5630560e-da94-452a-9c43-397c1cbfd2de" class="">
+</p><p id="f7d8192a-89a2-4272-978b-353a7e071ecd" class=""><br/><br/><br/><br/></p><hr id="26674035-be7c-4bfb-9b2a-2bb54ec28bd3"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

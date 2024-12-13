@@ -1,0 +1,729 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>pycubed.py</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b80aabda-7428-4488-bfd9-b8ef46a0eba2" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⭐</span></div><h1 class="page-title">pycubed.py</h1><p class="page-description"></p></header><div class="page-body"><div id="d780be96-2b79-4ac7-a9e8-7c83a69473bf" class="column-list"><div id="083ae625-3307-4d77-88d8-065bed9da746" style="width:56.25%" class="column"><p id="040e7e0e-96b9-45d8-8a65-177733b050dc" class="block-color-gray">A helper library to make it easy to access core PyCubed functionality and illustrate how to interact with the hardware.</p></div><div id="13545b22-856e-4fc1-88e1-f634390cebec" style="width:43.75%" class="column"><div><p id="2373e259-d6e2-45a6-b576-25062fb47e94" class=""><a href="index.html">↩ Return Home</a></p><p id="aae183ee-423b-419e-8ebb-e51d4dfe7038" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p><p id="1d6f5e08-bcf9-46f3-8394-307b4ec3403b" class=""><a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html">↩ Return to Code Examples</a></p></div></div></div><p id="3e8788f5-f8df-456b-b316-b95a38feac2e" class=""> </p><hr id="58899c6f-d760-4c27-9ead-85cafa4d3f3e"/><div id="07b36e48-1ec9-4a5e-bf3c-c1efb5fca026" class="column-list"><div id="8ee2e159-2aa2-4bb8-8699-e8fff44bbd47" style="width:50%" class="column"><p id="8208c987-9293-4167-9348-1e10b10c31ce" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="c6b23289-544c-4eed-886d-c4039b327965" class="table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#52f385d2-9279-441a-b28d-8aa5632d57a0">⚙ Hardware Needed</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#eb5e281e-4a52-49dc-8b31-440901b372eb">📚 External Libraries Needed</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5878ce82-8557-4de1-9dff-0d29381e36f9">📑 Example Usage</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#914d0984-0627-4687-8d3f-44cc6ccff418">Calling the library</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#60f03484-da64-4e77-b97a-a03f717d5160">Checking available on-board hardware</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#183edc9a-066a-43a5-a787-05566592221f">Controlling the RGB LED (aka NeoPixel)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c809be7e-60e8-4aa5-9298-9f64b5eddeaa">Measuring microcontroller temperature</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#093d2f55-cf29-4dd2-aa2b-93bef19d9417">Reading IMU data</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1b4658ae-ae5e-47bd-9735-886a4e3d0a6d">Temperature</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#02534f9e-3eee-4b6d-8c97-f2d5af734125">Acceleration</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#bad5c3a8-9ed8-4dcd-a27e-a143a00ea656">Magnetometer</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3a813df1-f409-47bc-b56a-502e138908d3">Gyroscope</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ea41e5e2-10a4-41e3-9a89-0e4664fef1f3">Measuring battery voltage</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#efe65be8-8ce8-4eff-ad1b-195a6e782a28">Measuring battery charge current (Solar)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eb01b5d6-5cc4-4e1d-9fb9-29f0b31552eb">Measuring system voltage</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2fc28c97-5637-4e61-868d-fa2051bd31fc">Measuring system current draw</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fdfd5d99-8534-45fb-b521-e639603ad0e0">Controlling the burn wires</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#43aabecb-5b36-43b8-b2d7-6b3e833ed830">Accessing the SD card</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8d1a766d-57e0-421e-a439-5b36e63e528f">Controlling USB charging</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#dd166146-fbb2-4efc-ab4b-84213b6603cf">Checking charging state</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#afecb21c-677e-4a72-b03e-d0bb14c752a4">Enable/disable charging</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#20c7f332-e116-4a9f-906c-ef55adccb527">Set charging current</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7a741472-05b1-4271-a70f-0769e7b82e05">Controlling Radio(s)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bb75f01f-8dd2-4077-b8ff-b06491e85c85">Controlling GPS</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d43322e4-2060-4b60-a2af-40d68d0b0168">Accessing PyCubed status bytes</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a1cd305e-5320-41b6-836b-935404b645e3">Reading the boot counter</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#a184b478-6014-43e1-97b5-ed9ee49ede3d">Resetting the boot counter</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ee1b3534-fda2-480e-9e37-f41dc391bdd5">📚 pycubed.py code</a></div></nav></div><div id="3bd21305-3ad2-45cd-b836-dadc785e6892" style="width:50%" class="column"><p id="a4ecd1c0-a026-4e34-af39-7c9375e1bc2b" class="">The pycubed.py library is an extremely useful resource for operating the board. It&#x27;s also a good introduction to writing your own libraries or functions. <br/><br/><br/><br/><br/><br/><br/><br/></p><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="7d254e28-38c8-4d06-bbca-fe1ee46bec66"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">CircuitPython libraries are plain-text files. Meaning you can always open the pycubed.py file to remember and learn from the functions. </div></figure><p id="5eb10209-21e2-49f7-9839-19db7a8fc8bf" class=""> <br/><br/><br/><br/><br/><br/></p><h2 id="52f385d2-9279-441a-b28d-8aa5632d57a0" class="">⚙ Hardware Needed</h2><hr id="5c5f485d-5aba-4a7a-86e8-440fc181a08e"/><ul id="e3090a57-8fbf-4c98-8fb9-a23cdb4a12a5" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Any PyCubed mainboard</span><div class="indented"></div></li></ul><p id="60852b22-380e-4dae-ab03-b8a96a9af8e1" class=""><br/><br/></p><h2 id="eb5e281e-4a52-49dc-8b31-440901b372eb" class="">📚 External Libraries Needed</h2><hr id="0a7a2284-2b42-4859-a93f-37d33b4bd303"/><p id="ef54aa29-05bf-420e-9af8-1cc4b311c306" class="block-color-gray"><a href="https://github.com/pycubed/library_pycubed.py">pycubed.py</a></p></div></div><hr id="f48618a8-f967-45c9-bf22-0c49e8e366ae"/><p id="8d718d48-cdfb-469a-a020-5d7c7c051363" class="">
+</p><h1 id="5878ce82-8557-4de1-9dff-0d29381e36f9" class="">📑 Example Usage</h1><hr id="1206df0b-573a-41e0-a44a-9207de0ff159"/><div id="56284357-b89e-47e3-99bb-145d61f5d3d5" class="column-list"><div id="458ccf82-da85-4fb2-a691-9d4517f7154e" style="width:81.25%" class="column"><h2 id="914d0984-0627-4687-8d3f-44cc6ccff418" class="">Calling the library</h2></div><div id="1a29e510-8bc3-44b0-b35d-5791a1923e5e" style="width:18.75%" class="column"><p id="35ab59cf-4a0c-4eb7-90ef-fbb8fd5bf00b" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="c33cb724-6a49-48dd-a845-db30f4616d29" class="">The pycubed.py library is always invoked by importing the &quot;cubesat&quot; object as shown below:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="38a0ad94-8f56-4510-be52-daeafb8b295a" class="code"><code class="language-Python">from pycubed import cubesat</code></pre><p id="2c815c08-882a-440d-8b9f-b697215e5760" class="">This is usually done at the start of your main.py file (or whatever script you&#x27;re writing). But it also makes it easy to interact with the board from the REPL:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f309cec8-4c8d-475f-ac97-5b488cb0fe63" class="code"><code class="language-Shell">&gt;&gt;&gt; from pycubed import cubesat
+[ERROR][SD Card] no SD card
+[WARNING][RADIO #2] Failed to find rfm9x with expected version -- check wiring
+&gt;&gt;&gt;</code></pre><p id="aaecbc0f-df57-46e2-be04-4843ac9dce11" class="">However you are working with the board, you should always start with:<br/> <br/><code>from pycubed import cubesat</code> if you intend to use the pycubed.py helper library.</p><p id="d754b0fa-3de7-4cab-be03-2a57b0ac9d09" class="">
+</p><div id="4f1b4eb9-5713-4604-bd50-83558f1d0fdf" class="column-list"><div id="8971e8a9-cc55-44ef-affc-7ee801fc7315" style="width:81.25%" class="column"><h2 id="60f03484-da64-4e77-b97a-a03f717d5160" class="">Checking available on-board hardware</h2></div><div id="64bef85d-9200-4be7-93e6-0dbcdcefdd0c" style="width:18.749999999999996%" class="column"><p id="5c3ea2b8-2381-40ea-99fa-432fdca5e009" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b67c342-0a39-451e-9a34-f71dee382785" class="code"><code class="language-Python">from pycubed import cubesat
+print(cubesat.hardware)</code></pre><div id="c42a7e58-2547-4fe5-8a43-4c66262d0b57" class="column-list"><div id="d4f2f90d-2a83-400e-8c19-a168a01f2f83" style="width:81.25%" class="column"><h2 id="183edc9a-066a-43a5-a787-05566592221f" class="">Controlling the RGB LED (aka NeoPixel)</h2></div><div id="c4e86c5d-0fbd-4814-8236-c6884235241f" style="width:18.749999999999996%" class="column"><p id="0765455c-36aa-4719-aa5c-99d8bcc5d0bc" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="9fecae73-542b-423f-a079-24ad4a991f28" class="block-color-gray">Simple property that lets you set the color of the RGB LED using a tuple in the format of (RED,GREEN,BLUE). Values can only be 0→255. The full adafruit_neopixel library is accessible from the <code>cubesat.neopixel</code> object. See <a href="https://circuitpython.readthedocs.io/projects/neopixel/en/latest/api.html">adafruit_neopixel→</a> for more details. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4c5d99e6-12f8-482f-b79f-ae43e147c956" class="code"><code class="language-Python">from pycubed import cubesat
+cubesat.RGB = (0,255,0) # sets the LED to pure green
+cubesat.RGB = (0,0,0) # turns the LED off
+cubesat.RGB = (255,255,255) # this sets the LED to white (consuming the most power)
+
+print(cubesat.RGB) # returns the current LED color value
+
+cubesat.neopixel.brightness = 0.5 # sets the LED brightness. Default is 0.2, max is 1</code></pre><div id="166ff6a3-b0e9-4089-9cbe-6c721947d120" class="column-list"><div id="833b4c22-0098-4250-86e6-8e2b776f7ed5" style="width:81.25%" class="column"><h2 id="c809be7e-60e8-4aa5-9298-9f64b5eddeaa" class="">Measuring microcontroller temperature</h2></div><div id="2c56907b-53f0-4425-8176-078d29c66b1c" style="width:18.749999999999996%" class="column"><p id="93d901c3-743f-43cd-9126-03ee72cbc38c" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="13d96d1d-41a6-442f-b9ef-4dbdfd2d0671" class="block-color-gray">Returns a float of the CPU temperature in Celsius measured on-chip by the SAMD51</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="db0999bc-70ad-4e2b-a0b6-5fa97f35595e" class="code"><code class="language-Python">from pycubed import cubesat
+temp = cubesat.micro.cpu.temperature # returns the temperature in celcius for the SAMD51</code></pre><div id="4eb682bf-a21c-43c2-b808-2958e2afd14e" class="column-list"><div id="d22fb334-7532-46b5-a924-281e96902764" style="width:81.25%" class="column"><h2 id="093d2f55-cf29-4dd2-aa2b-93bef19d9417" class="">Reading IMU data</h2></div><div id="ea2e7e90-02ef-4688-8ef5-33a0f00ffb44" style="width:18.749999999999993%" class="column"><p id="f4e38cc1-3deb-4f09-9a2b-8a69c2f02247" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="f093efb4-ac04-4e17-91d9-562d35ad78b1" class="block-color-gray">The IMU is capable of many other functions as well. <br/>See See BMX160 datasheet for more details: <br/><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> </p><div id="912ec347-7881-4710-a451-f192ec63cf8d" class="column-list"><div id="9491a977-2db9-45f3-b85b-3f047e11c405" style="width:6.25%" class="column"><p id="b08ab431-e234-40f1-90bd-4e018711afba" class="">
+</p></div><div id="db8bb156-f671-49c2-bece-73d33238a802" style="width:93.75%" class="column"><h3 id="1b4658ae-ae5e-47bd-9735-886a4e3d0a6d" class="">Temperature</h3><p id="8d19295d-f109-414b-ae1f-43ab6267f4f3" class="block-color-gray">Returns a float of the temperature in Celsius measured by the BMX160 IMU</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3709e517-6a51-4582-8c61-00107a6e31b1" class="code"><code class="language-Python">from pycubed import cubesat
+temp = cubesat.temperature # Celsius</code></pre><h3 id="02534f9e-3eee-4b6d-8c97-f2d5af734125" class="">Acceleration</h3><p id="6a6d9c07-d35a-4dd3-976f-638ba97b3345" class="block-color-gray">Returns a 3-tuple with (X,Y,Z) acceleration values (m/s^2) from the BMX160</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2d65702d-e522-4157-a147-5c470825bcb5" class="code"><code class="language-Python">from pycubed import cubesat
+
+x_accel, y_accel, z_accel = cubesat.acceleration # m/s^2</code></pre><h3 id="bad5c3a8-9ed8-4dcd-a27e-a143a00ea656" class="">Magnetometer</h3><p id="1eeb5d56-47ef-4307-a72d-b8292aa35d78" class="block-color-gray">Returns a 3-tuple with (X,Y,Z) magnetometer values (gauss) from the BMX160 </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a7075527-ab03-48f1-ab5c-defaecfdffa6" class="code"><code class="language-Python">from pycubed import cubesat
+
+x_mag, y_mag, z_mag = cubesat.magnetic # uT</code></pre><h3 id="3a813df1-f409-47bc-b56a-502e138908d3" class="">Gyroscope</h3><p id="9ed9f2a9-bcf9-43ce-b99b-766f81a41ea4" class="block-color-gray">Returns a 3-tuple with (X,Y,Z) gyroscope values (degrees/second) from the BMX160</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b09e8ced-6fe3-479f-b763-5810a467d912" class="code"><code class="language-Python">from pycubed import cubesat
+
+x_gyro, y_gyro, z_gyro = cubesat.gyro # degrees/second</code></pre></div></div><div id="d41b9295-eed5-4c3b-a973-fc7fa6a98426" class="column-list"><div id="391c23f4-8e0b-4e9b-ac06-7edc4339d57d" style="width:81.25%" class="column"><h2 id="ea41e5e2-10a4-41e3-9a89-0e4664fef1f3" class="">Measuring battery voltage</h2></div><div id="8f8eb4e1-7cb2-4209-976c-88f7d1264aed" style="width:18.749999999999993%" class="column"><p id="ae291b01-e506-47b3-b93e-59abc4e947d5" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="8c60420e-bb45-4169-b41b-c37ea91e0b5a" class="block-color-gray">Returns a float of the battery voltage in volts. Measured with the SAMD51 16-bit ADC using a 316/110 voltage divider</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="26a88bdd-ff2d-4774-b22d-4596210286a3" class="code"><code class="language-Python">from pycubed import cubesat
+vbatt = cubesat.battery_voltage</code></pre><div id="0f194ee2-0bab-4700-9817-b676d4d0aee1" class="column-list"><div id="d7d03707-ec64-4faf-9240-921e423b5a6a" style="width:81.25%" class="column"><h2 id="efe65be8-8ce8-4eff-ad1b-195a6e782a28" class="">Measuring battery charge current (Solar)</h2></div><div id="863efb7c-58e7-471a-bde5-9d6c6b8b41ef" style="width:18.750000000000007%" class="column"><p id="ffb1b27f-5dba-4b03-8651-8f5173e35861" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="fdba2a82-d581-45fb-9da1-af2992f56d53" class="block-color-gray">Returns a float of the charge current in mA. Measured with the SAMD51 16-bit ADC of the &quot;L1 Prog&quot; analog output from the LTC4121 energy harvesting circuit. See <a href="PyCubed%20Energy%20Harvesting%2042d839b704574b97b994cab940405ae8.html"><span class="icon">☀️</span>PyCubed Energy Harvesting</a> and LTC4121 datasheet for more details: <a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b895570-3d8f-4c0c-b46a-98620f3ec4b8" class="code"><code class="language-Python">from pycubed import cubesat
+ichrg = cubesat.charge_current</code></pre><div id="3849711b-4207-476b-b800-713fdcecb162" class="column-list"><div id="d6b840fd-de72-498e-87eb-df99a3a04118" style="width:81.25%" class="column"><h2 id="eb01b5d6-5cc4-4e1d-9fb9-29f0b31552eb" class="">Measuring system voltage</h2></div><div id="2d0ea6de-43d5-4397-89b5-8978415c02c9" style="width:18.750000000000007%" class="column"><p id="c8b40aba-f8ac-487a-ad6c-856ad6d4873e" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="415fc055-2e50-4e2b-97c3-6eb5f5b33880" class="block-color-gray">Returns a float of the system voltage right before the main 3.3V regulator. Value returned from the ADM1176 power-monitoring IC over I2C. See ADM1176 datasheet for more details: <a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a>, and <a href="https://github.com/maholli/CircuitPython_ADM1176">CircuitPython_ADM1176</a> library. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3fd46f05-ea2a-4874-bbfe-6961b5387a05" class="code"><code class="language-Python">from pycubed import cubesat
+vsys = cubesat.system_voltage</code></pre><div id="0b8ca3b1-1163-48d7-8ae8-de4c015f379f" class="column-list"><div id="6cf0b01d-ddf5-419c-b041-18a8d4629fa3" style="width:81.25%" class="column"><h2 id="2fc28c97-5637-4e61-868d-fa2051bd31fc" class="">Measuring system current draw</h2></div><div id="2aaee09a-38ce-4320-83a1-d041a6c4f377" style="width:18.75%" class="column"><p id="cd2c8a65-9a48-4f0a-81c8-bdcb4a53e953" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="4d34cdfb-d16d-4f7c-95de-baecb177921f" class="block-color-gray">Returns a float of the system current flowing into the main 3.3V regulator. Value returned from the ADM1176 power-monitoring IC over I2C. See ADM1176 datasheet for more details: <a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a>, and <a href="https://github.com/maholli/CircuitPython_ADM1176">CircuitPython_ADM1176</a> library. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a8bfb891-cbc7-4499-89f6-a6f37440bd44" class="code"><code class="language-Python">from pycubed import cubesat
+isys = cubesat.current_draw</code></pre><div id="70d11110-75ff-43f8-be16-63f7443743e7" class="column-list"><div id="5cb4bc0a-ae4e-4d15-838f-5b13b031c842" style="width:81.25%" class="column"><h2 id="fdfd5d99-8534-45fb-b521-e639603ad0e0" class="">Controlling the burn wires</h2></div><div id="0d598453-a5e4-4ba7-a4b2-46f25fa4dd17" style="width:18.749999999999993%" class="column"><p id="9b119b1a-9693-462a-866c-a254bae14975" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="2acdce7b-321f-413c-a156-8d0c4f4e2f60" class="block-color-gray">The specific burn wire parameters need to be tuned to the specific system. This burn wire parameters are to configured by directly editing the pycubed.py text file. See <a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html"><span class="icon">🔥</span>PyCubed Burn Wire Info &amp; Usage</a> for more details.</p><div id="056e15dc-71aa-427a-80df-5e1759c63e85" class="column-list"><div id="25f5893a-5b52-463c-a1cb-9c8774bfe731" style="width:81.25%" class="column"><h2 id="43aabecb-5b36-43b8-b2d7-6b3e833ed830" class="">Accessing the SD card</h2></div><div id="fb69967a-6867-45d1-8e36-6741720429bd" style="width:18.75%" class="column"><p id="e0c438a7-3916-43ac-bcf9-3468daf5b41d" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="a5545f3f-52b2-462b-ab11-ef1cdc50f5f9" class="block-color-gray">See <a href="Selecting%20an%20SD%20card%20edf389776ac64f91b19bc4428ee43941.html"><span class="icon">💾</span>Selecting an SD card</a> for details on which cards to use, and <a href="SD%20Card%20c355537c29ba41e9b1f21bbe53e8463a.html"><span class="icon">📂</span>SD Card</a> for code examples.</p><p id="2aaf8f97-137a-4c5d-a7d2-bbefbfaab41d" class="">
+</p><div id="2de43385-70bc-4ac2-b124-9423994691a4" class="column-list"><div id="b8b3ae12-a15a-4436-87b0-d877db3e1af2" style="width:81.25%" class="column"><h2 id="8d1a766d-57e0-421e-a439-5b36e63e528f" class="">Controlling USB charging</h2></div><div id="d0a927ba-fce2-4b97-bbb0-c6dcd2b8f22d" style="width:18.75%" class="column"><p id="6ba934a1-8375-4b73-a15d-27c2a642358f" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="6995a87e-e5b3-40b9-974c-b4e49e26ce40" class="block-color-gray">USB charging is disabled by default when the pycubed.py library is invoked. </p><div id="14cfb4ca-85f6-468d-9c5f-c7fdb3045540" class="column-list"><div id="c80ce4d8-b43a-448c-bc89-01db2d78c9c2" style="width:12.5%" class="column"><p id="88a84527-9bc1-4aec-8719-c7d8e3e0f295" class="">
+</p></div><div id="ef334984-8407-4d8f-abe1-1cba65a1111c" style="width:87.5%" class="column"><h3 id="dd166146-fbb2-4efc-ab4b-84213b6603cf" class="">Checking charging state</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="930d8ef8-b0b8-4296-9f7a-74b4304b3165" class="code"><code class="language-Python">from pycubed import cubesat
+print(cubesat.charge_batteries)</code></pre><h3 id="afecb21c-677e-4a72-b03e-d0bb14c752a4" class="">Enable/disable charging</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fbd19d33-f903-4370-8223-d87934838c66" class="code"><code class="language-Python">from pycubed import cubesat
+# enable charging (green LED will blink if no battery detected)
+cubesat.charge_batteries=True
+# disable charging 
+cubesat.charge_batteries=False</code></pre><h3 id="20c7f332-e116-4a9f-906c-ef55adccb527" class="">Set charging current</h3><p id="0efe5c29-8319-4e39-acc1-2df83a018c29" class="block-color-gray"><mark class="highlight-gray">See BQ25883 datasheet </mark><mark class="highlight-gray"><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a></mark><mark class="highlight-gray"> section 8.5.2 for more details.</mark></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1f6b721-fcbe-4a8e-9154-d4cc10e56da4" class="code"><code class="language-Python">from pycubed import cubesat
+cubesat.usb.charging_current=8 #400mA</code></pre></div></div><p id="36f73eb5-bc9d-4c51-9a51-d2bfbd777b0b" class="">
+</p><div id="d1a42b73-ac96-4c7f-b1ca-09c381b7c0c9" class="column-list"><div id="83d193a1-0424-4f03-b4e4-9d6b434e7152" style="width:81.25%" class="column"><h2 id="7a741472-05b1-4271-a70f-0769e7b82e05" class="">Controlling Radio(s)</h2></div><div id="164f6bf6-34e9-4492-984c-32f4961fcf9a" style="width:18.750000000000004%" class="column"><p id="0b40e11a-649e-4b52-b86b-513c4aaa8020" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="25fca58b-5d8e-47cf-b455-2bfb0d7c8427" class="block-color-gray">See <a href="Example%20Flight%20Software%20f5211336a43144db8177d78097774d27.html"><img class="icon" src="6.png"/>Example Flight Software</a> for an introduction to using the radio and the advanced example for common usage patterns. See <a href="Radio%203f18f4d099464e32a75ef52e610982ff.html"><span class="icon">📁</span>Radio</a> for coding examples.</p><p id="32ec8e1b-e71a-4342-9118-19ea6b07e884" class="">
+</p><div id="f17d8d7b-4f21-449c-a760-3514e7bdfbaa" class="column-list"><div id="4cd2f813-aa27-4735-804b-24635f4101cc" style="width:81.25%" class="column"><h2 id="bb75f01f-8dd2-4077-b8ff-b06491e85c85" class="">Controlling GPS</h2></div><div id="faf67076-be82-4d7b-becf-6c843545662f" style="width:18.749999999999996%" class="column"><p id="6228f2fd-fbaf-4802-a0eb-e71981f0d5d0" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="c1710327-586a-46ed-9a51-ee78fa70bc57" class="block-color-gray">See <a href="GPS%20142436b3a4904f2c85024d28902a75f0.html"><span class="icon">📁</span>GPS</a> example for a demo using a commercial GPS module. </p><p id="4f69dc9d-e333-47b6-909a-75cf6a3716b8" class="">
+</p><div id="daed414b-c178-46b7-b4dd-87c77f506872" class="column-list"><div id="233e2a71-4e95-4113-82a5-a094beb4244a" style="width:81.25%" class="column"><h2 id="d43322e4-2060-4b60-a2af-40d68d0b0168" class="">Accessing PyCubed status bytes</h2></div><div id="1583aced-3db9-40b1-afa9-ac6c8313e128" style="width:18.75%" class="column"><p id="3ad60ea6-3698-434d-afa4-f5cba8174c7c" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="2397bd82-b58d-4bfa-b8f9-751645c72daf" class="block-color-gray">See <a href="PyCubed%20NVM%20Bit%20Map%20&amp;%20Usage%20e830e6f25b5544c195e5ea227e163665.html"><span class="icon">📋</span>PyCubed NVM Bit Map &amp; Usage</a>  for more details.</p><div id="1e266818-fae6-48f9-88f3-811c4b1648c5" class="column-list"><div id="868019f8-d663-48b0-8193-a9b29d7224b2" style="width:12.5%" class="column"><p id="69247338-7d8c-408c-9359-f15362fa4285" class="">
+</p></div><div id="384ff794-7b0e-46ad-9ef9-6dff1be831fc" style="width:87.5%" class="column"><h3 id="a1cd305e-5320-41b6-836b-935404b645e3" class="">Reading the boot counter</h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="623b3390-c6ec-4616-8f0d-683f83bd1874" class="code"><code class="language-Python">from pycubed import cubesat
+
+bootcnt = cubesat.boot_count</code></pre><h3 id="a184b478-6014-43e1-97b5-ed9ee49ede3d" class="">Resetting the boot counter</h3><p id="81c88155-3dfe-49f1-9f9c-daf8a71598ee" class="">⚠CAUTION - this can&#x27;t be undone. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="475cb368-82de-492d-89aa-4b222c6e4547" class="code"><code class="language-Python">from pycubed import cubesat
+
+# set the boot_count status byte to 0
+cubesat.reset_boot_count</code></pre></div></div><h2 id="ee1b3534-fda2-480e-9e37-f41dc391bdd5" class="">📚 pycubed.py code</h2><hr id="0adb402d-5197-42de-9209-a2f674d30b88"/><div id="d9a28f73-0f79-4d2b-a0ea-69d71b5ec29e" class="column-list"><div id="8e339ff5-5b1b-4ffe-a8ba-e01e55932a48" style="width:81.25%" class="column"><p id="68e5ad9c-92d7-4a3a-b793-c65aa91f14f5" class="">Latest library code can always be found in its repo: <a href="https://github.com/pycubed/library_pycubed.py">https://github.com/pycubed/library_pycubed.py</a></p></div><div id="915e853b-30ff-4d56-abe8-f5ea62ab4f5c" style="width:18.750000000000004%" class="column"><p id="4886af9d-f260-467b-a9b9-e69c830f389e" class=""><a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html">(return ⬆)</a></p></div></div><p id="f35682d7-9263-4d0d-b9a2-90f353184122" class="">
+</p><p id="eecea7f2-b817-41af-873e-2ddaaf00f940" class=""><br/><br/><br/><br/></p><hr id="6e7cffcf-93dd-4f3d-835a-dbdd3e332af2"/><p id="da16fbbe-2956-4b38-91cb-3d8f19027627" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

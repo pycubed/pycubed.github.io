@@ -1,0 +1,690 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Programming the Bootloader</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="343b47d1-ad6f-4863-b512-d6464aa7b84e" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🛠</span></div><h1 class="page-title">Programming the Bootloader</h1><p class="page-description"></p></header><div class="page-body"><hr id="3f30d1bb-7400-498b-829c-b68a4c2af069"/><div id="ca313fac-58da-42f7-8584-f09dab877196" class="column-list"><div id="0be87236-58df-4d74-808f-f6add024cc20" style="width:33.333333333333336%" class="column"><p id="739c4fb7-3a13-4c8e-97c8-491ec763ffcb" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="d66db172-f25b-47cc-979a-43e572cfb1e2" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ac47656c-976e-4c4b-82c9-a0353cc11754">Flashing a new bootloader</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8fa963b9-e8c0-4680-b721-c97ac9fb2c63">Requirements</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1118f806-e7ec-4cf3-814a-44eda420a5db">Instructions</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#518bf915-4e06-473f-8d73-b686fb886544">Entering bootloader-mode and checking the version:</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9635ba75-3679-4b29-87fe-9edaaea122f0">Updating the bootloader</a></div></nav></div><div id="ea1d113e-369f-4d8f-a0f6-7974db4a74c3" style="width:29.166666666666664%" class="column"><p id="8e96121e-beb5-4c07-88ba-91b6f3cfe083" class="">
+</p></div><div id="90596b5a-ceed-4ec3-8e3c-e329c0504793" style="width:37.500000000000014%" class="column"><div><p id="d5802a9f-2ea3-4197-b3b9-6397d75ea28f" class=""><a href="index.html">↩ Return Home</a></p><p id="424bdd87-6df5-4e2b-b6a2-5424d9b0c869" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p></div></div></div><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="f35d9625-1a84-41c0-9bb2-f17d7c18290a"><div style="font-size:1.5em"><span class="icon">📢</span></div><div style="width:100%">Unless you&#x27;ve soldered on a new SAMD51 microcontroller, it&#x27;s likely the bootloader is already programmed for you.<p id="f92b3aa6-4494-47bc-9749-ee61e7195a0c" class=""><br/>If you&#x27;re looking how to update the bootloader or firmware, see <br/><a href="Updating%20PyCubed%20cbc8b47a677549ed98fc5b23b5a04fac.html"><span class="icon">🗳️</span>Updating PyCubed</a> </p></div></figure><h1 id="ac47656c-976e-4c4b-82c9-a0353cc11754" class="">Flashing a new bootloader</h1><hr id="b432f8ef-f3a0-4c1e-af5f-073c315b5492"/><div id="02e8bac9-b6c1-48e0-9597-4b9c19599c0b" class="column-list"><div id="bab08fb4-9e7b-4235-ac7e-aa1d697e8054" style="width:56.25%" class="column"><h3 id="8fa963b9-e8c0-4680-b721-c97ac9fb2c63" class="">Requirements</h3><ul id="93c377c3-2d77-4dcb-92c8-14f4ee74c7b8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><a href="https://www.microchip.com/mplab/avr-support/atmel-studio-7">Download and install Atmel Studio 7</a> (not required, but recommended)</span><div class="indented"></div></li></ul><ul id="4dd1b921-d649-4358-88e2-0ddeea7cc95e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">JTAG programmer with SWD interface (the <a href="https://shop-us.segger.com/J_Link_EDU_mini_p/8.08.91.htm">SEGGER J-Link EDU mini</a> work and cost $18)</span><div class="indented"></div></li></ul><ul id="4d95e219-fd83-4cc4-a75c-bbb8861cff25" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Download the bootloader <code>.bin</code> and firmware <code>.uf2</code> files for your respective board version from the <a href="https://github.com/pycubed/firmware">PyCubed GitHub</a></span><div class="indented"></div></li></ul></div><div id="f75b1a99-7360-45bc-a675-fe6fbe0f8fa7" style="width:43.75%" class="column"><p id="2e824647-07a0-4088-99ac-3e0c72dd1ed0" class="">⭐ bootloader flashing is only required once: on brand-new SAMD51 that haven&#x27;t been used on a PyCubed board before.</p></div></div><h3 id="1118f806-e7ec-4cf3-814a-44eda420a5db" class="">Instructions</h3><ol type="1" id="39b6a1c5-133a-48af-a532-d39c3e0900be" class="numbered-list" start="1"><li>With the requirements above satisfied, plug the JTAG programmer into your computer and open Atmel Studio 7.</li></ol><ol type="1" id="2737de29-49be-4539-87f4-b2d37d623051" class="numbered-list" start="2"><li>Navigate to Tools → Device Programming, as shown:<figure id="24158d2a-86a9-4fce-b538-3681dd174816" class="image"><a href="Untitled%2011.png"><img style="width:432px" src="Untitled%2011.png"/></a></figure></li></ol><ol type="1" id="a1c1a02d-a570-4c35-82b4-c687cd08fdc6" class="numbered-list" start="3"><li>Select the appropriate Tool and Device from the drop-down menus and click apply.<p id="c6b6afcf-35ea-42bf-937b-7178cd140a5c" class="">❗ make sure to choose the correct microcontroller part number. Visually check the part markings on the SAMD51 to confirm if it&#x27;s the SAMD51x<strong>19</strong> or SAMD51x<strong>20</strong>. </p><figure id="90ec82ea-e3e7-44cf-9082-32c1fd13f652" class="image"><a href="Untitled%2012.png"><img style="width:528px" src="Untitled%2012.png"/></a></figure></li></ol><ol type="1" id="458cc3fd-3adc-430e-b6f9-89b737f9ee52" class="numbered-list" start="4"><li>Navigate to &quot;Memories&quot; on the left-hand side.</li></ol><ol type="1" id="1eb72ba7-1013-4d1a-b378-25d66ffebcea" class="numbered-list" start="5"><li>Uncheck the &quot;Erase Flash before programming&quot; box, and then click the &quot;...&quot; button, as shown:<figure id="baea42f3-8cbd-4d3f-bd08-15fc27fcd27e" class="image"><a href="Untitled%2013.png"><img style="width:817px" src="Untitled%2013.png"/></a></figure></li></ol><ol type="1" id="6826247b-e809-4573-adf0-eee6e6c3522f" class="numbered-list" start="6"><li>Navigate to the directory you saved the GitHub firmware files, and change the file parameters from &quot;Programming Files&quot; to &quot;Binary&quot; and shown:<figure id="d4d38454-4567-42fa-b2ff-bac3966ba40f" class="image"><a href="Untitled%2014.png"><img style="width:849px" src="Untitled%2014.png"/></a></figure></li></ol><ol type="1" id="fcda8ca9-4e55-42d6-b3df-c6a2e200f38e" class="numbered-list" start="7"><li>Select the <code>.bin</code> file downloaded previously and click the &quot;Open&quot; button:<figure id="3937619b-a535-4fb3-a31b-2c6398ad710d" class="image"><a href="Untitled%2015.png"><img style="width:808px" src="Untitled%2015.png"/></a></figure></li></ol><ol type="1" id="ee66be6d-e516-4f67-806c-920343b9b96e" class="numbered-list" start="8"><li>Now make the following connections to the PyCubed board. If you&#x27;re careful, you can avoid soldering header-pins to the board by just holding jumper-wire pins (or pogo pins, if you have them) against the through-holes during programming. When in doubt, solder the header pins.<p id="10302134-bc17-4166-9a81-cb0383cfa816" class="">Required Connections:<div class="indented"><ul id="2383ff8b-bb00-4907-bfa5-b05e44332897" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Main micro USB cable (to provide power)</span><div class="indented"><p id="2f88770b-f460-4da4-a10d-2560a0dd73f1" class="">NOTE: it&#x27;s good practice to use a multimeter and confirm 3.3V is present when the USB connection is made to the PyCubed board. If the voltage doesn&#x27;t read 3.3V between &quot;3V3&quot; and &quot;GND&quot; you need to troubleshoot that first.</p></div></li></ul><ul id="bc261a6c-9bea-48c5-b56f-308776234350" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">VTref (connected to 3V3)</span><div class="indented"></div></li></ul><ul id="565e3bf7-bd9f-4cb4-9fe2-6ff099c59031" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">TMS (connected to SWDIO)</span><div class="indented"></div></li></ul><ul id="2e0cc9f5-64c2-4cad-8c3b-cd90d70dfd1f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">TCK (connected to SWCLK)</span><div class="indented"></div></li></ul><ul id="2c19032d-ea74-4160-b74c-caaf7b920913" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">GND (connected to GND)</span><div class="indented"><figure id="2c99bc97-d237-4394-8674-b718a20fd328" class="image"><a href="Untitled%2016.png"><img style="width:480px" src="Untitled%2016.png"/></a></figure></div></li></ul></div></p></li></ol><ol type="1" id="b3f9a07f-17b1-4eda-9670-9b8e890e7f3b" class="numbered-list" start="9"><li>With the connections made, return to Atmel Studio 7 and click the &quot;Read&quot; button. A device signature should populate. If an error appears, check connections and troubleshoot the specific error message.<figure id="ed01cfad-7a0a-45f9-9367-739edf1a7c59" class="image"><a href="Untitled%2017.png"><img style="width:192px" src="Untitled%2017.png"/></a></figure><ul id="4610ab91-eb3b-4e54-946c-b5c235f724c2" class="toggle"><li><details open=""><summary>Common Errors</summary><p id="a2b54c65-5a9c-4208-83c4-2adb73d9af47" class="">&quot;Error connecting to device over SWD&quot; - this is usually a bad connection between the JLINK and the PyCubed board</p><p id="56d702c4-fa24-48b8-94c4-84369e9f3e60" class="">&quot;Read voltage ____V is outside the selected device&#x27;s operating range&quot; - means a bad VTref or GND connection, or the PyCubed board isn&#x27;t properly regulating 3.3V.</p><p id="3300a8ea-47d9-4b48-b652-59b6db2dd1b9" class="">
+</p></details></li></ul></li></ol><ol type="1" id="8a75f6a7-81ec-4461-a4d7-9cfae0e344e1" class="numbered-list" start="10"><li>After receiving a device signature, click the &quot;Program&quot; button. Programming should only take a few moments. </li></ol><ol type="1" id="a470f324-7aea-4e5a-ab2e-030bd5abee3a" class="numbered-list" start="11"><li>Successful bootloader programming will trigger the PyCubed board to reboot. After a few moments, the board should mount to the computer as a <code>PYCUBEDBOOT</code> drive.<figure id="eb11b566-9bee-4c96-ac5c-b6cce848d5d5" class="image"><a href="Untitled%204.png"><img style="width:624px" src="Untitled%204.png"/></a></figure><h3 id="62ec3166-d919-4bc9-a3ae-3949d94731c9" class="">Flashing the Firmware:</h3><hr id="f3f9e68e-82d7-417f-858d-2e16aed5c914"/></li></ol><ol type="1" id="b5496802-609a-44ed-bd00-a84ccea36212" class="numbered-list" start="12"><li>Drag the CircuitPython firmware <code>.uf2</code> file downloaded previously to the <code>PYCUBEDBOOT</code> drive:<figure id="9cbcd221-8e28-473a-9032-5670029fccc1" class="image"><a href="Untitled%2018.png"><img style="width:1204px" src="Untitled%2018.png"/></a></figure></li></ol><ol type="1" id="3ff890c4-9933-4b6b-a507-156521169b6b" class="numbered-list" start="13"><li>As soon as the file is done transferring, the board will reboot again and mount as <code>CIRCUITPY</code> or <code>PYCUBED</code> and is now a functioning CircuitPython board. Congratulations! 🎉 <p id="31fe38a8-d98f-4f9d-8600-98cdfa6038ba" class="">Note: you may wish to load the <a href="https://github.com/pycubed/software">default libraries</a> by copying everything from the respective board version here: <a href="https://github.com/pycubed/software">https://github.com/pycubed/software</a> to your <code>PYCUBED</code> drive.</p></li></ol><h1 id="518bf915-4e06-473f-8d73-b686fb886544" class="">Entering bootloader-mode and checking the version:</h1><hr id="505546c2-e182-4ad2-8447-ab325570db70"/><div><ol type="1" id="cb07d34f-50b0-47f8-b20d-32cc5df00a20" class="numbered-list" start="1"><li>Connect the PyCubed board to your computer via USB</li></ol><ol type="1" id="ac4c13da-1b59-444e-b038-4fe8846de07f" class="numbered-list" start="2"><li>Quickly double-click the &quot;RESET&quot; button located on the top of the board<p id="c37de802-5950-4a32-bd83-01b6bdda748c" class="">The pace of the double-click can be difficult. If it doesn&#x27;t work, keep trying and make sure you hear/feel the click of the button. </p><p id="65c772b9-372d-4656-b1ac-f4b726967886" class="">The RGB LED should be a steady green color in bootloader-mode.</p></li></ol><ol type="1" id="6d2fc0fe-88a9-4ed6-a5a7-ee241d1f6fa9" class="numbered-list" start="3"><li>A successful double-click puts the board into bootloader-mode and it will mount to your computer as a drive labeled <code>PYCUBEDBOOT</code><figure id="0ecc6863-c28f-4eff-82e0-1f6e2f0c0168" class="image"><a href="Untitled%204.png"><img style="width:480px" src="Untitled%204.png"/></a><figcaption>PyCubed board in bootloader mode and mounted to a Windows 10 machine</figcaption></figure></li></ol></div><p id="0fd86092-327e-4c76-96c0-b5766105421a" class="">To check the version:<div class="indented"><p id="23ba8be1-20a3-4ac1-99fd-61a576ab9c84" class="">Locate and open the file <code>INFO_UF2.TXT</code> on the drive it should read something like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f8d1c73f-32e0-4e9f-b604-428c0429270a" class="code"><code class="language-Markdown">UF2 Bootloader v3.13.0-dirty SFHWRO
+Model: PyCubed
+Board-ID: PYCUBED_J19</code></pre></div></p><h2 id="9635ba75-3679-4b29-87fe-9edaaea122f0" class="">Updating the bootloader</h2><p id="0aefa3af-d20d-4ae5-bd43-281860a7445b" class="">See <a href="Updating%20PyCubed%20cbc8b47a677549ed98fc5b23b5a04fac.html"><span class="icon">🗳️</span>Updating PyCubed</a> </p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f290d141-0a28-490f-a299-8f22b708ba6e"><div style="font-size:1.5em"><span class="icon">📢</span></div><div style="width:100%">NOTE: PyCubed uses <a href="https://github.com/adafruit/uf2-samdx1">Adafruit&#x27;s adaptation of the UF2 Bootloader</a> with additional changes specific to the version of PyCubed board. </div></figure><p id="489a4856-7129-4bb8-a796-620d7a414330" class="">
+</p><p id="6daa5a39-db1a-4a3c-b9bf-6c99862237ed" class="">
+</p><p id="f637282c-b868-4a10-8b58-7d6f71dee5b4" class=""><br/><br/><br/><br/></p><hr id="964ec828-7ff5-428c-83f1-7e8e08af70f0"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Mainboard Overview</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="cddd2b21-f589-40e9-91ad-60450f1adae0" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⚙️</span></div><h1 class="page-title">Mainboard Overview</h1><p class="page-description"></p></header><div class="page-body"><div id="520cc9c0-aba8-47ad-aba4-c36e5bae8718" class="column-list"><div id="852e4ca0-0649-4855-b22c-badbcfc0502f" style="width:50%" class="column"><p id="21994ec4-3f0b-4563-b74e-11ba296ad246" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="afc0c5d9-1160-40a0-a07a-df727e3f524b" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#127aa139-35ac-4e28-9b7b-a04f312977c1">Hardware Overview</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9a81a962-e95c-4f5d-b8f5-392631200aa7">Block Diagram</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#55771d4f-d554-4085-b894-e86a5709c864">Primary Circuit Elements</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c4f20fee-dedb-4d82-9739-849e448abd96">Connectors</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e3a4571a-201b-4a2a-9696-fdc5ff9085cd">Resources &amp; Guides</a></div></nav></div><div id="4ac89842-bf9f-4261-baa1-a424c6df665e" style="width:16.666666666666664%" class="column"><p id="5a9e14d8-d5fa-4843-a406-0e33f86335b0" class="">
+</p></div><div id="663939b8-9bb4-4a2c-aa86-fdf21fe517fe" style="width:33.333333333333336%" class="column"><div><p id="d5802a9f-2ea3-4197-b3b9-6397d75ea28f" class=""><a href="index.html">↩ Return Home</a></p><p id="424bdd87-6df5-4e2b-b6a2-5424d9b0c869" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p></div></div></div><figure id="6b6bf456-491d-4f29-bf10-45ef3af4ab95" class="image"><a href="glam.jpg"><img style="width:1268px" src="glam.jpg"/></a></figure><h1 id="127aa139-35ac-4e28-9b7b-a04f312977c1" class="">Hardware Overview</h1><hr id="c87b3851-ff32-4ad0-989f-24a5e60ffa11"/><div id="04de225b-1190-47e1-a5e0-16251f8e04b0" class="column-list"><div id="981ca529-9fee-4110-89d4-8d2b5d6451d9" style="width:37.5%" class="column"><p id="1fada00d-a7bf-4541-97b2-f0a9fab9d2da" class="">PyCubed is a single PC/104 sized PCB capable of all standard CubeSat operating needs:</p><ol type="1" id="8990ff4b-b758-4b1b-b916-b2464acdb44c" class="numbered-list" start="1"><li>Command and control of the spacecraft (C&amp;DH)</li></ol><ol type="1" id="a825d92d-b0d3-4d43-80ad-c082f55c0aa9" class="numbered-list" start="2"><li>Energy harvesting and power management (EPS)</li></ol><ol type="1" id="da604c61-d0bb-4e75-8615-b6903ad1a7c3" class="numbered-list" start="3"><li>Telecommunication (TT&amp;C)</li></ol><ol type="1" id="8525b555-c35e-4241-b527-6d63ce26efc4" class="numbered-list" start="4"><li>Data collection and storage</li></ol><ol type="1" id="129971e9-c380-4328-9b68-e7f481091860" class="numbered-list" start="5"><li>Payload interfacing</li></ol><ol type="1" id="77f08d82-9b72-453e-94ad-4b81869fa79c" class="numbered-list" start="6"><li>Fail-safe deployment mechanisms</li></ol></div><div id="224ee35c-e19d-4a15-978c-f238cdd18b8d" style="width:62.5%" class="column"><h2 id="9a81a962-e95c-4f5d-b8f5-392631200aa7" class="">Block Diagram</h2><figure id="20ea87d3-cc05-4db1-a441-dc8c1228f8f9" class="image"><a href="Block.png"><img style="width:432px" src="Block.png"/></a></figure></div></div><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="9bd8222c-e1c6-4491-b6db-79bf144f2639"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>NOTE: </strong>all hardware design files can be found on the project&#x27;s GitHub:     <mark class="highlight-orange"><strong><a href="https://github.com/pycubed/hardware">https://github.com/pycubed/hardware</a></strong></mark></div></figure><figure id="adeb3cd0-c74c-4223-a562-51715659f57c" class="image"><a href="mainboardv05_features.jpg"><img style="width:1392px" src="mainboardv05_features.jpg"/></a></figure><h1 id="55771d4f-d554-4085-b894-e86a5709c864" class="">Primary Circuit Elements</h1><hr id="1be01c19-9fdb-4006-8471-a80e6bcce34d"/><p id="bf1472f0-8c02-4a6a-a6a5-08871c05071d" class="">The table below summarizes each of the primary Mainboard components highlighted in the map above. For in-depth discussions on each component, click the respective <em>📂 part number. </em></p><div id="bff316c0-47e7-451c-b342-2c33b3a5b77e" class="collection-content"><h4 class="collection-title">Mainboard Components - Click PN 👇 for More Details </h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Type</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Part Name/Number</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Function</th></tr></thead><tbody><tr id="97e4c732-263d-4666-932a-87ad66a15413"><td class="cell-N}eL">Microprocessor</td><td class="cell-title"><a href="ATSAMD51J20A-AU%2097e4c732263d4666932a87ad66a15413.html"><span class="icon">📂</span>ATSAMD51J20A-AU</a></td><td class="cell-KW/Y">On-board computer<br/>32-bit ARM M4 @ 120MHz<br/></td></tr><tr id="b6a17b06-816b-4e25-913e-65bd8cbd3046"><td class="cell-N}eL">Code Storage</td><td class="cell-title"><a href="MR25H40MDF%20b6a17b06816b4e25913e65bd8cbd3046.html"><span class="icon">📂</span>MR25H40MDF</a></td><td class="cell-KW/Y">Supplemental flash memory</td></tr><tr id="234ac2bc-9cd8-423d-b1ba-7c6c6e8feff8"><td class="cell-N}eL">Data Storage</td><td class="cell-title"><a href="Micro%20SD%20Socket%20234ac2bc9cd8423db1ba7c6c6e8feff8.html"><span class="icon">📂</span>Micro SD Socket</a></td><td class="cell-KW/Y">Large external storage</td></tr><tr id="9ff57edb-afa1-4f71-b967-8ddef5c1d215"><td class="cell-N}eL">Watch-Dog Timer</td><td class="cell-title"><a href="MAX706RS-T%209ff57edbafa14f71b9678ddef5c1d215.html"><span class="icon">📂</span>MAX706RS-T</a></td><td class="cell-KW/Y">External watch-dog for processor</td></tr><tr id="f6555247-c9f9-40d7-aa22-26514f4c0401"><td class="cell-N}eL">IMU</td><td class="cell-title"><a href="BMX160%20f6555247c9f940d7aa2226514f4c0401.html"><span class="icon">📂</span>BMX160</a></td><td class="cell-KW/Y">Accelerometer, magnetometer, gyro</td></tr><tr id="bf30e866-e11d-433d-bbd3-de718002f1d9"><td class="cell-N}eL">Radio (Modular)</td><td class="cell-title"><a href="RFM98PW%20bf30e866e11d433dbbd3de718002f1d9.html"><span class="icon">📂</span>RFM98PW</a></td><td class="cell-KW/Y">Modular radio</td></tr><tr id="29efdc18-852a-47a8-bc64-ccc0e85dba6e"><td class="cell-N}eL">3.3V Regulator</td><td class="cell-title"><a href="TPS54226%2029efdc18852a47a8bc64ccc0e85dba6e.html"><span class="icon">📂</span>TPS54226</a></td><td class="cell-KW/Y">Configurable DC-DC switching<br/>regulator (default = 3.3V)<br/></td></tr><tr id="204b7ad8-17d3-4396-88b5-d3a384c17913"><td class="cell-N}eL">Energy Harvester &amp;<br/>Battery Charger<br/></td><td class="cell-title"><a href="LTC4121%20204b7ad817d3439688b5d3a384c17913.html"><span class="icon">📂</span>LTC4121</a></td><td class="cell-KW/Y">Configurable solar Li-Ion battery charger (default = 2S3P Li-Ion, configured for 12V solar)  </td></tr><tr id="28886557-f4bb-4828-b74d-2a3be8369ce5"><td class="cell-N}eL">Burn Wires (x2)</td><td class="cell-title"><a href="Burn%20Wire%20Circuit%2028886557f4bb4828b74d2a3be8369ce5.html"><span class="icon">📂</span>Burn Wire Circuit</a></td><td class="cell-KW/Y">Deployment release mechanisms</td></tr><tr id="13dde5fa-176d-4566-89c0-8c4b9d2cf337"><td class="cell-N}eL">Power Monitor</td><td class="cell-title"><a href="ADM1176%2013dde5fa176d456689c08c4b9d2cf337.html"><span class="icon">📂</span>ADM1176</a></td><td class="cell-KW/Y">Measures input voltage and current-draw from batteries</td></tr><tr id="ab1f8ef2-7602-4322-a96f-4bc147b661a9"><td class="cell-N}eL">RF Regulator</td><td class="cell-title"><a href="TPS7A4501DCQT%20ab1f8ef276024322a96f4bc147b661a9.html"><span class="icon">📂</span>TPS7A4501DCQT</a></td><td class="cell-KW/Y">Adjustable DC-DC regulator for radio(s). Must be enabled from microcontroller. (default = 5.0V)</td></tr><tr id="887749c7-66b2-4fae-860e-f76ef792bc58"><td class="cell-N}eL">Mechanical Inhibits</td><td class="cell-title"><a href="Inhibits%20887749c766b24fae860ef76ef792bc58.html"><span class="icon">📂</span>Inhibits</a></td><td class="cell-KW/Y">Means of connecting rail switches, foot switches, and RBF pins. </td></tr></tbody></table><br/><br/></div><p id="fb97bedd-645c-43fd-8b4f-0d69f832367e" class="">See the <a href="https://digitalcommons.usu.edu/smallsat/2019/all2019/65/">2019 SmallSat paper 📄</a> for an in-depth discussion on design methodology.</p><p id="c7d54f80-f588-4d6d-859b-0c619e984458" class="">See the <a href="Novel%20Serial%20Bus%20Protection%2068e933da3bf3481b8401ce0cf2f00172.html"><span class="icon">📈</span>Novel Serial Bus Protection</a> page as well as the <a href="https://doi.org/10.36227/techrxiv.15166620.v1">2021 Serial Isolation paper 📄</a> for details on the serial bus protection scheme.  </p><h1 id="c4f20fee-dedb-4d82-9739-849e448abd96" class="">Connectors</h1><hr id="bf5ae1d2-7ff3-47ec-aaf7-4014e59bcba5"/><figure id="b823d51c-15f1-46e3-9fe7-f6f57ee679eb" class="image"><a href="mainboardv05_connectors.jpg"><img style="width:672px" src="mainboardv05_connectors.jpg"/></a></figure><p id="522620ab-418c-4821-992c-89fdd20b37c6" class="">Further discussions related to PyCubed connectors:<div class="indented"><ol type="1" id="f132fae8-02ec-4354-b74f-efba85e112cf" class="numbered-list" start="1"><li>Payloads and payload connector: <a href="Payloads%20&amp;%20Interfacing%20with%20External%20Boards%20de6a89e8a76b4a65bf042630f1592068.html"><span class="icon">🎛</span>Payloads &amp; Interfacing with External Boards</a> </li></ol><ol type="1" id="8bc44520-4b4e-4312-ac68-d911bd3c6b40" class="numbered-list" start="2"><li>Inhibit switches and RBF header: <a href="Inhibits%20&amp;%20RBF%20Header%2047a1f6c21af94591843c7cfbfcf2f82e.html"><span class="icon">🔓</span>Inhibits &amp; RBF Header</a> </li></ol><ol type="1" id="24563dee-1527-466b-9737-69163b415fe9" class="numbered-list" start="3"><li>SD card: <a href="Selecting%20an%20SD%20card%20edf389776ac64f91b19bc4428ee43941.html"><span class="icon">💾</span>Selecting an SD card</a> </li></ol><ol type="1" id="494869fc-aec8-4015-9097-a27952fa99fb" class="numbered-list" start="4"><li>Radio antenna connectors: <a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html"><span class="icon">📡</span>Antennas</a> </li></ol><ol type="1" id="98f6c849-adc9-432b-b91e-b8d8a418e84c" class="numbered-list" start="5"><li>Burn wire connectors: <a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html"><span class="icon">🔥</span>PyCubed Burn Wire Info &amp; Usage</a> </li></ol><ol type="1" id="a6825b97-590a-4c3f-999f-54c5db290248" class="numbered-list" start="6"><li>Solar connectors: <a href="PyCubed%20Energy%20Harvesting%2042d839b704574b97b994cab940405ae8.html"><span class="icon">☀️</span>PyCubed Energy Harvesting</a> </li></ol></div></p><h1 id="e3a4571a-201b-4a2a-9696-fdc5ff9085cd" class="">Resources &amp; Guides</h1><hr id="4d1d44c4-d57e-426f-b289-247dd79f4f83"/><p id="66d16194-519a-4a45-8493-af360346a7a0" class="">All tutorials, write-ups, and discussions about PyCubed are housed here:<div class="indented"><p id="91900c04-5ccb-44df-b0c3-66d6375b1788" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html"><span class="icon">🗃️</span>All PyCubed Resources</a> </p></div></p><p id="4952036b-c53b-4740-af3b-47f3a33757e5" class="">
+</p><p id="53a8b323-d8cf-4f75-bc29-9a54e40eb8e6" class=""><br/><br/><br/><br/><br/></p><hr id="aa2cfa10-05db-4b99-a0d2-d80198256703"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

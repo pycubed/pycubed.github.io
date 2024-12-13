@@ -1,0 +1,22 @@
+﻿Name,Python Name,SAMD51 Pin,Extra Board Connections,Capabilities
+SCK,board.SCK,PA13,,"RX, SCK, SCL, TX"
+MOSI,board.MOSI,PA12,,"MOSI, RX, SDA, TX"
+MISO,board.MISO,PA14,,MISO
+PB23,board.PB23,PB23,Payload GPIO,GPIO
+PB22,board.PB22,PB22,Payload GPIO,GPIO
+PA20,board.PA20,PA20,Payload GPIO,GPIO
+PA22,board.PA22,PA22,Payload GPIO,GPIO
+,,,,
+PB17,board.PB17,PB17,Payload GPIO,"RX, SCK, SCL, TX"
+PB16,board.PB16,PB16,Payload GPIO,"MOSI, RX, SDA, TX"
+PA19,board.PA19,PA19,Payload GPIO,GPIO
+PA18,board.PA18,PA18,Payload GPIO,GPIO
+PA16,board.PA17,PA17,,GPIO
+,,,,
+DAC0,board.DAC0,PA02,,"ADC, DAC, GPIO"
+AIN4,board.AIN4,PA04,,"ADC, GPIO"
+AIN5,board.AIN5,PA05,,"ADC, GPIO"
+,,,,
+SWDIO,,PA30,,JTAG
+SWCLK,,PA31,,JTAG
+RESET,,,,JTAG

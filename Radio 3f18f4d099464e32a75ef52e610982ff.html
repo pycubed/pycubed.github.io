@@ -1,0 +1,724 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Radio</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="3f18f4d0-9946-4e32-a75e-f52e610982ff" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📁</span></div><h1 class="page-title">Radio</h1><p class="page-description"></p></header><div class="page-body"><p id="1f25b021-1ea9-4701-9b4a-2771c4abef19" class="">
+</p><div id="895b95ca-a246-474b-9193-ff58c6fe1532" class="column-list"><div id="1c9a8c91-9135-41f6-9cbc-7873f3688491" style="width:56.25%" class="column"><p id="ae00d2b2-fe08-46f1-b08b-1003a653e49f" class="">PyCubed boards come with a <a href="https://www.hoperf.com/modules/lora/RFM98P.html">HopeRF RFM98PW</a> high power (1W) LoRa radio tuned for 433 MHz. <div class="indented"><ul id="65ba7953-37da-4bfe-a4ad-13e7c4f24171" class="bulleted-list"><li style="list-style-type:disc">Supports FSK, GFSK, LoRa, OOK.</li></ul><ul id="2eea8796-b102-4ac4-8b96-076b254b330d" class="bulleted-list"><li style="list-style-type:disc">Examples below all use LoRa modulation.</li></ul><ul id="eecfd7c1-d4e0-4cf3-8b77-48bc5775a09c" class="bulleted-list"><li style="list-style-type:disc">See  <a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> for full hardware details.</li></ul><p id="4b48558f-af31-4a10-a631-075ac571a2fb" class="">
+</p></div></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f22fb657-d036-4b82-9f30-248a12270980"><div style="font-size:1.5em"><span class="icon">☝</span></div><div style="width:100%"><mark class="highlight-gray">Did you know<br/>For all intents and purposes, you can treat the RFM98 as a Semtech SX1276/8 radio. <br/></mark></div></figure></div><div id="9d3707c8-c6b6-4144-95fc-bbf3c5ed804b" style="width:43.74999999999999%" class="column"><figure id="eeccc5a0-a7b7-44d7-acb6-d2434ba54435" class="image"><a href="Untitled%2057.png"><img style="width:336px" src="Untitled%2057.png"/></a></figure></div></div><p id="d35d9bea-76f7-4976-8dd8-c43b548ae23b" class="">
+</p><div id="cca58f60-df77-4686-8ba1-2ef315e8d95c" class="column-list"><div id="d9ee768f-be0f-41dd-b97f-ad124ae11c0a" style="width:50%" class="column"><h2 id="5037fed1-6f09-4462-abe4-a5e18e6112be" class="">⚙ Hardware Needed</h2><hr id="74ee12d1-4c8c-4f00-af8a-281ae7ad79ca"/><ul id="51bbef10-c7ec-4cd1-9502-ff9929cef22c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">PyCubed mainboard</span><div class="indented"></div></li></ul><ul id="9450fa56-598f-457d-a2ee-a340f84bd068" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Antenna</span><div class="indented"></div></li></ul></div><div id="97d56702-a7e9-4d82-847f-7f59646248bb" style="width:50%" class="column"><h2 id="bfbe3743-ebc1-40df-aeb2-65b92f979c89" class="">📚 External Libraries Needed</h2><hr id="09300e98-c4b5-4008-9da2-940cd2e47e55"/><p id="7a278194-dd7c-407f-9a69-f68c3e75fb4b" class="block-color-gray"><a href="https://github.com/pycubed/library_pycubed.py">pycubed.py</a></p><p id="f3795078-19cd-42e5-9ebb-56110285a552" class=""><strong><a href="https://github.com/pycubed/library_pycubed_rfm9x.py">pycubed_rfm9x.py</a></strong></p></div></div><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="85d47555-80cf-4043-9d1e-79f17dabd4d1"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">ALWAYS make sure an antenna is properly attached to the radio connector <mark class="highlight-red"><strong>BEFORE </strong></mark>powering the PyCubed board with any code that may try to use the radio. See the PyCubed page on <a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html"><span class="icon">📡</span>Antennas</a> for more details.<br/><br/>Failure to do so can permanently damage the radio. Read more about &quot;reflected&quot; transmitter energy <br/><a href="https://electronics.stackexchange.com/questions/335912/can-i-break-a-radio-tranceiving-device-by-operating-it-with-no-antenna-connected">here</a>.</div></figure><h2 id="cdadb323-2e9f-415f-b94d-d1fbc3ec8f5a" class="">📑 Code</h2><hr id="b1d062c4-3960-48fd-bfd0-d06ad2c80b96"/><h2 id="7c279757-7003-48a9-b426-6cc9b466ea6b" class="">Listen:</h2><p id="4c143fe0-5132-46f7-b16f-13c61b4c5396" class="">Using the <a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html"><span class="icon">⭐</span>pycubed.py</a>  helper library:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8f17728d-b16f-4dc3-bc59-7e2c92b694e9" class="code"><code class="language-Python">from pycubed import cubesat
+
+if cubesat.hardware[&#x27;Radio1&#x27;]:
+    while True:
+        packet = cubesat.radio1.receive()
+        if packet is None:
+            pass
+        else:
+            print(&#x27;Received (raw bytes): {0}&#x27;.format(packet))
+            rssi = cubesat.radio1.rssi
+            print(&#x27;Received signal strength: {0} dBm&#x27;.format(rssi))</code></pre></div></p><h2 id="d26bbb4c-b63f-4a25-81b5-682b53340e26" class="">Talk:</h2><p id="4db8cae5-12af-4acb-bcf9-104b6a80cdac" class="">Using the <a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html"><span class="icon">⭐</span>pycubed.py</a>  helper library:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b1e6bc22-5135-43dc-9933-0703d4d0454c" class="code"><code class="language-Python">from pycubed import cubesat
+import time
+
+count = 0
+if cubesat.hardware[&#x27;Radio1&#x27;]:
+    while True:
+        count += 1
+        print(&#x27;Sending Message...&#x27;+str(count))
+        cubesat.radio1.send(&#x27;Hello World: &#x27;+str(count))
+        time.sleep(2)</code></pre></div></p><h2 id="fc1679a4-b298-4712-960f-51706ef957e0" class="">Details</h2><hr id="0622d6a5-ee32-4fd3-9ff4-1b342c3ba0a0"/><p id="da4bc334-fbc6-490a-8524-856b98f08084" class="">The PyCubed boards come with an <a href="https://www.google.com/search?client=firefox-b-1-d&amp;q=RFM98PW">RFM98PW</a> (433 MHz) installed meaning we can use a modified version of <a href="https://github.com/adafruit/Adafruit_CircuitPython_RFM9x">Adafruit&#x27;s RFM9x CircuitPython library</a> to easily operate the radio. The <a href="https://github.com/pycubed/library_pycubed_rfm9x.py">pycubed_rfm9x.py library</a> is a fork of adafruit_rfm9x.py with some hardware-specific changes to make our lives easier.</p><p id="e3249d9c-fd7d-4d45-9738-190d20522a87" class="">The above examples use the default <strong>433 MHz LoRa</strong> radio configuration as set by the RFM9x library. Carefully read through the <code>pycubed_rfm9x.py</code> library so you understand how the transmitter and receiver are configured. <div class="indented"><ul id="8ecf9dbc-94a9-4f31-a97a-b0c0fda30fff" class="bulleted-list"><li style="list-style-type:disc">The <code>pycubed_rfm9x.py</code> library is part of PyCubed default libraries and can be found at <code>/lib/pycubed_rfm9x.py</code> with a PyCubed board plugged into your computer. </li></ul><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="2a24a44a-27db-49cd-8313-297dc1c79a81"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Remember:</strong> All radio configuration and functions exist within this single plain-text file! When in doubt, look through this library first when troubleshooting your communications. </div></figure></div></p><p id="afa5454a-d36f-48c6-b07b-0580838490cb" class="">
+</p><p id="5005e239-4d02-461a-bb89-f9d78faa1f2e" class="">Next, let&#x27;s examine what the <a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html"><span class="icon">⭐</span>pycubed.py</a> library is doing with the rfm9x library to initialize the hardware:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="478e3456-1d7c-47d4-b1e0-a9a06bef9a8d" class="code"><code class="language-Python"># Initialize radio(s)
+try:
+    self.radio1 = adafruit_rfm9x.RFM9x(self.spi, self._rf_cs1, self._rf_rst1, 433.0)
+    self.hardware[&#x27;Radio1&#x27;] = True
+except Exception as e:
+    print(&#x27;[ERROR][RADIO 1]&#x27;,e)</code></pre><p id="e02bbec6-7013-4d70-8785-2587948c8507" class="">We see that the pycubed.py library attempts to initialize BOTH radio positions, even through the board only ships with the Radio1 position populated. If we compare the above radio1 init to the class definition in the rfm9x library:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="10790ff9-9e27-43df-be99-66ec14a9da4b" class="code"><code class="language-Python">def __init__(self, spi, cs, reset, frequency, *, preamble_length=8,
+                 high_power=True, baudrate=5000000):</code></pre><p id="029545ed-10d1-4862-bce1-122b30baae33" class="">it becomes clear that the the pycubed.py library sets a default frequency of 433.0 MHz and that default values are used for the preamble_length, high_power, and baud rate.</p><p id="82828bce-fb51-48f8-8f33-6cf39726febd" class="">
+</p></div></p><p id="f9ee7693-f98b-445e-b8b8-df2f417121b1" class="">What if you wanted to change the frequency after the pycubed.py library has already initialized the hardware? That&#x27;s easily achieved using the helpful setters/getters established in the  <code>pycubed_rfm9x.py</code> library.</p><p id="4d76931b-f9f0-46a1-a444-f020abfd8c31" class="">To change the frequency:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bffc3c87-fefb-4d2e-a8bc-e693e6589c1a" class="code"><code class="language-Python">from pycubed import cubesat
+
+# read the current set-frequency of radio1
+print(cubesat.radio1.frequency_mhz)
+
+# set a new frequency for radio1
+cubesat.radio1.frequency_mhz=431.0</code></pre><p id="bfbcadcf-2782-4a93-a766-97227cb2d790" class="">
+</p><p id="69e039cb-2f76-4432-ac07-7ea2a32682db" class="">Some other helpful properties:<br/>(find them in the <br/><code>pycubed_rfm9x.py</code> library file to learn more)<div class="indented"><ul id="e8324c8a-2841-4eb6-a4be-f12db6845b23" class="bulleted-list"><li style="list-style-type:disc">signal_bandwidth</li></ul><ul id="69c12ecd-c06b-4089-8b11-ae346f7b558c" class="bulleted-list"><li style="list-style-type:disc">tx_power</li></ul><ul id="2e841fa1-2014-4972-b2df-099a859bccf2" class="bulleted-list"><li style="list-style-type:disc">preamble_length</li></ul><ul id="fa555df7-ebc8-4c2d-974c-25bfd4286276" class="bulleted-list"><li style="list-style-type:disc">coding_rate</li></ul><ul id="d2327ab8-9846-4f10-a386-27dc3e1f4e7f" class="bulleted-list"><li style="list-style-type:disc">spreading_factor</li></ul><ul id="7f628ec6-f0e3-4b69-9a10-2e6a64f5e292" class="bulleted-list"><li style="list-style-type:disc">enable_crc</li></ul></div></p><p id="2a01ad57-f208-4833-b71c-9d42d4560fc9" class="">
+</p><p id="cbed5992-98f1-4804-8bb6-1753f666e593" class="">There are also lots of radio features not enabled in the <code>pycubed_rfm9x.py</code> library! Read through the RFM98 datasheet to discover more features and try modifying the library to use them.<div class="indented"><ul id="15454fc8-a481-4eb7-beeb-0368b162e8cd" class="bulleted-list"><li style="list-style-type:disc"><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> </li></ul></div></p><div id="14c86014-550e-47d7-82a9-59611462fbde" class="column-list"><div id="e1d7a3d5-7d2e-407d-af50-324f032d1217" style="width:62.5%" class="column"><p id="21e1f1ce-1caa-47e6-88b1-741772c4ef70" class="">
+</p></div><div id="faf3c06e-d80a-4e82-9742-418ca4d47824" style="width:37.5%" class="column"><div><p id="2373e259-d6e2-45a6-b576-25062fb47e94" class=""><a href="index.html">↩ Return Home</a></p><p id="aae183ee-423b-419e-8ebb-e51d4dfe7038" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p><p id="1d6f5e08-bcf9-46f3-8394-307b4ec3403b" class=""><a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html">↩ Return to Code Examples</a></p></div></div></div><h1 id="e5f7c9e2-3ebc-4452-b6c6-f12c4ff37904" class="">Advanced Examples</h1><p id="1daad07f-cd5c-45f2-a057-f1f990439126" class="">Both Beep-Sat flight software examples (<a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a>, <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a>) contain thorough discussions of advanced radio usage, including:<div class="indented"><ol type="1" id="a3a4d912-d7e9-4db3-9bbb-b8831bcf7084" class="numbered-list" start="1"><li>Beaconing &amp; non-blocking listening</li></ol><ol type="1" id="87a44266-f168-485f-ba4b-6a366715d999" class="numbered-list" start="2"><li>Sending and receiving ACK packets</li></ol><ol type="1" id="9c227c9d-dbe6-4bcd-abab-e9861b80dede" class="numbered-list" start="3"><li>Data down-linking </li></ol><ol type="1" id="c34b2deb-44bd-43b7-8759-5a4e569d74d9" class="numbered-list" start="4"><li>Over-the-air command handling<br/><br/><br/><br/></li></ol></div></p><hr id="a128f26c-810c-4781-a7f5-cb8d696dd55f"/><p id="c38162c1-c236-490d-8627-35e889832b5b" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

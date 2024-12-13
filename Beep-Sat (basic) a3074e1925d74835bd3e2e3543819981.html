@@ -1,0 +1,732 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Beep-Sat (basic)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a3074e19-25d7-4835-bd3e-2e3543819981" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📻</span></div><h1 class="page-title">Beep-Sat (basic)</h1><p class="page-description"></p></header><div class="page-body"><div id="af39531b-b336-48d6-94b7-2c5cf33f433f" class="column-list"><div id="415c6e6d-605b-404e-956e-f018375382af" style="width:45.83333333333333%" class="column"><p id="d3b627de-bbe8-4433-902e-2ce1e247405b" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="a492a347-688c-4481-b3eb-a3f0da66e73c" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#65b08257-74b2-4724-b569-33ab7703cf72">Highlights</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c51c4243-e192-41d7-ac1d-4c60d590efb0">Overview</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fbdd1048-7823-4b4a-9108-c93d1f5af214">Installation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#374576d0-efbc-4086-9916-e4a2951c3614">Required Hardware</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6be1790f-b583-49e4-aa1a-7b16d884d2de">Code Breakdown &amp; Task Explanation </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#556f3c60-ec60-41e5-9f6d-de41a915cc18">1. Blink LED task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6b6de301-27f1-402c-a225-b9441edc8661">2. Report IMU data task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5ff54ce7-f80b-41c1-ade8-73d2ab71b327">3. Monitor battery voltage task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ef53f6ad-2797-41c0-b472-6392ffb2c548">4. Report time since boot task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4450f6b1-8a23-481f-a98a-b7ef0691d06c">5. Transmit beacon packet &amp; listen task</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#33eb3453-4cec-408e-8e65-4d16236c8d17">Going Further</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5da2c597-038f-4247-96e3-16b02d29ae93">Creating your own task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b9ca508c-5633-4d6e-8831-2cd23c7ec21e">Receiving beacon packets and responding</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4afd3afd-ca28-48da-8e62-ce35039a2708">Advanced features</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9e334c79-9a2e-436c-a1b2-98ef1d3deec0"><mark class="highlight-red">Next Section </mark>→ <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a>  </a></div></nav></div><div id="ac1ec3e5-d0a2-40d4-9aa8-02d6fa4521dc" style="width:12.49999999999999%" class="column"><p id="6d5d618f-c0b0-415e-b65d-ed5724b070ef" class="">
+</p></div><div id="fa062449-7c51-42b6-913e-501d11f27114" style="width:41.66666666666666%" class="column"><div><p id="0d4baa9a-7cbf-4f72-a94a-70e6624feaf2" class=""><a href="index.html">↩ Return Home</a></p><p id="b61f9b96-722a-4a41-b388-d4692723795d" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p><p id="bf50a2aa-19a4-42c6-ba92-6a95a81fc2b8" class=""><a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html">↩ Return to Quick Start</a></p></div></div></div><p id="48b95458-c07b-406d-b6e6-124a1ea81ec0" class="">Beep-Sat is a complete software example for a simple beaconing satellite that performs a handful of tasks and runs forever.</p><div id="d4c38a3f-a0f4-4421-99a6-e4c45db09d6f" class="column-list"><div id="930c8f9f-dc9f-4a11-af63-04ad915b3b31" style="width:75%" class="column"><h1 id="65b08257-74b2-4724-b569-33ab7703cf72" class="block-color-teal_background">Highlights</h1></div><div id="ee6ce72b-29c0-4a52-90eb-14a9e13142f9" style="width:24.999999999999993%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><hr id="d754cf51-d034-4171-9e84-428c2a0d3d3b"/><p id="a6930d7b-34ac-4d61-94f1-a7ccc0607fb7" class="">⭐ Software architecture that is easy to understand &amp; build-upon <div class="indented"><p id="9e20431a-9e92-4f77-a8ae-cb353a59181f" class="block-color-gray"><mark class="highlight-gray">A simple asynchronous state machine schedules and runs routine spacecraft tasks</mark><div class="indented"><ul id="b257feea-8909-42fd-83bb-fab87a5cc8b9" class="block-color-gray bulleted-list"><li style="list-style-type:disc"><mark class="highlight-gray">Each task definition is contained within a single plain-text file </mark></li></ul><ul id="40b8c72f-02e3-49a0-bdd2-02467376e6a5" class="bulleted-list"><li style="list-style-type:disc">Task files are easily added, removed, or modified</li></ul></div></p></div></p><p id="8230758e-8acd-40c5-bb0c-4c3ea6a841f4" class="">⭐  Well documented code with real-time debug messages<div class="indented"><p id="0a9cb3db-5ff5-4139-b4c2-fcf1ca52ba93" class="block-color-gray">Entire code base includes thorough in-line commentary &amp; insight<div class="indented"><ul id="c8cd5ecd-a99f-429f-bff5-88e191edbffc" class="bulleted-list"><li style="list-style-type:disc">During operation, descriptive messages are printed to the USB serial terminal</li></ul><ul id="30570d8a-6238-4133-804d-5b54043f8a69" class="bulleted-list"><li style="list-style-type:disc">Helpful coding patterns are discussed and software decisions are justified<br/><br/><br/><br/><br/><br/></li></ul></div></p></div></p><div id="b1e580a7-e5c3-4992-be06-484dfef163eb" class="column-list"><div id="3afd8869-37da-46b2-ac09-c4612b2f709d" style="width:75%" class="column"><h1 id="c51c4243-e192-41d7-ac1d-4c60d590efb0" class="block-color-teal_background">Overview</h1></div><div id="85dbdf42-d6ac-4bd2-a4c3-0b0237b96d0e" style="width:25%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><hr id="b82aa776-e01e-445a-a5c1-565135188749"/><p id="9cb1acc9-98ec-463f-957c-553904719d85" class="">As introduced in <a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html"><span class="icon">⚡</span>Hands-On Quick Start</a>, whenever a PyCubed board is powered, it loads and runs <code>main.py</code> from the board&#x27;s root directory.  <div class="indented"><ul id="372494af-ab9c-4f7d-946a-1d3c254d67b7" class="bulleted-list"><li style="list-style-type:disc">For this Beep-Sat example, all <code>main.py</code> does is automatically load each task file found within the <code>/Tasks/</code> directory into a state machine and then runs the state machine indefinitely.</li></ul><ul id="9187b1aa-5774-4372-bfc3-7324c3669446" class="bulleted-list"><li style="list-style-type:disc">Each task file defines its <code>priority</code> and <code>frequency</code> attributes to inform the state machine how often to run the task.</li></ul><ul id="10486f66-17a9-422d-bd94-d4aa83ea4287" class="bulleted-list"><li style="list-style-type:disc">This demo relies on a lightweight asyncio library called <a href="https://github.com/maholli/tasko/tree/pycubed_experiments">Tasko</a> to achieve pseudo-asynchronous behavior. But remember there are <span style="border-bottom:0.05em solid">countless</span> other ways of achieving this functionality!</li></ul></div></p><div id="d2463ecd-f894-4906-bef1-49b415aad66e" class="column-list"><div id="970d73ff-f664-4974-b13f-daf66d1b5dcf" style="width:75%" class="column"><h1 id="fbdd1048-7823-4b4a-9108-c93d1f5af214" class="block-color-teal_background">Installation</h1></div><div id="2d74bd94-daa1-4f70-99c3-0ba901fbcb0d" style="width:25.000000000000007%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><hr id="dcd69f51-5b65-4a35-8ffe-1d4e14958dfd"/><div id="c68f7b53-ec15-49e9-8b57-740a44fe6dd9" class="column-list"><div id="40db3794-e48c-4e4a-abc5-be173d59ae2e" style="width:68.75%" class="column"><ol type="1" id="3e3050f6-fbee-4b16-be32-e6f7d42cecc5" class="numbered-list" start="1"><li>Download the latest Beep-Sat code from its <a href="https://github.com/pycubed/software_example_beepsat">GitHub Repo</a><br/>(either download the zip or if you&#x27;re familiar with git, fork &amp; clone the repo)<br/></li></ol><ol type="1" id="04a26d7f-82f6-4150-88a2-e6ef3735915e" class="numbered-list" start="2"><li>(Optional) With your PyCubed board plugged into your computer, backup your <code>PYCUBED</code> drive by copying its contents to a directory on your computer.</li></ol><ol type="1" id="1aef9ae7-32e7-48ba-8564-036b11f0d6fe" class="numbered-list" start="3"><li>Copy the files from <code>/software_example_beepsat/basic/</code> to your <code>PYCUBED</code> drive, overwriting any files when prompted</li></ol><ol type="1" id="98510382-e9db-4934-98fe-145305a0e04e" class="numbered-list" start="4"><li>Open a serial terminal and observe the output as the beep-sat conducts its mission.<p id="d5898a41-8ea7-4ff1-8bf7-1b507bf4c2ab" class="">Refer to <a href="Accessing%20the%20Serial%20Console%20bfd69dfcd5f544e4b1c1164f29d8c45f.html"><span class="icon">🖱</span>Accessing the Serial Console</a> for help opening the REPL</p></li></ol><ol type="1" id="32f154c4-03d2-4384-b470-d5ffe6424931" class="numbered-list" start="5"><li>After observing the output in the terminal for a few moments, start working through understanding each task by stepping through the code breakdown discussion (below) while opening and playing with its respective file in <code>/Tasks/task_filename.py</code>. </li></ol></div><div id="f5f23b80-406e-455d-b59a-09b4db4a6af7" style="width:31.250000000000007%" class="column"><h2 id="374576d0-efbc-4086-9916-e4a2951c3614" class="">Required Hardware</h2><ul id="36bf064b-15c0-4aab-9f1f-c5dc30fbbd8e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">PyCubed Mainboard</span><div class="indented"></div></li></ul></div></div><div id="ba199810-1cde-409e-b510-9391ae9f5611" class="column-list"><div id="03456225-4745-4ef9-bdad-33f04862f228" style="width:75%" class="column"><h1 id="6be1790f-b583-49e4-aa1a-7b16d884d2de" class="block-color-teal_background">Code Breakdown &amp; Task Explanation </h1></div><div id="eeb831bb-0e2c-4677-bc75-06384ce7b517" style="width:25%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><hr id="ebc9c5e8-8266-4d1a-9598-498bb7633d2d"/><h3 id="556f3c60-ec60-41e5-9f6d-de41a915cc18" class="">1. Blink LED task</h3><div id="e95afad1-46f8-4f22-af88-927f663bfdd6" class="column-list"><div id="eb2fe287-7a2f-45a2-b869-ad714e35ba94" style="width:29.411764705882355%" class="column"><p id="a39c9293-877f-4bc5-b4bc-47280e2614e1" class="">Priority: 255</p></div><div id="e935d113-0c31-4148-b3e5-f07949654758" style="width:70.58823529411765%" class="column"><p id="3859a61d-e894-4756-b71d-929f991d426e" class="">Frequency: <code>twice per second (2 Hz)</code> </p></div></div><p id="5730a784-2fa7-4c41-a0e8-4f01eff32258" class="">Very simple task to blink the onboard RGB LED. With a priority of 255, Blink has a very <strong><span style="border-bottom:0.05em solid">low</span></strong> priority and will be preempted by most all other tasks. </p><h3 id="6b6de301-27f1-402c-a225-b9441edc8661" class="">2. Report IMU data task</h3><div id="87e0dbbf-a695-4bec-b2fa-fd4f16deba9a" class="column-list"><div id="9fad7fa1-b9e0-414e-83ae-2a46841c0f45" style="width:12.5%" class="column"><p id="49706958-4a40-44f2-98b7-6b6d1e7c582a" class="">Priority: 5</p></div><div id="426b5695-54ef-4346-9031-cdbf5a25b050" style="width:58.33333333333333%" class="column"><p id="37b414ae-7041-455a-9fd1-f1b874c354f6" class="">Frequency: <code>once every 10 seconds (0.1 Hz)</code></p></div><div id="13c339ee-4e39-4ae5-a7e2-34f80cb5c85d" style="width:29.16666666666668%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><p id="e8c9acd9-2f01-4679-94f4-cc5855943558" class="">This task demonstrates an important spacecraft function: how to perform routine sensor data collection over common serial buses such as I2C, SPI, or UART. </p><figure id="ec0a18b4-71dd-4007-9c89-0c5f3f0012ab" class="image"><a href="Untitled%2019.png"><img style="width:502px" src="Untitled%2019.png"/></a><figcaption>IMU task prints its readings to the serial terminal </figcaption></figure><ol type="1" id="0d21f24d-25ef-4bcf-ba1d-74f6d595daf8" class="numbered-list" start="1"><li>Each time the task is called, we create a dictionary (dict) object and populate it readings from the onboard IMU.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3a3a113b-11e0-4a68-8067-35b15aa84074" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">readings = {
+    &#x27;accel&#x27;:self.cubesat.acceleration,
+    &#x27;mag&#x27;:  self.cubesat.magnetic,
+    &#x27;gyro&#x27;: self.cubesat.gyro,
+}</code></pre><ul id="6c586977-e711-4be7-853f-95b11db99028" class="bulleted-list"><li style="list-style-type:disc">Although easy to understand, dynamically creating the <code>readings</code> dict every time we perform this task is not very memory-efficient. HOWEVER, CircuitPython&#x27;s built-in &quot;garbage collector&quot; allows us to get away with things like this by automatically freeing memory when not needed. </li></ul><ul id="dcae8583-cc26-4cb2-bff7-d197ee59bdcc" class="bulleted-list"><li style="list-style-type:disc">The reason we create a dictionary (rather than a list or tuple) to store the data is 3-fold:<ol type="1" id="29d3a3c0-de08-47e4-ae1c-0c310347cbf7" class="numbered-list" start="1"><li>Show how to define and populate a dict</li></ol><ol type="1" id="ea85b6ee-5b64-44c7-a2d8-f0d6873be489" class="numbered-list" start="2"><li>Have a dict ready to pass to the <code>update</code> method we are about to perform</li></ol><ol type="1" id="8d3654d3-261d-4e1e-b16d-02b4852d98b7" class="numbered-list" start="3"><li>Aid us in printing a well-formatted debug message containing our most recent IMU readings </li></ol></li></ul><ul id="8c6d7d13-dab4-4d82-9500-b390a03c4cf9" class="bulleted-list"><li style="list-style-type:disc">Each key in our dictionary (<code>accel</code>, <code>mag</code>, <code>gyro</code>) corresponds to an IMU reading. The IMU reading is collected using the <code>self.cubesat.acceleration</code> method which is a helper method from the <code>pycubed.py</code> library. The <code>pycubed.py</code> provides streamlined access to many hardware features. It&#x27;s advised PyCubed users thoroughly review and understand the <a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html"><span class="icon">⭐</span>pycubed.py</a> library.<p id="2c4d4392-5859-4af9-a81a-a69da8cb52fd" class="">In this case, this method uses the IMU-specific library to request acceleration data from the IMU via I2C.</p></li></ul></li></ol><ol type="1" id="bff8fd0b-18c1-4e19-abce-2383068a3119" class="numbered-list" start="2"><li>Next, we <code>update</code> another dict&#x27;s existing key:value pair with our newly created readings variable.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="21a70adf-6681-4ddb-9504-5a39eee0580d" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.cubesat.data_cache.update({&#x27;imu&#x27;:readings})</code></pre><ul id="32c27b0d-8ec3-4a41-92c9-8df08d7fe2d4" class="bulleted-list"><li style="list-style-type:disc">We update the <code>data_cache</code> dict because it is accessible via the <code>self.cubesat</code> object. This is useful because the <code>self.cubesat</code> object can be accessed from ANY task. </li></ul><ul id="492be871-c22c-4748-ae7f-8c34891c7b9e" class="bulleted-list"><li style="list-style-type:disc"><code>update</code> is helpful because even if our data_cache dict doesn&#x27;t have a key named &quot;imu&quot;, it will create one and then update the values. It&#x27;s also (relatively) fast since python uses hash matching for dicts.</li></ul></li></ol><ol type="1" id="8bd5add8-2fc0-4eb0-a65e-403f3099d207" class="numbered-list" start="3"><li>Finally, we print the IMU readings by looping through the values of the newly updated &quot;imu&quot; key.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="45000eaf-afaa-45bf-a863-80be6a0b7192" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">for imu_type in self.cubesat.data_cache[&#x27;imu&#x27;]:
+    self.debug(&#x27;{:&gt;5} {}&#x27;.format(imu_type,self.cubesat.data_cache[&#x27;imu&#x27;][imu_type]),2)</code></pre><ul id="7090d559-64d9-4454-b20f-5e00c7d2f3d3" class="bulleted-list"><li style="list-style-type:disc">We know the value of the &quot;imu&quot; key is another dictionary, so we use a for loop to access the keys (which are strings) for easy printing</li></ul><ul id="fe3f865b-6dbd-4a10-981d-eefeb767ebaa" class="bulleted-list"><li style="list-style-type:disc">We then format our debug message with some fancy alignment <code>{:&gt;5}</code> and use the key name to access its respective value from the dictionary.</li></ul><ul id="c442e9b7-f086-4ec7-b9bc-0149f99cfd27" class="bulleted-list"><li style="list-style-type:disc">Passing a <code>2</code> as the second statement to our debug message tells it to put it on the second &quot;level&quot; which gives us the easy-to-read drop down formatting.</li></ul></li></ol><h3 id="5ff54ce7-f80b-41c1-ade8-73d2ab71b327" class="">3. Monitor battery voltage task</h3><div id="bdeabb81-1987-483b-b6ee-8da52a60992d" class="column-list"><div id="cc645e4a-c1e0-467a-8259-d8976a824cb1" style="width:12.5%" class="column"><p id="aa620f31-01a9-4b96-ab9f-8bd6e84b143f" class="">Priority: 3</p></div><div id="fb8d7e1e-b225-4ccf-a5a0-ebb75144694c" style="width:58.33333333333333%" class="column"><p id="141db05d-afc3-4962-b063-dc2867f2ca8a" class="">Frequency: <code>once every 10 seconds (0.1 Hz)</code></p></div><div id="b355a1e1-01b7-490b-a357-35fc431af6a9" style="width:29.166666666666675%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><p id="d738dba9-af0c-4729-87de-9a7c5c71bfad" class="">Simple task that measures the battery voltage and compares it against a threshold. This shows you how to monitor the battery voltage and respond if necessary.</p><figure id="115b94fe-3308-49bf-ab88-74d90d50d325" class="image"><a href="Untitled%2020.png"><img style="width:365px" src="Untitled%2020.png"/></a></figure><ol type="1" id="352af3cf-1902-4ca3-bdc9-1f0261993743" class="numbered-list" start="1"><li>Start by using a pycubed.py helper function to measure the battery voltage and then store it as a variable called <code>vbatt</code>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="54176512-39ac-44a4-9b80-29250c0f960b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">vbatt=self.cubesat.battery_voltage</code></pre></li></ol><ol type="1" id="6aa62626-a77a-4416-b64d-44f2eea8f96a" class="numbered-list" start="2"><li>Compare our <code>vbatt</code> measurement to the <code>self.cubesat.vlowbatt</code> variable that was created when the board initialized. It&#x27;s helpful to have <code>vlowbatt</code> stored within the <code>cubesat</code> object in case we ever want to change the threshold value (in another task perhaps) in response to something in our mission.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c9208964-ecd6-4ba5-a90f-00e667500572" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if vbatt &gt; self.cubesat.vlowbatt:
+    comp_var = &#x27;&gt;&#x27;
+else:
+    comp_var = &#x27;&lt;&#x27;</code></pre><ul id="080049ed-8b90-4298-8027-9cdb273e7f7b" class="bulleted-list"><li style="list-style-type:disc">Update our variable called <code>comp_var</code> with the appropriate string</li></ul><ul id="c66516e2-8b35-4014-9d8a-6485fc687e38" class="bulleted-list"><li style="list-style-type:disc">In the <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a> demo, after this <code>if</code> statement is where we add important code to respond to a low battery condition.</li></ul></li></ol><ol type="1" id="390ff2fd-a050-4ae1-948a-46b4fd417d9f" class="numbered-list" start="3"><li>Finish by printing the measured value as it compares to the threshold.</li></ol><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="b8c10bc1-a52c-4d31-ac40-b027debaa891"><div style="font-size:1.5em"><span class="icon">☝</span></div><div style="width:100%">NOTE<br/>If powered from the USB (as is the case for the above example), the measured 6.4V &quot;battery voltage&quot; is actually the voltage supplied by the USB charger.<br/></div></figure><h3 id="ef53f6ad-2797-41c0-b472-6392ffb2c548" class="">4. Report time since boot task</h3><div id="9b7b715b-901e-4049-8700-918c58a95f23" class="column-list"><div id="2ade2c25-1e67-4ac2-83e7-789bfa2bd61c" style="width:12.5%" class="column"><p id="f235d417-a3fc-413e-93b5-971acacf30cb" class="">Priority: 4</p></div><div id="3cf3a0de-8fac-40a3-82f9-d84f5a32ca0a" style="width:58.33333333333333%" class="column"><p id="0fe3f452-64b4-47bf-b2c3-7b723076effd" class="">Frequency: <code>once every 20 seconds (0.05 Hz)</code></p></div><div id="445fe36d-4260-4f72-b426-174798097792" style="width:29.16666666666668%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><figure id="425a92ce-f0ad-41fd-95e4-f905602ebae8" class="image"><a href="Untitled%2021.png"><img style="width:338px" src="Untitled%2021.png"/></a></figure><p id="36ea11a4-5506-4c11-a42e-b3864d09cc4f" class="">This task demonstrates some basic timekeeping by calculating how long <strong><span style="border-bottom:0.05em solid">this instance</span></strong> of the beep-sat code has been running.</p><ol type="1" id="5ecbfba3-2aa1-4183-bd6d-8ab90dbce102" class="numbered-list" start="1"><li>Calculate time since boot<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="85b30161-55a0-4743-a876-f683ae6bc599" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">t_since_boot = time.monotonic() - self.cubesat.BOOTTIME</code></pre><ul id="d32be781-7582-4c71-8e81-951360d6ca5b" class="bulleted-list"><li style="list-style-type:disc"><code>time.monotonic()</code> reports the time in seconds (float) since the PyCubed board <span style="border-bottom:0.05em solid">was powered</span>. This float will keep increasing until the board is power cycled or the microcontroller receives a hard-reset. </li></ul><ul id="1e47147e-b591-405c-91c3-3fb4f3fe3ba8" class="bulleted-list"><li style="list-style-type:disc">Since the pycubed.py library logs the time that the software boots (stored as <code>cubesat.BOOTTIME</code>, we can use that value to calculate how long this instance of the software has been running. </li></ul></li></ol><h3 id="4450f6b1-8a23-481f-a98a-b7ef0691d06c" class="">5. Transmit beacon packet &amp; listen task</h3><div id="d9f10c92-ce16-45f7-95d2-a6bf8ff2069d" class="column-list"><div id="56f04e0b-30df-40ba-9293-471ea40bc05a" style="width:12.5%" class="column"><p id="4490327a-cec0-4fb0-9fc2-c37339ce214a" class="">Priority: 1</p></div><div id="958d5799-2118-4956-bea5-c69474cb69b5" style="width:58.33333333333333%" class="column"><p id="dfd7f8d0-e702-4a90-9ccf-6e3b07d1bc4a" class="">Frequency: <code>once every 30 seconds (0.03 Hz)</code></p></div><div id="7521164f-ae82-4ed8-8ef3-c548caf98c07" style="width:29.166666666666675%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="4ffc4bb6-e2fd-4686-9aaf-8c14d7b47c06"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">To avoid damage to the default radio on PyCubed, a 433 MHz antenna <span style="border-bottom:0.05em solid"><strong>must always be attached</strong></span> before attempting to transmit. See <a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html"><span class="icon">📡</span>Antennas</a> for suggestions.<br/><br/>Therefore, the beacon task does not transmit a beacon by default. Transmitting can easily be enabled by editing the <br/><code>/Tasks/beacon_task.py</code> task file as described below</div></figure><p id="db50bf5b-ce6e-4a11-8bed-67d941d7947e" class="">This task demonstrates how to transmit a message (using the default LoRa modulation settings) and then asynchronously listen for a response for 10 seconds.  <div class="indented"><p id="509ac11c-a98b-4593-b4cb-5956d5b8b072" class="block-color-gray">Default LoRa Modulation Settings: Frequency: 433 MHz, SF7, BW125kHz, CR4/8, Preamble=8, CRC=True</p></div></p><figure id="5f694baf-837b-46fa-84d3-ea08f820ad8f" class="image"><a href="Untitled%2022.png"><img style="width:624px" src="Untitled%2022.png"/></a><figcaption>Default &quot;beacon task&quot; debug messages. </figcaption></figure><ol type="1" id="b9123a21-125c-4c1d-afc7-b804abd12173" class="numbered-list" start="1"><li>Notice that before the main_task definition, we&#x27;ve set the attribute:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7cee75df-aba7-42f1-97bd-30342f771925" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">schedule_later = True</code></pre><p id="09857868-c28b-4673-9f99-4481f7aa5274" class="">This is a built-in attribute (default=False) that tells the state machine to schedule the task for the first time <strong><span style="border-bottom:0.05em solid">after</span></strong> one frequency period has passed. So in this case, the beacon task will run for the first time at time=~30s. </p></li></ol><ol type="1" id="14921565-ea95-4259-95fc-89049ebc7462" class="numbered-list" start="2"><li>First thing the task does each time it&#x27;s called is check whether <code>ANTENNA_ATTACHED</code> is true or false. Since the <code>ANTENNA_ATTACHED</code> variable is local to the beacon task, this forces you to physically edit the file and set the value to <code>True</code> if you want the board to beacon.<br/>(make sure you&#x27;ve attached an antenna before trying to beacon)<br/></li></ol><ol type="1" id="c4aa4c4e-de7f-41a9-8a37-e5b7cd1cbd83" class="numbered-list" start="3"><li>If you&#x27;ve attached an antenna and edited the file accordingly, the board will transmit a beacon:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="99b8bb8a-a5e8-4ce1-a4eb-ecdd108d3099" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.cubesat.radio1.send(&quot;Hello World!&quot;,keep_listening=True)</code></pre><p id="b74afc76-8e27-4be6-bc91-024ab119ed77" class="">using the onboard RFM98PW radio. Radio modules have a lot of functions! Below are some resources to learn more about hardware and software capabilities.<div class="indented"><ol type="1" id="1ea921da-b321-4052-923f-d8aaec1228bb" class="numbered-list" start="1"><li>Understand the software capabilities by reading through the radio library located on your board at: <code>/lib/pycubed_rfm9x.py</code></li></ol><ol type="1" id="7c9c705d-c90f-4784-8422-ae0a4bb8646c" class="numbered-list" start="2"><li>Hardware capabilities of the radio can be found in the datasheet:<br/><br/><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> </li></ol><ol type="1" id="3c6befe2-b5c7-43e1-879a-b3dbbd7f7402" class="numbered-list" start="3"><li>Radio examples in <a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html"><span class="icon">🖥️</span>Code Examples</a> </li></ol></div></p></li></ol><ol type="1" id="59701f42-4928-4312-926d-7edc1e460877" class="numbered-list" start="4"><li>Regardless if we actually beaconed, we now want the radio to listen for messages and notify the state machine (without blocking other tasks) if it hears anything.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5de669f8-56fa-4f16-b3af-3788dd3a180a" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">heard_something = await self.cubesat.radio1.await_rx(timeout=10)</code></pre><p id="ca86f640-a360-48aa-a550-876cc5228070" class="">⭐ this <code>await</code> statement is the key to listening for messages without blocking other tasks<div class="indented"><ul id="251ae739-a75c-478b-a68b-0e55be5b38ce" class="bulleted-list"><li style="list-style-type:disc">the code located below <code>heard_something</code> <span style="border-bottom:0.05em solid"><strong>will not run</strong></span> until the the <code>await</code> statement returns. In the meantime, the code is able to <code>yield</code> and go back to performing other tasks. </li></ul><ul id="847c926f-cdcc-49c2-b927-4955165b4829" class="bulleted-list"><li style="list-style-type:disc">we&#x27;ve built a timeout into the <code>await_rx</code> radio function to prevent the software from continuously checking for messages forever. </li></ul><p id="6b2b27e5-7d04-46ad-be7b-83c94258641f" class="">Resources for understanding async behavior:<div class="indented"><ol type="1" id="98e8580b-8629-4fd9-be55-6bed3c07e2fe" class="numbered-list" start="1"><li>The behavior is similar to <a href="https://docs.python.org/3/library/asyncio.html">Python&#x27;s asyncio</a>, but not exact! </li></ol><ol type="1" id="fd781027-ce59-41c0-b562-3988504b9350" class="numbered-list" start="2"><li>See the <a href="https://github.com/WarriorOfWire/tasko">tasko library repo</a> for more details</li></ol></div></p></div></p></li></ol><ol type="1" id="10b9abf3-2614-4e53-bdf5-b4f3a6fd9863" class="numbered-list" start="5"><li>The beacon code &quot;resumes&quot; once <code>heard_something</code> has a value:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af1dc94e-26fe-4a98-b005-69c1c4a3b55b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if heard_something:
+    response = self.cubesat.radio1.receive(keep_listening=False)
+    if response is not None:
+        self.debug(&quot;packet received&quot;)
+        self.debug(&#x27;msg: {}, RSSI: {}&#x27;.format(response,self.cubesat.radio1.last_rssi-137),2)
+        self.cubesat.c_gs_resp+=1
+else:
+    self.debug(&#x27;no messages&#x27;)
+self.cubesat.radio1.sleep()</code></pre><ul id="d614ab13-914b-4b0b-ba86-a61bbf734b07" class="bulleted-list"><li style="list-style-type:disc">if <code>heard_something</code> is <code>True</code>, that means <code>await_rx</code> has returned because the radio has received a message. So we retrieve the message, store it as <code>response</code>, and print it. We also increment our &quot;response counter&quot; register so we know how many times we&#x27;ve heard something.<figure id="1b2db534-235b-4f39-8b83-7965ad23b127" class="image"><a href="Untitled%2023.png"><img style="width:475px" src="Untitled%2023.png"/></a><figcaption>Any responses during our listening period are printed to the terminal.</figcaption></figure><p id="631f5c46-b610-468b-a365-58f4bf272857" class="">The &quot;RSSI&quot; value is a relative measure of signal strength. </p></li></ul><ul id="745d548a-82ce-485d-9f10-4f31eb3d4a85" class="bulleted-list"><li style="list-style-type:disc"><code>heard_something</code> is <code>False</code> when <code>await_rx</code> times out without receiving any messages</li></ul><p id="60332e5a-86e9-438a-a330-fc20ce1a53b7" class="">P.S. This region of the code is where we implement over-the-air commands in the advanced example: <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a> </p></li></ol><ol type="1" id="02e582b9-97f0-4a24-9dca-9d087ce70a03" class="numbered-list" start="6"><li>Finally, whether we&#x27;ve received a message or not, we put the radio to sleep before ending this iteration of the task:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f38cb243-61cf-4e5a-84c4-87300261fd71" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.cubesat.radio1.sleep()</code></pre></li></ol><div id="22b2b154-52c3-4aee-9ff2-e7249cf5e79e" class="column-list"><div id="73033884-e06b-4ec6-bb88-5bbd2da36fe0" style="width:75%" class="column"><h1 id="33eb3453-4cec-408e-8e65-4d16236c8d17" class="block-color-teal_background">Going Further</h1></div><div id="641812ce-08f8-44e4-93f2-7ca7ded4377e" style="width:25%" class="column"></div></div><hr id="5e3eb85c-9266-41e8-8acd-46cb013ccda3"/><h2 id="5da2c597-038f-4247-96e3-16b02d29ae93" class="">Creating your own task</h2><p id="1ad39354-9eae-4efe-b453-3f72b799868f" class="">Adding a new task to the state machine is as simple adding a task file to the Tasks directory!<div class="indented"><ol type="1" id="154455ca-c9b3-4850-9eec-fa919ba42856" class="numbered-list" start="1"><li>Start by copying and pasting the <code>/Tasks/test_task.py</code> file into the same directory and renaming it to something like &quot;demo.py&quot;. The file name doesn&#x27;t need to have &quot;task&quot; in it.</li></ol><ol type="1" id="a728d3d5-ce8b-4235-b752-d6b9a45f2d62" class="numbered-list" start="2"><li>Edit your new <code>/Tasks/demo.py</code> file <p id="0c6941f3-9a56-4f36-aba0-84bfc6d25ebd" class="">All task files follow a pattern inherited from <code>/Tasks/template_task.py</code>. Review the template file for specifics on the default class definitions. But to paraphrase: <div class="indented"><ul id="bb969311-4c24-4e0b-a56a-6ef803285ca1" class="bulleted-list"><li style="list-style-type:disc">The <code>task</code> class we create in each task file inherits default methods and attributes from the template class. </li></ul><ul id="7205fa21-6f5d-48b7-ac66-058a1f093a5e" class="bulleted-list"><li style="list-style-type:disc">By redefining an attribute such as <code>frequency</code> or <code>priority</code> we are overwriting the default values.</li></ul><ul id="190f7c47-5f9d-41d8-8c02-791e8f3bfac6" class="bulleted-list"><li style="list-style-type:disc">Set <code>schedule_later = True</code> in your demo task to tell the state machine to schedule the task for the first time <strong><span style="border-bottom:0.05em solid">after</span></strong> one frequency period has passed. In other words: skip just the first iteration of the task.</li></ul><ul id="012a4e0c-d559-4bed-bc8a-194bdbf3d04a" class="bulleted-list"><li style="list-style-type:disc">Review <code>/lib/debugcolor.py</code> to see what colors you can choose from for your task debug messages. You can certainly add your own as well!</li></ul></div></p></li></ol></div></p><h2 id="b9ca508c-5633-4d6e-8831-2cd23c7ec21e" class="">Receiving beacon packets and responding</h2><p id="550c0c45-7249-49c8-a372-47609e247444" class="">An aspect of the Beacon Task discussed above involves listening for messages. But how can we transmit a message that our Beep-Sat will receive? </p><p id="a60224d1-efb3-4234-928d-fa60d8e50486" class="">First we&#x27;ll need another radio capable of transmitting a 433 MHz LoRa packet.<div class="indented"><p id="7fddba40-0d55-4a94-81ae-f2499759bc25" class="">Here are some options that are also programmable in CircuitPython:</p><ol type="1" id="ec79e6be-a436-45de-bb2c-cbb12109d47a" class="numbered-list" start="1"><li>Another PyCubed board</li></ol><ol type="1" id="278ef394-7508-44ee-b8be-38d5195ab964" class="numbered-list" start="2"><li>A <a href="https://www.adafruit.com/product/3232">radio breakout board</a> driven by a dev board (like a <a href="https://www.adafruit.com/product/3857">feather M4</a>)</li></ol><ol type="1" id="43a33402-4250-44cd-a5f8-9ce2b9453b84" class="numbered-list" start="3"><li>A dev board + radio combination board (like this <a href="https://www.adafruit.com/product/3179">radiofruit board</a>)</li></ol></div></p><p id="83340cb7-b3e7-4434-b288-5be98e12c6be" class="">Below are some basic instructions for transmitting a messaging using each of the above options:<div class="indented"><ul id="e2dab2df-77b5-426e-9f09-5da8270bc56e" class="toggle"><li><details open=""><summary>Second PyCubed board</summary><p id="148bc54e-c7ad-4597-9af5-0e4a3089f08d" class="">If we&#x27;re fortunate enough to have a second PyCubed board, the task of sending a message to our Beep-Sat is very simple. <div class="indented"><ol type="1" id="8d44eb49-670b-4af1-a01c-16bc16056d0e" class="numbered-list" start="1"><li>With an antenna attached, plug the second PyCubed board into a computer (doesn&#x27;t need to be the same computer as the one powering the Beep-Sat)</li></ol><ol type="1" id="3839095d-4773-4baa-a77e-e3b7864d5ad3" class="numbered-list" start="2"><li>Start the REPL for the second PyCubed board and enter the following:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f28cbb9b-d177-4905-8a79-70e8ded77198" class="code"><code class="language-Shell" style="white-space:pre-wrap;word-break:break-all">&gt;&gt;&gt; from pycubed import cubesat
+&gt;&gt;&gt; cubesat.radio1.send(&#x27;Hi BeepSat!&#x27;)</code></pre><p id="78145939-7fae-46f0-b38a-7ca13e18d3f1" class="">Don&#x27;t forget to time sending the second command with the 10s listening window.</p></li></ol><ol type="1" id="0917b52f-f7ce-4f56-ad62-4eac78dea60b" class="numbered-list" start="3"><li>The Beep-Sat should receive the message if it was transmitted during a listening window. You&#x27;ll see a debug message similar to <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">this one</a>.</li></ol><ol type="1" id="6a439157-1477-492c-81df-60e68310ed8c" class="numbered-list" start="4"><li>That&#x27;s it! Since we&#x27;re using the default PyCubed LoRa parameters, we didn&#x27;t need to do any additional configuring of the radio beyond what was performed during the initialization. </li></ol></div></p></details></li></ul><ul id="247b54fd-b803-4ecd-a438-610eac88fd01" class="toggle"><li><details open=""><summary>Radio breakout</summary><p id="e4b6ff02-bcb8-4461-a53d-32cbb973ffda" class="">Before you can use a radio breakout <a href="https://www.adafruit.com/product/3232">like these</a> you&#x27;ll need to solder headers, wires attaching at least CS and RST lines to pins, and at least a wire antenna. This breakout will then plug into a dev board  (like a <a href="https://www.adafruit.com/product/3857">feather M4</a>).<br/>Everything is covered in Adafruit&#x27;s excellent write-up: <br/><a href="https://learn.adafruit.com/radio-featherwing/circuitpython-for-rfm9x-lora">https://learn.adafruit.com/radio-featherwing</a><div class="indented"><ol type="1" id="59adace6-9252-4115-9ef3-5fee1f7c51c0" class="numbered-list" start="1"><li>As you work your way through the above Adafruit tutorial 👆, follow the instructions for CircuitPython (as opposed to Arduino).</li></ol><ol type="1" id="08ce924b-126e-4fc3-9525-0c6b5b982075" class="numbered-list" start="2"><li>After completing the tutorial, create a main.py file containing the following<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9d3d0f7-ba49-4527-ad0e-97d540dcf406" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board, busio, digitalio
+import pycubed_rfm9x
+
+# Configure pins and SPI bus
+CS= digitalio.DigitalInOut(board.D5)
+RESET= digitalio.DigitalInOut(board.D6)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+
+rfm9x.send(&#x27;Hi BeepSat!&#x27;)</code></pre></li></ol><ol type="1" id="27dc65e8-789e-4bbc-9e59-f14e2bec724c" class="numbered-list" start="3"><li>Save the above file, then you can use the REPL or power cycle the board in order to restart the board</li></ol><ol type="1" id="7787b353-fbd9-41c8-b0ff-f5fcf3dd6e8e" class="numbered-list" start="4"><li>The above code will initialize the board and then transmit the message, so make sure to time it appropriately with the Beep-Sat.</li></ol><ol type="1" id="deda46fa-8449-4b8f-8359-63bbc96bb7a4" class="numbered-list" start="5"><li>The Beep-Sat should receive the message if it was transmitted during a listening window. You&#x27;ll see a debug message similar to <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">this one</a>.</li></ol></div></p></details></li></ul><ul id="886fef45-0cdf-4f0d-b99f-20a7bff6aa84" class="toggle"><li><details open=""><summary>Combo board</summary><p id="66064333-193d-425e-83f9-fcf35daec6cb" class="">This board won&#x27;t have CircuitPython or the UF2 bootloader installed yet. But that&#x27;s an easy fix! </p><p id="767d868e-ac54-4479-bac7-f3334782f047" class="">Follow these instructions: <a href="https://learn.adafruit.com/installing-circuitpython-on-samd21-boards">https://learn.adafruit.com/installing-circuitpython-on-samd21-boards</a><div class="indented"><ol type="1" id="e70e0936-5d25-42cb-b9da-6b91e666d528" class="numbered-list" start="1"><li>Make sure you&#x27;re able to plug your M0 board in and reach the REPL</li></ol><ol type="1" id="227d986f-797b-43e5-b573-a8cfb9546498" class="numbered-list" start="2"><li>Follow <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">the instructions above for the breakout board</a>. You&#x27;ll just need to solder antenna.</li></ol></div></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="834cda85-dff2-4bd2-a2a0-704dc259dada" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board
+import busio
+import digitalio
+import pycubed_rfm9x
+import time
+
+# Configure pins and SPI bus
+CS = digitalio.DigitalInOut(board.RFM9X_CS)
+RESET = digitalio.DigitalInOut(board.RFM9X_RST)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+
+rfm9x.send(&#x27;Hi BeepSat!&#x27;)</code></pre><p id="3e334f86-f6ed-4eeb-b925-d13a1b3fdf66" class="">
+</p></details></li></ul></div></p><p id="a1682c19-253d-4196-8182-a67ada6cb7a2" class="">See <a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html"><span class="icon">🖥️</span>Code Examples</a> for more radio examples.</p><h2 id="4afd3afd-ca28-48da-8e62-ce35039a2708" class="">Advanced features</h2><p id="0bf7e57a-dac0-4a1b-9bb8-0f5cd922721c" class="">The <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a> demo builds upon what is established here by adding more hardware functionality, improved fault tolerance, over-the-air commanding, and more!</p><p id="9c4dedaf-425b-4098-b6c1-7e806d1f0802" class="">
+</p><div id="0d6d0b07-43ff-48a2-8217-f75c692843bc" class="column-list"><div id="c9802226-18f8-42b4-9b82-a2a82de6fcbc" style="width:75%" class="column"><h1 id="9e334c79-9a2e-436c-a1b2-98ef1d3deec0" class="block-color-gray_background"><mark class="highlight-red">Next Section </mark>→ <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a>  </h1></div><div id="cbfc3aaf-b596-419f-bcab-aa9a53d72527" style="width:24.999999999999993%" class="column"><div><p id="9caacec8-609e-4149-ba55-19ca39b388eb" class=""><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">(top ⬆)</a></p></div></div></div><p id="09ee4d34-db30-4390-ab45-934356b974c2" class=""><br/><br/><br/></p><hr id="c706d4db-6023-461e-91e5-aa902ce1895c"/><p id="6eac01f4-2f58-4bd3-a826-17bd9d5c072e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

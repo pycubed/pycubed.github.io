@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>All PyCubed Resources</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8738cab0-dd07-4323-9a3c-de30c6066452" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🗃️</span></div><h1 class="page-title">All PyCubed Resources</h1><p class="page-description"></p></header><div class="page-body"><div><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="541303b9-6a67-4bf8-bb7b-a5c090a9004e"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%"><strong><span style="border-bottom:0.05em solid">NOTICE - AUGUST 1 2024</span></strong><p id="5e681058-979c-4589-8d7f-68da955feb8f" class="">We have found the ATSAMD51 microcontroller used on PyCubed Mainboards (v00 - v05) exhibiting a surprisingly high sensitivity to 50MeV protons. Our KickSat-2 and VR3X missions had zero issues with the ATSAMD51 and the part does have some radiation literature. But after troubleshooting unexplained reboots on our recent PY4 mission, we decided to test it ourselves. </p><ul id="35315ba1-f142-44f9-abeb-9ece2d350ee6" class="toggle"><li><details open=""><summary>More details:</summary><p id="f97e9599-a448-48b3-b9d5-f9e206175540" class="">It&#x27;s quite possible the ATSAMD51 has undergone some manufacturing changes in the nearly 10 years since it was selected for PyCubed that introduced new avenues for rad susceptibility (atmel acquired by microchip, chip shortage shaking up fab availability, etc). Additionally, much of our personal flight heritage with the part has been during different periods of the solar cycle and not subject to the high bursts of proton fluxes currently observed in the 2024 solar maximum. </p><p id="3d6289f0-aa7f-4fb6-b244-c277204eeb0e" class="">In our testing, all of our test articles (all use ATSAMD51 with date codes within the past two years) will consistently experience latch-up of one or more peripherals when exposed to 50MeV protons to a fluence of 5E8 p/cm2 or less. We saw this manifest as many things such as halted serial communication (SPI/I2C/UART) but continued external watchdog PWM, or latch-up of certain GPIO power domains (groups of pins) while continued operation of others. Suffice to say when we release a v06 PyCubed mainboard design, it will not utilize the ATSAMD51 microcontroller.  </p><p id="96e37180-352d-48c2-a567-739b46e15a8d" class="">It is worth mentioning that, with the culprit ATSAMD51 masked from the beam, the remainder of the PyCubed bus operated without issue under accelerated exposure until we ran out of time on the beam (equivalent to multiple years on orbit). </p><p id="4ac3117f-5dcd-44f5-bbdd-e718278943d9" class="block-color-yellow_background">NOTE: We are posting this summary to notify the community as quickly as possible. These are just preliminary findings, interpret it however you wish. </p><p id="fc04da45-3441-4168-880c-690a04c0ee7e" class=""><a href="https://github.com/pycubed/forums/discussions/87">➡️ link to forum discussion</a></p></details></li></ul></div></figure></div><hr id="df3e6f26-8997-47ac-990d-5a803902f454"/><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="8aaf85c4-955b-4ddd-a22b-ee4d805b7162"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>This is the home for all PyCubed tutorials &amp; technical details.<br/><br/></strong>1. Browse the topics below to learn more<br/>2. Use the 🔎Search function in the top-right (or press <br/><code>ctrl+p</code>) to find something specific</div></figure><hr id="2d186146-a1dd-4532-8432-c6195dd43d44"/><div id="6cc52dd6-91d3-428b-899a-fcae432cf7bf" class="column-list"><div id="ba6fadc7-c001-4a2c-b892-26fd6f02924b" style="width:43.75%" class="column"><p id="64b217d7-0d0b-412d-b1b3-8deebda8cfb5" class=""><strong><mark class="highlight-blue_background">Quick Start</mark></strong><div class="indented"><figure id="d220f0ec-88eb-41c0-8ee8-55ff4f46d737" class="link-to-page"><a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html"><span class="icon">⚡</span>Hands-On Quick Start</a></figure><figure id="828f6ffc-cee4-4597-a9b8-b6c2ed417fb5" class="link-to-page"><a href="Troubleshooting%20828f6ffccee44597a9b8b6c2ed417fb5.html"><span class="icon">❓</span>Troubleshooting</a></figure><figure id="c8d7c6de-7437-45ef-9c2b-4cc1ea262f69" class="link-to-page"><a href="FAQ%20c8d7c6de743745ef9c2b4cc1ea262f69.html"><span class="icon">❔</span>FAQ</a></figure><p id="aea2a573-f924-482e-a64f-fe1c1611133d" class="">💬 <a href="https://github.com/pycubed/forums/discussions">PyCubed Forums</a></p></div></p></div><div id="17af15d8-5a1e-40af-96d0-c77785bd73b7" style="width:56.25%" class="column"><p id="a785e588-4cb4-4ec1-8939-0db7bf218e28" class=""><strong><mark class="highlight-blue_background">Helpful Links</mark></strong></p><ul id="c4e5795d-6f4e-489f-9497-6d79c083f59c" class="toggle"><li><details open=""><summary>📂 PyCubed Links</summary><ol type="1" id="c82e3ebf-e6e6-4f2c-918a-0e20b07023ab" class="numbered-list" start="1"><li><strong><a href="https://github.com/pycubed">GitHub</a></strong></li></ol><ol type="1" id="b60f7d80-4ef3-4e8d-bf38-dcd10e71851d" class="numbered-list" start="2"><li><a href="index.html">🏠 PyCubed Home</a></li></ol><ol type="1" id="71926332-a0ab-45aa-a4ee-6d4ae954ead8" class="numbered-list" start="3"><li><strong><a href="https://googlechromelabs.github.io/serial-terminal/">🖥 Web REPL Demo</a></strong></li></ol><ol type="1" id="cfd87ea5-49e6-4b4f-b8f8-636dd9689f58" class="numbered-list" start="4"><li><a href="Default%20Libraries%2027319b5abc0440deaa706404156e0731.html"><span class="icon">📚</span>Default Libraries</a> </li></ol><ol type="1" id="573a6e09-2749-41b3-9747-5fc619a61ee8" class="numbered-list" start="5"><li><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a> </li></ol><ol type="1" id="705fbdf0-91d8-4728-a78b-342bfb7e3f0a" class="numbered-list" start="6"><li><strong><a href="https://github.com/maholli/XTB"><span style="border-bottom:0.05em solid">Details on the Payload Board</span></a></strong></li></ol><ol type="1" id="bb5bb32f-fae9-475b-a3eb-b167975f740c" class="numbered-list" start="7"><li><a href="Contact%20Us%2070e805a60ad645fa9ed7383afebe1305.html"><span class="icon">📧</span>Contact Us</a> </li></ol><ol type="1" id="9b2e2956-d4e5-4f91-a3b9-71ad9cf71278" class="numbered-list" start="8"><li>💬 <a href="https://pycubed.org/forums">PyCubed Forums</a></li></ol><figure id="587d05fd-f1fc-4f27-956a-1dbbd79ed019" class="link-to-page"><a href="Formal%20Documentation%20587d05fdf1fc4f27956a1dbbd79ed019.html"><span class="icon">📝</span>Formal Documentation</a></figure></details></li></ul><ul id="7b2bcb74-d0e0-422f-8026-938f05805603" class="toggle"><li><details open=""><summary>📂 CircuitPython Links</summary><p id="dabfe9de-b547-4139-9d0c-960b5c7c3581" class=""><a href="https://github.com/adafruit/circuitpython">CircuitPython GitHub</a></p><p id="21ad1e39-8247-4b14-9aca-9b9624b89936" class=""><a href="https://github.com/adafruit/Adafruit_CircuitPython_Bundle/releases">CircuitPython Libraries</a></p><p id="5667d175-9d7c-4791-b59f-e23fdc51676f" class=""><a href="https://circuitpython.readthedocs.io/en/latest/shared-bindings/index.html#modules">CircuitPython API Reference</a></p><figure id="72e59ad3-15e9-42d6-a261-9dc5d9a7799f" class="link-to-page"><a href="CircuitPython%20RGB%20Status%20Reference%2072e59ad315e942d6a2619dc5d9a7799f.html"><span class="icon">🎨</span>CircuitPython RGB Status Reference</a></figure></details></li></ul><ul id="0c1ba130-5bdc-4113-8383-c8bddce7d2fc" class="toggle"><li><details open=""><summary>📂 CubeSat Links</summary><p id="490a03df-eff1-45dc-9ec2-72a3357520b4" class=""><a href="https://www.nasa.gov/sites/default/files/atoms/files/nasa_csli_cubesat_101_508.pdf"><strong>NASA CubeSat101</strong></a></p><p id="461650ee-575d-4852-84b8-6b377b9b7c5d" class=""><a href="https://orbitalindex.com/">The Orbital Index</a></p><p id="2bc78f7c-deae-4c95-aebb-b19e2f9595f1" class=""><a href="https://github.com/orbitalindex/awesome-space">Awesome Space</a></p><p id="219a40ea-5f11-4b92-95c2-7118d9b10ec5" class=""><a href="https://adafru.it/smallsats">💬Small-Sat Discord</a></p><p id="4c8ababa-659b-4234-92e7-cd64c98432b0" class="">
+</p></details></li></ul></div></div><hr id="013f261e-d0b9-4b74-8cb7-d9e68a8da36c"/><p id="3c334341-ff6d-4528-9131-400e10b2847b" class=""><mark class="highlight-blue_background"><strong>Software/Firmware</strong></mark><div class="indented"><p id="dfdd2fda-daf3-4327-8dfa-3d0057361027" class=""><strong><a href="Software%20&amp;%20Firmware%204c5671853de648d6adceedceaa088a81.html"><span class="icon">💾</span>Software &amp; Firmware</a></strong><strong> </strong></p><figure id="2f140c2c-6c83-4a45-89e5-642ee6a34576" class="link-to-page"><a href="Code%20Examples%202f140c2c6c834a4589e5642ee6a34576.html"><span class="icon">🖥️</span>Code Examples</a></figure><figure id="cbc8b47a-6775-49ed-98fc-5b23b5a04fac" class="link-to-page"><a href="Updating%20PyCubed%20cbc8b47a677549ed98fc5b23b5a04fac.html"><span class="icon">🗳️</span>Updating PyCubed</a></figure><p id="e8c73e98-2541-4516-b19e-6a607b9e575a" class=""><mark class="highlight-blue_background"><strong>Complete Flight Software Examples</strong></mark><div class="indented"><figure id="a3074e19-25d7-4835-bd3e-2e3543819981" class="link-to-page"><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a></figure><figure id="2d93fbe6-3d1a-42cc-8ce0-84b6f19535ba" class="link-to-page"><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html"><span class="icon">📻</span>Beep-Sat (advanced)</a></figure></div></p><figure id="f6286155-7435-4840-b963-4a6c52928f67" class="link-to-page"><a href="Pin%20Muxing%20f628615574354840b9634a6c52928f67.html"><span class="icon">🎹</span>Pin Muxing</a></figure><figure id="27319b5a-bc04-40de-aa70-6404156e0731" class="link-to-page"><a href="Default%20Libraries%2027319b5abc0440deaa706404156e0731.html"><span class="icon">📚</span>Default Libraries</a></figure><figure id="bfd69dfc-d5f5-44e4-b1c1-164f29d8c45f" class="link-to-page"><a href="Accessing%20the%20Serial%20Console%20bfd69dfcd5f544e4b1c1164f29d8c45f.html"><span class="icon">🖱</span>Accessing the Serial Console</a></figure><figure id="343b47d1-ad6f-4863-b512-d6464aa7b84e" class="link-to-page"><a href="Programming%20the%20Bootloader%20343b47d1ad6f4863b512d6464aa7b84e.html"><span class="icon">🛠</span>Programming the Bootloader</a></figure><figure id="e830e6f2-5b55-44c1-95e5-ea227e163665" class="link-to-page"><a href="PyCubed%20NVM%20Bit%20Map%20&amp;%20Usage%20e830e6f25b5544c195e5ea227e163665.html"><span class="icon">📋</span>PyCubed NVM Bit Map &amp; Usage</a></figure><figure id="edd6215b-3d36-4fdf-9dc4-af67582c4006" class="link-to-page"><a href="Building%20the%20PyCubed%20Firmware%20from%20Source%20edd6215b3d364fdf9dc4af67582c4006.html"><span class="icon">🔨</span>Building the PyCubed Firmware from Source</a></figure><figure id="6e09a2c8-b96b-4e2a-8fe7-ab09a68c03d6" class="link-to-page"><a href="Over-the-air%20Updates%20(coming%20soon!)%206e09a2c8b96b4e2a8fe7ab09a68c03d6.html"><span class="icon">🚀</span>Over-the-air Updates (coming soon!)</a></figure></div></p><hr id="958d94c1-1e5e-4329-ab30-371e878e16e2"/><p id="55ea28b5-3011-490c-a13e-3f88049cb6e1" class=""><strong><mark class="highlight-blue_background">Hardware </mark></strong> (<strong><a href="Hardware%208921489e5168447d80b9f68fa7856a50.html">Overview Page</a></strong>)<div class="indented"><p id="5f6daf41-8722-4ba3-8baf-6e0cc4cadfb3" class=""><strong><mark class="highlight-blue_background">Mainboard (&quot;Avionics Board&quot;)</mark></strong><div class="indented"><figure id="cddd2b21-f589-40e9-91ad-60450f1adae0" class="link-to-page"><a href="Mainboard%20Overview%20cddd2b21f58940e991ad60450f1adae0.html"><span class="icon">⚙️</span>Mainboard Overview</a></figure><ul id="0cf4083b-7fd0-412e-8657-f61e2107b2a2" class="toggle"><li><details open=""><summary>📋 Change Logs</summary><figure id="7d80b1fb-81be-423a-9da1-97f820e87538" class="link-to-page"><a href="v04%20%E2%86%92%20v05%20Change%20Log%207d80b1fb81be423a9da197f820e87538.html"><span class="icon">📋</span>v04 → v05 Change Log</a></figure></details></li></ul><ul id="9d2fb925-90f2-4076-95bd-968e497782b4" class="toggle"><li><details open=""><summary>🗺 Schematics</summary><figure id="db6f4b91-c712-4e17-8322-dc372d5a5b98" class="link-to-page"><a href="mainboard-v01%20db6f4b91c7124e178322dc372d5a5b98.html"><span class="icon">🗺</span>mainboard-v01</a></figure><figure id="aca0cdbe-5108-42a4-a7c1-9637b8be8cab" class="link-to-page"><a href="mainboard-v02%20aca0cdbe510842a4a7c19637b8be8cab.html"><span class="icon">🗺</span>mainboard-v02</a></figure><figure id="ea9d9916-fd37-489e-9cfc-23fcbbc6cef9" class="link-to-page"><a href="mainboard-v04%20ea9d9916fd37489e9cfc23fcbbc6cef9.html"><span class="icon">🗺</span>mainboard-v04</a></figure><figure id="a554b177-2c7a-4731-a862-a75cc109b765" class="link-to-page"><a href="mainboard-v05%20a554b1772c7a4731a862a75cc109b765.html"><span class="icon">🗺</span>mainboard-v05</a></figure><figure id="15a123bc-1b1d-430d-80f5-c093c3d20595" class="link-to-page"><a href="PyCubed%20Schematic%20(latest%20v05)%2015a123bc1b1d430d80f5c093c3d20595.html"><span class="icon">🗺</span>PyCubed Schematic (latest v05)</a></figure></details></li></ul><ul id="7d8b9083-a65d-45bf-afc6-ee54341ab110" class="toggle"><li><details open=""><summary>🗄 Datasheets</summary><figure id="df17cd3e-e158-4311-917b-28255ffa0180" class="link-to-page"><a href="Component%20Datasheets%20df17cd3ee1584311917b28255ffa0180.html"><span class="icon">🗄</span>Component Datasheets</a></figure></details></li></ul><ul id="e2c11566-c3db-4e90-9f16-f27b0d57ee76" class="toggle"><li><details open=""><summary>🛒 Interactive Bill of Materials</summary><ol type="1" id="5cf20be8-0101-49c1-986c-3660c3f6ec2b" class="numbered-list" start="1"><li><strong>mainboard-v01</strong></li></ol><ol type="1" id="70ce97c1-252e-4f0d-b1ee-fc22568bb315" class="numbered-list" start="2"><li><strong>mainboard-v02</strong></li></ol><ol type="1" id="5056cb2f-de80-4b6d-ad9d-56126a957dc7" class="numbered-list" start="3"><li><strong>mainboard-v04</strong></li></ol><ol type="1" id="bb5da17d-b00d-4190-a522-5702343510d8" class="numbered-list" start="4"><li><strong>mainboard-v05</strong></li></ol></details></li></ul><ul id="feae3771-4f27-4e06-8364-0790dd101194" class="toggle"><li><details open=""><summary>📍 Pinout Diagrams</summary><figure id="44d5c93a-7f8e-43ec-ada4-10a75edae64a" class="link-to-page"><a href="PyCubed%20mainboard-v02%20Pinout%2044d5c93a7f8e43ecada410a75edae64a.html"><span class="icon">📍</span>PyCubed mainboard-v02 Pinout</a></figure><figure id="b969421d-6cf3-407d-89e2-ee6ccd86c059" class="link-to-page"><a href="PyCubed%20mainboard-v04%20Pinout%20b969421d6cf3407d89e2ee6ccd86c059.html"><span class="icon">📍</span>PyCubed mainboard-v04 Pinout</a></figure></details></li></ul><figure id="0c5a9e96-ec9b-4b25-917a-ee43760a7555" class="link-to-page"><a href="mainboard-v05%20CAD%20(interactive)%200c5a9e96ec9b4b25917aee43760a7555.html"><span class="icon">✏️</span>mainboard-v05 CAD (interactive)</a></figure><p id="2b71966d-4bfc-474d-8236-6abb0a64ce8d" class=""><strong><mark class="highlight-blue_background">Details &amp; Usage</mark></strong><div class="indented"><figure id="796c1f07-ef81-4ecc-a38f-92eeb02e22ff" class="link-to-page"><a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html"><span class="icon">🔥</span>PyCubed Burn Wire Info &amp; Usage</a></figure><figure id="47a1f6c2-1af9-4591-843c-7cfbfcf2f82e" class="link-to-page"><a href="Inhibits%20&amp;%20RBF%20Header%2047a1f6c21af94591843c7cfbfcf2f82e.html"><span class="icon">🔓</span>Inhibits &amp; RBF Header</a></figure><figure id="de6a89e8-a76b-4a65-bf04-2630f1592068" class="link-to-page"><a href="Payloads%20&amp;%20Interfacing%20with%20External%20Boards%20de6a89e8a76b4a65bf042630f1592068.html"><span class="icon">🎛</span>Payloads &amp; Interfacing with External Boards</a></figure><figure id="42d839b7-0457-4b97-b994-cab940405ae8" class="link-to-page"><a href="PyCubed%20Energy%20Harvesting%2042d839b704574b97b994cab940405ae8.html"><span class="icon">☀️</span>PyCubed Energy Harvesting</a></figure><figure id="c25a3258-aae9-4318-a745-9e52e61ebb8c" class="link-to-page"><a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html"><span class="icon">📡</span>Antennas</a></figure><figure id="1a68101c-65e0-4792-b006-c371c495f8c7" class="link-to-page"><a href="USB-C%20Battery%20Charging%201a68101c65e04792b006c371c495f8c7.html"><span class="icon">🔋</span>USB-C Battery Charging</a></figure><figure id="f1402e14-93bf-4e47-a55a-bb2210581eae" class="link-to-page"><a href="Using%20the%20External%20Watchdog%20Timer%20f1402e1493bf4e47a55abb2210581eae.html"><span class="icon">⏱</span>Using the External Watchdog Timer</a></figure><figure id="edf38977-6ac6-4f91-b19b-c4428ee43941" class="link-to-page"><a href="Selecting%20an%20SD%20card%20edf389776ac64f91b19bc4428ee43941.html"><span class="icon">💾</span>Selecting an SD card</a></figure><figure id="a96c0274-d5b5-4693-b479-95088f3ffa0d" class="link-to-page"><a href="Building%20a%20PyCubed%20Board%20a96c0274d5b54693b47995088f3ffa0d.html"><span class="icon">🔨</span>Building a PyCubed Board</a></figure><figure id="395ae7b4-069e-4f62-b687-a0593077687c" class="link-to-page"><a href="Benchtop%20Usage%20&amp;%20CubeSat%20Structures%20395ae7b4069e4f62b687a0593077687c.html"><span class="icon">🏗️</span>Benchtop Usage &amp; CubeSat Structures</a></figure><figure id="68e933da-3bf3-481b-8401-ce0cf2f00172" class="link-to-page"><a href="Novel%20Serial%20Bus%20Protection%2068e933da3bf3481b8401ce0cf2f00172.html"><span class="icon">📈</span>Novel Serial Bus Protection</a></figure><figure id="26fa0b86-be88-4734-bdd7-6855a6c8d052" class="link-to-page"><a href="Low%20Power%20Operation%2026fa0b86be884734bdd76855a6c8d052.html"><span class="icon">💤</span>Low Power Operation</a></figure><figure id="4397b842-3082-4664-bd6c-8bfd90eb08ca" class="link-to-page"><a href="Radio%20Modifications%20(optional)%204397b84230824664bd6c8bfd90eb08ca.html"><span class="icon">📻</span>Radio Modifications (optional) </a></figure></div></p></div></p><p id="2d789c22-320d-4e6c-bc72-077492d28cc6" class=""><mark class="highlight-blue_background"><strong>Battery Board</strong></mark><div class="indented"><figure id="5b1357e9-c6cc-477c-839f-e5a118ec0879" class="link-to-page"><a href="Battery%20Board%20Overview%205b1357e9c6cc477c839fe5a118ec0879.html"><span class="icon">⚙️</span>Battery Board Overview</a></figure><p id="db33db2b-b8b1-4fbc-a2a3-34391af3e1a0" class="">
+</p></div></p><p id="4a82ecfb-e9c0-4178-b159-ce4b0cc24700" class=""><strong><mark class="highlight-blue_background">Structure</mark></strong><div class="indented"><p id="1f39b1fe-d682-40bb-aad5-c434d21df800" class="">TBA</p></div></p></div></p><hr id="06a870a7-a9c3-46ae-8656-1231c9b6124e"/><p id="849ec67b-5142-48d7-9526-dbe2fe80bfb6" class=""><strong><mark class="highlight-blue_background">Misc</mark></strong></p><p id="3ad4dc5e-ca1d-4aaf-a55e-3ca9c66efdc4" class="">💬 <a href="https://github.com/pycubed/forums/discussions">PyCubed Forums</a></p><p id="fbb9beab-2b12-4a48-842f-b3faaf36d9e7" class="">📡 <a href="https://github.com/maholli/PyGS">Low cost mobile WiFi ground stations</a>  </p><figure id="248e28de-0dd7-441e-91c6-429e447fe478" class="link-to-page"><a href="Plotting%20Serial%20Data%20Realtime%20248e28de0dd7441e91c6429e447fe478.html"><span class="icon">📈</span>Plotting Serial Data Realtime</a></figure><figure id="e9ad4c97-55ec-4f15-8270-b7b3692ae8f7" class="link-to-page"><a href="PyCubed%20at%20SmallSat%202019%20e9ad4c9755ec4f158270b7b3692ae8f7.html"><span class="icon">💬</span>PyCubed at SmallSat 2019</a></figure><figure id="39b1cfd8-f8fb-47e9-ae8a-8f1d23ce1818" class="link-to-page"><a href="In%20Progress%2039b1cfd8f8fb47e9ae8a8f1d23ce1818.html"><span class="icon">👷</span>In Progress</a></figure><p id="0547ca13-9705-4428-8f64-367e9cf807f3" class=""><a href="Contact%20Us%2070e805a60ad645fa9ed7383afebe1305.html"><strong>📧 Feedback</strong></a></p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,718 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>HelloWorld.py</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="787a5acf-f926-4935-b024-a4e088ec4964" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="4.png"/></div><h1 class="page-title">HelloWorld.py</h1><p class="page-description"></p></header><div class="page-body"><div id="403e0596-b7f3-4354-819b-ebaf928c0aa7" class="column-list"><div id="33394719-288e-4bef-8381-5c91222e38f5" style="width:33.333333333333336%" class="column"><p id="ff5ca244-55bc-49a7-8168-a38ec930cb96" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="ec695da3-6b4b-48b2-b0a9-850d5a4ebe2d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#538551eb-4b8a-4f66-81db-b544e98d3686">Your First Program</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5de495fc-fecb-4270-8ca3-06c7ec7582ab">Example 1: Hello World</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bfd4a8e1-132e-47b7-a67f-490bce5ac286">Using the REPL</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8f04c300-fdd2-44e7-bd6f-cd962b9df338">Editing a Program</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2aa38033-b88e-4590-99eb-1c2cc4942256">Example 2: Blink</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9110e4af-c1d7-4334-a96d-d5c3553fa89b">Example 3: </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#683f9551-a962-4cf3-9673-0081694b3cb1"><mark class="highlight-red">Next Section </mark>→ <a href="Using%20the%20pycubed%20py%20Library%207c10aa3f899e4a5aadcca88ebfec5b6d.html"><img class="icon" src="5.png"/>Using the pycubed.py Library</a> </a></div></nav></div><div id="7d6d4076-ea7b-44ab-9ccc-26503a2dbf91" style="width:33.33333333333333%" class="column"><p id="5df6f0a3-6375-4e17-981c-f55e2830fc55" class="">
+</p></div><div id="8c248177-5019-451b-acf1-5a2b416d62e1" style="width:33.33333333333335%" class="column"><div><p id="0d4baa9a-7cbf-4f72-a94a-70e6624feaf2" class=""><a href="index.html">↩ Return Home</a></p><p id="b61f9b96-722a-4a41-b388-d4692723795d" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p><p id="bf50a2aa-19a4-42c6-ba92-6a95a81fc2b8" class=""><a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html">↩ Return to Quick Start</a></p></div></div></div><h1 id="538551eb-4b8a-4f66-81db-b544e98d3686" class="">Your First Program</h1><hr id="96392f2e-b76e-4d77-9457-7f6a77840c9d"/><p id="31410c26-13f4-4cc4-aafb-f21f3bba9358" class="">Programs on PyCubed are simply plain-text files that are saved in the root directory of the board. Changing the program involves merely editing the text file and clicking save! The syntax is exactly like Python3 (more on this later). <br/><br/></p><hr id="a6b0bf66-e04a-4fc4-9f1c-947f6ecb1cf8"/><p id="9d3af0ca-b788-4cee-9a37-58d931b4cff8" class="">Every time it&#x27;s powered, PyCubed will automatically run the file <code>main.py</code> if it exists on the drive. </p><hr id="2c87dae6-0330-4b2c-87b9-18b173f5fdea"/><p id="77315ff1-10ae-40f8-85f3-18320a113bff" class="">
+</p><p id="e571fee1-6d15-416e-bdf2-95fc648e870c" class="">In the previous section, <a href="Connect%20&amp;%20Verify%207946bb84cabb42c7ac25f53d2a9f6810.html"><img class="icon" src="3.png"/>Connect &amp; Verify</a>, we learned PyCubed ships with a <code>main.py</code> file that cycles the RGB LED through a rainbow of colors. Now, we&#x27;ll see how to create our own program on PyCubed and how to execute it rather than <code>main.py</code>. <br/><br/></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e30d86ac-39b1-44f7-830f-f8e545d3bdb0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Remember<br/>Coding and using PyCubed is exactly like using other CircuitPython boards. Learn, troubleshoot, and get inspired by seeking out <br/><a href="https://learn.adafruit.com/search">CircuitPython projects on the web</a>. </div></figure><h1 id="5de495fc-fecb-4270-8ca3-06c7ec7582ab" class="">Example 1: Hello World</h1><hr id="5a0d4a9c-f6ce-414a-b7ba-cd8702d8ff0f"/><p id="a984eabb-214f-456f-84e1-4b5459ef6707" class="">Let&#x27;s start off by creating a PyCubed program that prints &quot;Hello World&quot; to the serial port once, then once per second it will print the time (in seconds) it&#x27;s been powered.</p><ol type="1" id="1a3be849-7394-42f9-b706-826d06b89067" class="numbered-list" start="1"><li>Plug your board into your computer and open Mu</li></ol><ol type="1" id="591f6451-e5af-4d3f-aaba-8ec71425f3fd" class="numbered-list" start="2"><li>Paste the following into the coding window within Mu<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c6f226cb-77c3-473a-a564-8fbe1e136129" class="code"><code class="language-Python">import time
+import board
+
+# print a string only once
+print(&#x27;Hello World!&#x27;)
+
+# ------- MAIN LOOP -------
+while True:
+	# print a string followed by the time in seconds since boot
+	print(&#x27;Time on: &#x27;,time.monotonic())
+	time.sleep(1) # sleep 1 second</code></pre></li></ol><ol type="1" id="a5cbe4aa-0ecb-4d9b-a31a-c3c1aadb3760" class="numbered-list" start="3"><li>Click the &quot;Save&quot; button in Mu, navigate to the PYCUBED drive (if it isn&#x27;t there already), and name the file something like <code>HelloWorld.py</code>.  After saving the file, my Mu looks like this:<figure id="8780006a-5d2d-4d7d-940f-6a5ddda3791b" class="image"><a href="Untitled%2067.png"><img style="width:720px" src="Untitled%2067.png"/></a></figure><p id="6bd5e498-b58b-4bc1-ae95-dd643e21e94b" class="">Notice that once the <code>HelloWorld.py</code> file was saved, PyCubed will restart, and will always begin by running the default <code>main.py</code> file. We <em>could</em> have edited <code>main.py</code>, but creating another file allows us to quickly iterate through our coding approach. </p></li></ol><ol type="1" id="dea119bd-07c3-477a-9a70-111e1dff250d" class="numbered-list" start="4"><li>Click inside the REPL window and press <code>Ctrl+C</code> to HALT the current program (main.py).<figure class="block-color-teal_background callout" style="white-space:pre-wrap;display:flex" id="709a8e68-0eea-4e71-91f8-8f923ae8fd5d"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Keep in mind:<br/>Depending on the code that&#x27;s running, you may need to press `Ctrl+C` multiple times in order for Mu to catch the keyboard interrupt)<br/></div></figure></li></ol><ol type="1" id="6e98468e-1438-4902-9a89-4b228b552371" class="numbered-list" start="5"><li>Press any key (like <code>ENTER</code>) to enter the REPL<figure id="6fdd31ae-44be-4dab-8fe4-3ec0e04fabf2" class="image"><a href="Untitled%2068.png"><img style="width:1284px" src="Untitled%2068.png"/></a></figure></li></ol><ol type="1" id="644bffd5-79bb-4173-8481-0d3f4005a83a" class="numbered-list" start="6"><li>Run our file by typing <code>import HelloWorld</code> (capitalization matters!) in the REPL and pressing <code>ENTER</code><p id="ee84010f-f173-4459-b376-a8efdb196463" class="">The code will now run, and you should see something like what is shown below. Remember that your &quot;Time on:&quot; value could be very different depending on how long the board has been plugged into your computer.</p><figure id="be2d56f9-6135-415e-92a2-ae6648d6a297" class="image"><a href="Untitled%2069.png"><img style="width:1284px" src="Untitled%2069.png"/></a></figure><p id="78b79a1d-afb5-4806-a8c0-43a8f39e9c30" class="">
+</p></li></ol><hr id="086e3f92-9a72-47d4-b201-5a37f56fc7fc"/><h2 id="bfd4a8e1-132e-47b7-a67f-490bce5ac286" class="block-color-yellow_background">Using the REPL</h2><p id="48d017a5-529f-4f65-8ae5-eeb9b675ac5a" class="block-color-yellow_background">There are a couple important keyboard shortcuts you can use inside the REPL. You need to click inside the REPL window before trying them:<div class="indented"><ul id="2040b8f2-0ae8-4032-86c1-11ad361338dc" class="bulleted-list"><li style="list-style-type:disc"><code>Ctrl + C</code> will HALT the current program (and tell you where it was inside the code). By pressing any key, you will now be able to enter lines one by one or quickly run a program.</li></ul><ul id="5def7d98-f135-46d7-94fe-273822296ef6" class="bulleted-list"><li style="list-style-type:disc"><code>Ctrl + D</code> will RESET the board (as if you had unplugged it and plugged it back in). It is necessary to reset PyCubed in order for the board to recognize <em>edits</em> you&#x27;ve made to an existing file. </li></ul><ul id="b2d7a44d-46c0-49dc-a19c-74200dd9dab7" class="bulleted-list"><li style="list-style-type:disc"><code>Ctrl + E</code> enters the &quot;Copy and Paste&quot; mode which will allow you to past chunks of code while maintaining formatting like indents, etc. </li></ul></div></p><hr id="a99bbf35-d056-44ae-a629-fcf19b047e74"/><p id="925690d8-35ca-4cdf-904e-f25762af324d" class="">
+</p><h2 id="8f04c300-fdd2-44e7-bd6f-cd962b9df338" class="">Editing a Program</h2><p id="db6b1246-00a5-4c56-aa13-f49249b4168b" class="">Once you have PyCubed printing strings to the REPL once per second, you&#x27;re ready to play with how editing and saving program changes works in CircuitPython.</p><ol type="1" id="3e2b240e-aba7-41ce-af97-3316d14afe18" class="numbered-list" start="1"><li>With your HelloWorld code still running and printing to the REPL, return to your code and change <code>time.sleep(1)</code> to a different value such as <code>time.sleep(0.1)</code>.</li></ol><ol type="1" id="7915fb46-a912-447a-b84f-0a4e7bff7efe" class="numbered-list" start="2"><li>Save the edited HelloWorld file by pressing <code>Ctrl + S</code> or clicking the save button along the top menu bar in Mu.</li></ol><ol type="1" id="2463fb05-38f1-4539-8741-f045e41f6349" class="numbered-list" start="3"><li>Notice how the text below is displayed in the bottom-left corner of Mu, but your program is still  running at the original 1 second rate.<figure id="de5885b7-fa3a-4980-96cf-752a511b7a08" class="image"><a href="Untitled%2070.png"><img style="width:171px" src="Untitled%2070.png"/></a></figure><p id="4a7a5ba1-e7fb-436e-9427-8038cbc053ae" class="">Saving an existing file to the PYCUBED drive will not trigger the board to reset. </p></li></ol><ol type="1" id="6dfa1093-97a7-4a9e-a2ac-d60c2ed340e4" class="numbered-list" start="4"><li>Manually induce a soft reboot by clicking inside the REPL and pressing <code>Ctrl + C</code> to halt the program, <code>Ctrl + D</code> to soft reboot, and <code>Ctrl + C</code> again (multiple times if necessary) to halt the default main.py that automatically starts. </li></ol><ol type="1" id="94085d6e-65c3-49bd-9b1f-54b7d50cbf3e" class="numbered-list" start="5"><li>Feeding <code>import HelloWorld</code> to the REPL will start the program with our recent edits and quickly start printing values:<figure id="ee14aff2-488b-48e8-9b28-42bee4fdf85d" class="image"><a href="Untitled%2071.png"><img style="width:1282px" src="Untitled%2071.png"/></a></figure><p id="89027bf9-402e-4123-9105-81466568d6fd" class="">Notice how the values are now 0.1 seconds apart. Cool!</p></li></ol><h1 id="2aa38033-b88e-4590-99eb-1c2cc4942256" class="">Example 2: Blink</h1><hr id="916fa274-9d06-40b7-8897-6a77d8952053"/><p id="0d39e713-f2ce-48b6-bf7f-4617f31de207" class="">Building on what we learned in <a href="HelloWorld%20py%20787a5acff9264935b024a4e088ec4964.html">Example 1</a>, let&#x27;s control some hardware on the PyCubed board. We will start by blinking the RGB LED (aka &quot;Neopixel&quot;) on PyCubed using only the built-in libraries.</p><ol type="1" id="c9389d8d-0af5-49d6-bc81-7acc0b5688e7" class="numbered-list" start="1"><li>With your board connected and Mu open, create a new file by selecting the &quot;New&quot; button along the top of Mu and paste the following code:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5439dc66-43e8-47f1-ac93-6538376315df" class="code"><code class="language-Python">import time
+import board
+import neopixel
+
+# Initialize an instance of the neopixel class called &quot;RGB&quot;
+RGB = neopixel.NeoPixel(board.NEOPIXEL, 1, brightness=0.5, auto_write=True)
+
+# ------- MAIN LOOP -------
+delay = 2 # make bigger to slow down
+i = 0 # a counter to increment each loop
+while True:
+  print(i)
+  RGB[0] = (0,255,0) # pure green in Red,Green,Blue format
+  time.sleep(delay) 
+  RGB[0] = (0,0,0) # turn the NeoPixel off
+  time.sleep(delay)
+  i += 1</code></pre></li></ol><ol type="1" id="7e896153-b506-40fc-bbaf-7c3da3d5577a" class="numbered-list" start="2"><li>Click the &quot;Save&quot; button in Mu, navigate to the PYCUBED drive (if it isn&#x27;t already), and name the file something like <code>blink.py</code>. After saving the file, my Mu looks like this:<figure id="2359f211-b1db-4a80-8220-6c26768c80c0" class="image"><a href="Untitled%2072.png"><img style="width:1282px" src="Untitled%2072.png"/></a></figure></li></ol><ol type="1" id="93e8b8e0-455a-468b-bb28-d3562e7d8fd0" class="numbered-list" start="3"><li>Open the REPL, press <code>Ctrl + C </code> to halt the board, then <code>Ctrl + D</code> to soft reboot (just for good measure) and <code>Ctrl + C</code> once more to halt main.py.</li></ol><ol type="1" id="93be5863-5839-4029-87ad-619957673987" class="numbered-list" start="4"><li>Enter <code>import blink</code> into the REPL and you should see something like this:<figure id="b73c30ae-7e18-4ab9-8a95-4dc0b0200417" class="image"><a href="Untitled%2073.png"><img style="width:1279px" src="Untitled%2073.png"/></a></figure></li></ol><p id="876d81c5-7e36-480a-a3e2-ea002bcbe49e" class="">
+</p><p id="866edfe0-2bc7-408c-b99d-8493cb582451" class="">Awesome! You&#x27;ve now controlled PyCubed hardware purely by editing and saving a text file.</p><p id="e48998a2-e98f-45e6-9b57-26b420eefe5f" class="">When writing CircuitPython programs, you can imagine how helpful it is to create &quot;checkpoints&quot; or &quot;snapshots&quot; of the code simply by saving the file with a different name. Think: <code>blink1.py</code> , <code>blink2.py</code> , etc..</p><p id="eac41709-4474-4ff6-a30a-cebd8fd8ce19" class="">
+</p><h1 id="9110e4af-c1d7-4334-a96d-d5c3553fa89b" class="">Example 3: </h1><hr id="63b6016f-3919-4387-8b9b-fd57d6b3d8b2"/><p id="b564ee51-e5bb-41f6-94fe-a3873f0fd699" class="">Now that you&#x27;ve experienced saving and calling your own program from PyCubed, let&#x27;s try editing <code>main.py</code> directly from Mu.</p><ol type="1" id="ab5d5030-a8aa-46d9-a551-5fc739e056fc" class="numbered-list" start="1"><li>Load the <code>main.py</code> file from the PYCUBED drive by clicking the &quot;Load&quot; button in Mu and navigating to the PYCUBED drive and selecting main.py. <p id="2b52b7f0-c3ac-4e4b-952f-abcfc5ded12d" class="">PyCubed ships with a default <code>main.py</code> file, if you&#x27;ve happened to change it or delete it, copy the attached file below to your board to follow along with the example. </p><div><figure id="926fca9a-02f8-49ad-a9e4-98800cd2a03e"><div class="source"><a href="main%201.py">main.py</a></div><figcaption>👆 Replacement rainbow main.py file (if needed)</figcaption></figure></div></li></ol><ol type="1" id="2f377a48-5024-496a-a295-bfa1ba9230b2" class="numbered-list" start="2"><li>Open the REPL and soft reboot the board (but don&#x27;t halt it like in previous examples). The RGB LED on PyCubed should now be cycling through colors.<br/>(note that you&#x27;ll likely see <br/><code>[ERROR][SD Card] no SD card</code> in the REPL when main.py starts. This is normal if you don&#x27;t have an SD card installed. SD cards are discussed in later examples.)</li></ol><ol type="1" id="e4efe076-436a-4352-a0c0-f9b7b1647e7c" class="numbered-list" start="3"><li>Now edit the value in line 44 so we can observe a change in the rainbow behavior:<figure id="f6736e62-373c-4f06-9656-8b91a04fc287" class="image"><a href="Untitled%2074.png"><img style="width:872px" src="Untitled%2074.png"/></a></figure></li></ol><ol type="1" id="32665e48-ad15-4fd7-b804-2054379d5cac" class="numbered-list" start="4"><li>Save the main.py file from within Mu (<code>Ctrl + S</code>) </li></ol><ol type="1" id="9f9e19d5-9d25-4153-8542-75bf93ebacfe" class="numbered-list" start="5"><li>Notice how as soon as the new file was saved to the board, it rebooted and began running the new code:<figure id="0d83ed7a-bfe3-4c04-84e1-94f25c1513d2" class="image"><a href="Untitled%2075.png"><img style="width:1280px" src="Untitled%2075.png"/></a></figure><p id="3dcddcb6-841a-46a9-b43c-a32faf25b3e1" class="">this makes troubleshooting/debugging very quick!</p></li></ol><p id="e8e536b2-0007-4266-89c6-4c2bfdcbc647" class="">
+</p><p id="0dc9ed4e-6be6-49b4-a566-98b60afb0dee" class="">
+</p><h1 id="683f9551-a962-4cf3-9673-0081694b3cb1" class="block-color-gray_background"><mark class="highlight-red">Next Section </mark>→ <a href="Using%20the%20pycubed%20py%20Library%207c10aa3f899e4a5aadcca88ebfec5b6d.html"><img class="icon" src="5.png"/>Using the pycubed.py Library</a> </h1><p id="146ca45a-3129-4776-9472-d7102bb336e6" class=""><br/><br/><br/></p><hr id="ef59feea-53e2-4d1d-8893-ef300fce835b"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

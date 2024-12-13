@@ -1,0 +1,16 @@
+﻿Type,Part Name/Number,Function
+Microprocessor,ATSAMD51J20A-AU,"On-board computer
+32-bit ARM M4 @ 120MHz"
+Code Storage,MR25H40MDF,Supplemental flash memory
+Data Storage,Micro SD Socket,Large external storage
+Watch-Dog Timer,MAX706RS-T,External watch-dog for processor
+IMU,BMX160,"Accelerometer, magnetometer, gyro"
+Radio (Modular),RFM98PW,Modular radio
+3.3V Regulator,TPS54226,"Configurable DC-DC switching
+regulator (default = 3.3V)"
+"Energy Harvester &
+Battery Charger",LTC4121,"Configurable solar Li-Ion battery charger (default = 2S3P Li-Ion, configured for 12V solar)  "
+Burn Wires (x2),Burn Wire Circuit,Deployment release mechanisms
+Power Monitor,ADM1176,Measures input voltage and current-draw from batteries
+RF Regulator,TPS7A4501DCQT,Adjustable DC-DC regulator for radio(s). Must be enabled from microcontroller. (default = 5.0V)
+Mechanical Inhibits,Inhibits,"Means of connecting rail switches, foot switches, and RBF pins. "

@@ -1,0 +1,988 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Beep-Sat (advanced)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2d93fbe6-3d1a-42cc-8ce0-84b6f19535ba" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">📻</span></div><h1 class="page-title">Beep-Sat (advanced)</h1><p class="page-description"></p></header><div class="page-body"><p id="023ba388-b41d-425c-81a4-0a4e8a596162" class="block-color-gray">C<mark class="highlight-gray">omplete software example building u</mark>pon <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a> with additional tasks, complexity, fault handling, and more.<br/><br/></p><div id="50d6839a-2af9-45a5-b342-8110868ff6f2" class="column-list"><div id="fec1bdbd-f8c9-4471-80a6-4d111d173b3a" style="width:33.333333333333336%" class="column"><p id="8025ce93-be9e-4886-ba33-3e9a6c04e0c0" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="d475512c-4b59-4a07-b954-161e93e90616" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b604c424-f0ac-4f31-a2fa-a2375db5dc17">Highlights</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#822670ac-72a4-4c5e-a436-a994e3680331">Overview</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5df7f1c3-8113-4ced-ab70-1fb22a277318">Installation</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#52296058-7905-4ec3-a978-a997a624e8ab">Required Hardware</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a541362c-7576-4840-9f5f-866493e145c2">Code Breakdown &amp; Task Explanation </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#86eba645-5ef8-4651-bb9b-b187d6c55615">main.py</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#297be950-bd03-435f-b3ab-cd2a9f4d3c7e">1. IMU data task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f219759e-0d92-4c5f-8dc5-2f9fe1a7a42a">2. Battery voltage task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#d39ee51c-7665-431f-b4e3-d76e01cf28ab">3. Beacon task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#59ad353b-b1af-4e5d-b683-3167eec6f266">Command Explanations</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#dbdf08a5-5e28-4871-af00-872e8ca89f01">Shutdown Command</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#eac6fcce-3bb0-4add-beeb-a759b693f02a">Query &amp; Exec Commands</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#674d2b41-71dc-4fec-a814-93ca9656fcdd">Going Further</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#235299f1-cf2b-47af-9263-f0410931a60b">Receiving down-linked data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#77ab6311-7bf4-416a-9854-fe167c49ea35">Sending commands</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#f041aa3b-638b-4a43-a1cf-f1479e7bc91a">Receiving an ACK</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#39986cbb-a746-4667-a59f-d5da45dba771">Command &amp; response examples</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#09522725-c4ad-496d-b33e-f0c1de7b4e8d">Features to add yourself</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1889214a-637c-47af-908e-aa8de33ed060"><mark class="highlight-red">Next Section </mark>→ <a href="Next%20Steps%20f280449625804a38a3ed9c9358249374.html"><img class="icon" src="7.png"/>Next Steps</a> </a></div></nav></div><div id="ea05bbce-0135-4159-9d7e-bcf1b32e8a09" style="width:33.333333333333336%" class="column"><p id="e10386f6-93dd-44d1-8ddb-6857940cc9e4" class="">
+</p></div><div id="b38bfbcd-69bb-482d-9f18-57a02046d42e" style="width:33.33333333333333%" class="column"><div><p id="0d4baa9a-7cbf-4f72-a94a-70e6624feaf2" class=""><a href="index.html">↩ Return Home</a></p><p id="b61f9b96-722a-4a41-b388-d4692723795d" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p><p id="bf50a2aa-19a4-42c6-ba92-6a95a81fc2b8" class=""><a href="Hands-On%20Quick%20Start%20d220f0ec88eb41c08ee855ff4f46d737.html">↩ Return to Quick Start</a></p></div></div></div><div id="b833de96-5b8e-42ae-9fb1-f9d92adea456" class="column-list"><div id="95773ca8-b2e1-4919-bc3c-fe0dfb5a8698" style="width:81.25%" class="column"><h1 id="b604c424-f0ac-4f31-a2fa-a2375db5dc17" class="block-color-teal_background">Highlights</h1></div><div id="b8f3b29a-96a5-463c-90d9-d0b0179ffdf4" style="width:18.750000000000004%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><hr id="69798d54-f594-4b89-8e7c-6e608ba9fd10"/><p id="7ef30498-7d22-4bdf-aa71-c2aae46eb295" class="">⭐ Builds upon core concepts from <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a> to yield a reliable a full-featured flight software example.<div class="indented"><p id="fccd89e4-fe00-40f6-8dd8-67ccca1c06e8" class="block-color-gray">This example elaborates on four key aspects common to most small satellite missions:<div class="indented"><ol type="1" id="fa3c941b-d6da-4595-a644-428b958ef0b8" class="numbered-list" start="1"><li>System-wide fault handling</li></ol><ol type="1" id="41aa54e1-8981-4cfa-a647-9c536ef36a37" class="numbered-list" start="2"><li>File management, data encoding, storage, and down-linking</li></ol><ol type="1" id="e6df700a-ebe4-4eea-86b3-cb49c8a23e5d" class="numbered-list" start="3"><li>Low power (safe) mode</li></ol><ol type="1" id="cf0843e2-cb33-4ca7-9048-3df22b52e6b1" class="numbered-list" start="4"><li>Over-the-air commanding</li></ol></div></p></div></p><p id="fda87a84-2a44-425c-98f3-98f5d687fade" class=""><br/><br/><br/></p><div id="422ee64a-ac65-42d9-83e9-97ec65972fb0" class="column-list"><div id="fbd1023e-1de5-4691-8287-9413caa18d9f" style="width:81.25%" class="column"><h1 id="822670ac-72a4-4c5e-a436-a994e3680331" class="block-color-teal_background">Overview</h1></div><div id="f47a307d-bcb7-4994-9f30-d8317025ea22" style="width:18.749999999999996%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><hr id="c33f7916-9043-4165-8405-92122aa658f8"/><p id="57469d79-6339-4c01-be77-1ad27f448bfb" class="">This example is sufficient for actual real-world missions/applications. <div class="indented"><ul id="fc150d57-c91a-4942-8274-c3a86a41a0ac" class="bulleted-list"><li style="list-style-type:disc">High-level fault handling is introduced to <code>main.py</code> that ensures the software will continue to run even if our tasks fail to complete (handling software AND hardware failures). <p id="22532188-da18-46cc-920b-66fa602fce20" class="">Additionally, a &quot;last resort&quot; fail-safe is added that reboots the board in the event of catastrophic failure.</p></li></ul><ul id="bc1b79ba-36cb-4746-acb1-94ca9ad8d30c" class="bulleted-list"><li style="list-style-type:disc">Compact (bandwidth efficient) data logging is demonstrated using a modern data encoding format called <a href="https://msgpack.org/index.html">MessagePack</a> to easily store sensor data in files onboard an SD card.<p id="a109f956-128a-45df-96e2-01276a7296d9" class="">(MessagePack is similar to JSON, but faster and smaller)</p></li></ul><ul id="6b798a23-f0fc-4eb3-8e8e-4bdacd0d60db" class="bulleted-list"><li style="list-style-type:disc">Entering and exiting low power or &quot;safe&quot; mode in response to a low-battery condition.</li></ul><ul id="ad78192a-6115-45db-ab55-e73200f45081" class="bulleted-list"><li style="list-style-type:disc">A reasonably-secure method for interacting with the spacecraft via over-the-air commands using the onboard radio. Four commands are demonstrated, 2 without arguments, 3 with arguments:<p id="d848211b-43dc-4899-bf00-424962cb06c5" class="">Without Arguments<div class="indented"><ol type="1" id="1bf14229-d1a4-4c0b-a44b-1a63ad156c77" class="numbered-list" start="1"><li><code>no-op</code> A &quot;no operation&quot; command. Doesn&#x27;t do anything but respond with an acknowledgement (ACK) packet.</li></ol><ol type="1" id="71637eda-ca5e-4b6b-9735-572c66a3d09a" class="numbered-list" start="2"><li><code>reset</code> Allows remote reset of the board.</li></ol></div></p><p id="b41fa359-5fac-4e0f-84e7-de56411ca921" class="">With Arguments<div class="indented"><ol type="1" id="dea118ce-5baf-459c-8399-1120dcfcf419" class="numbered-list" start="1"><li><code>shutdown</code> Conclude the mission by remotely stopping all spacecraft activity</li></ol><ol type="1" id="1489e593-0910-4ac5-b2f6-fbc9bd8fbaf1" class="numbered-list" start="2"><li><code>query</code> evaluate string argument as a single python expression and send return value</li></ol><ol type="1" id="8bc6b780-02a1-4267-85dd-57369e7144d8" class="numbered-list" start="3"><li><code>exec_cmd</code> execute string argument as entire python code block </li></ol></div></p></li></ul></div></p><div id="eb478aeb-de68-4cfb-a351-3d40c9327e0f" class="column-list"><div id="4113b3b2-f001-4339-8f53-f9ef50a70244" style="width:81.25%" class="column"><h1 id="5df7f1c3-8113-4ced-ab70-1fb22a277318" class="block-color-teal_background">Installation</h1></div><div id="6329d9ef-c0d9-4a46-8ac0-2a8d2442307a" style="width:18.75%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><hr id="750349f8-012e-466b-a22f-c8bc1216d9c6"/><div id="db3dd426-4d21-4c92-9705-7f422a610333" class="column-list"><div id="4136eddc-8882-4a43-be0d-787980a8d5ff" style="width:62.5%" class="column"><ol type="1" id="85ba8eec-d2e1-483a-8d02-b3b35672874a" class="numbered-list" start="1"><li>Download the latest Beep-Sat code from its <a href="https://github.com/pycubed/software_example_beepsat">GitHub Repo</a><br/>(either download the zip or if you&#x27;re familiar with git, fork &amp; clone the repo)<br/></li></ol><ol type="1" id="cb6bb7c6-6e2e-47c8-b5a1-166502c25d06" class="numbered-list" start="2"><li>(Optional) With your PyCubed board plugged into your computer, backup your <code>PYCUBED</code> drive by copying its contents to a directory on your computer.</li></ol><ol type="1" id="b718781f-a89c-4a68-bacd-391251ba76e0" class="numbered-list" start="3"><li>Copy the files from <code>/beepsat/advanced/</code> to your <code>PYCUBED</code> drive, overwriting any files when prompted</li></ol><ol type="1" id="d95fbe7b-a1d0-4027-94d2-b669fb952635" class="numbered-list" start="4"><li>Open a serial terminal and observe the output as the beep-sat conducts its mission<p id="0c86af64-d2b3-44f9-be7d-82f768a0bc74" class="">Refer to <a href="Accessing%20the%20Serial%20Console%20bfd69dfcd5f544e4b1c1164f29d8c45f.html"><span class="icon">🖱</span>Accessing the Serial Console</a> for help opening the REPL</p></li></ol></div><div id="b73c2237-2c34-45d5-9c2f-6626e17870f3" style="width:37.5%" class="column"><h2 id="52296058-7905-4ec3-a978-a997a624e8ab" class="">Required Hardware</h2><ul id="b8b43e75-dbb3-43b7-8467-416631745991" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">PyCubed Mainboard</span><div class="indented"></div></li></ul><ul id="050d03e1-8a80-425c-ac18-6d155d28967c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><a href="Antennas%20c25a3258aae94318a7459e52e61ebb8c.html">Antenna</a></span><div class="indented"></div></li></ul><ul id="2b4a81d8-4742-45be-90f4-9e6296714e7b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><a href="Selecting%20an%20SD%20card%20edf389776ac64f91b19bc4428ee43941.html">MicroSD Card</a></span><div class="indented"></div></li></ul><ul id="29eb810c-0d68-4b6e-8604-ede516c0876b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked"><a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">Second Radio</a><br/><br/><br/></span><div class="indented"></div></li></ul></div></div><div id="188736b6-7834-4849-98d2-767c5605f9a7" class="column-list"><div id="bc864035-e872-4e4a-a04b-a7e2326b5a88" style="width:81.25%" class="column"><h1 id="a541362c-7576-4840-9f5f-866493e145c2" class="block-color-teal_background">Code Breakdown &amp; Task Explanation </h1></div><div id="9d0555fb-239d-4f07-b479-f93de3325dd7" style="width:18.75%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3ca9ef90-159f-49ba-823a-2eae311600de"><div style="font-size:1.5em"><span class="icon">📢</span></div><div style="width:100%">All tasks from the basic example are still present in advanced, see their explanations on <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a>. Only the tasks were expanded upon are discussed below. </div></figure><h2 id="86eba645-5ef8-4651-bb9b-b187d6c55615" class="">main.py</h2><p id="53a74852-c9ce-4eae-8804-54a346c69a12" class="">All changes to <code>main.py</code> pertain to fault handling and software robustness.</p><p id="8ca90bbc-66f6-4cba-8baa-ec7c08e1a6e9" class="">In the basic example, our state machine was initialized and ran (continuously) with the single call:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3aadf52d-0864-46a4-b86d-6bed118476ab" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all"># should run forever
+cubesat.tasko.run()</code></pre></div></p><p id="6625aecb-6613-4266-ab68-5f7ab3d18ec1" class="">This is &quot;risky&quot; because <strong>ANY </strong>unhandled error/exception in any of our tasks would raise an exception within <code>cubesat.tasko.run()</code> and cause our entire flight software to stop. <div class="indented"><ol type="1" id="2e708373-e3a5-4fbf-b49f-fac8fb91d826" class="numbered-list" start="1"><li>To address this, we wrap the <code>cubesat.tasko.run()</code> call in a <code>try</code> and <code>except</code> catch. Now if all else fails and we have an unhandled exception in any of our tasks, we&#x27;ll attempt to log the exception before proceeding to our &quot;fail-safe.&quot;<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aaf3f095-2df2-4b27-a59b-e1bc0be43a2f" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">try:
+    # should run forever
+    cubesat.tasko.run()
+except Exception as e:
+    print(&#x27;FATAL ERROR: {}&#x27;.format(e))
+    try:
+        # increment our NVM error counter
+        cubesat.c_state_err+=1
+        # try to log everything
+        cubesat.log(&#x27;{},{},{}&#x27;.format(e,cubesat.c_state_err,cubesat.c_boot))
+    except:
+        pass</code></pre><p id="daf1dd69-d285-419b-bca0-d2bc48cdbf76" class="">Although this is vital for the final &quot;flight&quot; software, it makes general software development and debugging much more difficult since any task-level exception is going to get abstracted up to this &quot;FATAL ERROR&quot; message without any additional helpful information (like where in the code we were when the exception was thrown, line numbers, etc...).</p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="c84e23dd-e12b-4602-be78-cb29b3b10bd7"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">Therefore, for general software development use the <code>main.py</code> from the basic example (or comment out everything we&#x27;ve just added) so you can benefit from the detailed REPL error messages when debugging.</div></figure><p id="c957c000-88db-4381-b296-0be7fa46ff88" class="">
+</p></li></ol><ol type="1" id="9ec88e74-7652-40e8-a219-bfb641ae19e1" class="numbered-list" start="2"><li>After the <code>try</code> and <code>except</code> catch, we add our &quot;fail-safe&quot; which performs a hard reset of the board. This way, no matter what happens, we&#x27;ll keep the spacecraft running (in some capacity). <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="618692bf-0012-4a15-a99e-37f89278cb68" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all"># we shouldn&#x27;t be here!
+print(&#x27;Engaging fail safe: hard reset&#x27;)
+from time import sleep
+sleep(10)
+cubesat.micro.on_next_reset(cubesat.micro.RunMode.NORMAL)
+cubesat.micro.reset()</code></pre><p id="57a2015b-1039-4a8a-aef2-cec729ba2c16" class="">This is considered a &quot;nuclear&quot; option and should only be treated as a last resort. </p></li></ol></div></p><p id="f812db36-2ce1-4276-843c-212b9f45186a" class="">Although it provides a nice safety net, the goal is to never end up triggering the high-level fault handling shown here for <code>main.py</code>. But it is important to carry this <code>try</code> and <code>except</code> pattern into the individual tasks, thereby providing you with tools to handle targeted <code>Exception</code> behavior specific to the task. A good example of task-level <code>Exception</code> handling can be seen later in this tutorial for the beacon task. </p><h2 id="297be950-bd03-435f-b3ab-cd2a9f4d3c7e" class="">1. IMU data task</h2><div id="da1df060-afb3-43e6-9606-8e52ba515fc6" class="column-list"><div id="eb752367-6689-4806-9281-534891cf85c7" style="width:16.666666666666664%" class="column"><p id="7f53bd71-bffd-4904-a891-fe8262ca62a7" class="">Priority: 5</p></div><div id="5541645f-1580-4ae2-863e-06aa9030fc13" style="width:58.33333333333333%" class="column"><p id="4f30ab0e-f2de-45e6-846e-0c2ffaf8a440" class="">Frequency: <code>once every 10 seconds (0.1 Hz)</code></p></div><div id="4f9289af-5710-4d3f-8f19-d25bd7c01340" style="width:25.00000000000002%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="ae4c8c39-096c-410a-8fa3-66a364ab3687" class="">Beyond reporting the latest IMU readings, all changes to this task relate to file handling and data encoding. Note that any data encoding demonstrated here is <strong><span style="border-bottom:0.05em solid">purely optional</span></strong>. It&#x27;s included in this example to illustrate how easy it is to work with binary-encoded data, which is very helpful for storage and transmission of mission data!<div class="indented"><ul id="1fc4f62b-39c5-4718-9e1e-e765131ec928" class="bulleted-list"><li style="list-style-type:disc">With JSON, each IMU dataset would be 118 bytes, whereas it&#x27;s only 64 bytes with <code>msgpack</code> without any loss of data. Cool! This makes a big difference when down-linking data.</li></ul><figure id="27868fd8-5c86-4154-9e2d-f456bbfd2780" class="image"><a href="Untitled%2024.png"><img style="width:864px" src="Untitled%2024.png"/></a><figcaption>Terminal printout of IMU logging to SD card and file handling</figcaption></figure><h3 id="d3ce9478-2b80-444f-9a0c-28b4220869af" class="">Preparing the data file</h3></div></p><ol type="1" id="3c4a2fa4-dd0c-4c7e-8545-434335d5cc5e" class="numbered-list" start="1"><li>First major code change we see to <code>imu_task.py</code> is the (re) definition of __init__:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4b107724-0810-4f3d-981d-985d879aba64" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">def __init__(self,satellite):
+    super().__init__(satellite)
+    self.data_file=self.cubesat.new_file(&#x27;/data/imu&#x27;,binary=True)</code></pre><p id="28a584af-d0f3-40a4-80d4-1e507e1036cd" class="">We do this because we want to run something only one time <code>self.data_file = self.cubesat.new_file(&#x27;/data/imu&#x27;)</code> and it must run before the primary IMU task itself. Usually we don&#x27;t need to include this init statement since it&#x27;s handled in the parent <code>Task</code> class. </p><p id="d33dbd39-a167-4059-bda5-5892292917cc" class="">In order to perform whatever assignments and setup the <code>Task</code> class usually handles during the init call, we use <code>super().__init__(satellite)</code> to inherit everything properly.</p><p id="31cc5b81-6071-4480-a076-c1aac9b50cf6" class="">Now what does this <code>cubesat.new_file(&#x27;/data/imu&#x27;,binary=True)</code> call do?<div class="indented"><ol type="1" id="6cae00df-9df3-41cc-a3d8-d5ddf89a74c8" class="numbered-list" start="1"><li>Upon boot, we want to save our IMU data to a fresh data file. This avoids always appending to huge, hard to manage data files, as well as preventing any data loss by overwriting existing files. </li></ol><ol type="1" id="abc2b00e-e0f7-4f49-9915-a780f8a2000b" class="numbered-list" start="2"><li>The <code>new_file</code> helper function takes the string we pass it and breaks it down into a folder/directory and file prefix.<p id="a0786716-1683-45c7-a297-850b5c33651a" class=""><span style="border-bottom:0.05em solid">file prefix</span> = everything after the last <code>/</code>. In this case it&#x27;s <code>imu</code>. The final file name becomes the prefix with an incremented zero-padded number tacked on (plus file extension). Like this: <code>imu00000.txt</code></p><p id="f5a5b6d4-d0c2-4acf-9a8b-505e9937426b" class=""><span style="border-bottom:0.05em solid">folder or directory</span> = everything that isn&#x27;t the file prefix. If the folders don&#x27;t exist yet, they will be created. <code>/sd/</code> <span style="border-bottom:0.05em solid">is always appended to the beginning of the path!</span></p></li></ol><ol type="1" id="0b6c5533-7da8-4e8e-82f3-cd589b393b5d" class="numbered-list" start="3"><li>Therefore, each time we call <code>new_file</code> like this it will create a new (empty) file in the specified directory with a incremented file number: <code>imu00000.txt</code> → <code>imu00001.txt</code> → etc...</li></ol><ol type="1" id="c793243e-85b3-40f5-a449-b507e791f041" class="numbered-list" start="4"><li>The <code>binary=True</code> argument tells the function to create a new (empty) binary file. Since it&#x27;s empty, this usually doesn&#x27;t matter but it&#x27;s good practice to be consistent so you don&#x27;t try to open a binary file as text and throw an exception. </li></ol><ol type="1" id="f89fd91d-765b-492c-8e41-6940fd712763" class="numbered-list" start="5"><li>Finally, the <code>new_file</code> function returns the complete filename of the newly-created file. In our case the full filename becomes: <code>/sd/data/imu00000.txt</code>.</li></ol><ol type="1" id="a6e8cda2-0ff6-485a-bda0-a94644be1f6e" class="numbered-list" start="6"><li>For full details about this function, see the pycubed.py library file (either on your board or in its <a href="https://github.com/pycubed/library_pycubed.py">library repo</a>)</li></ol></div></p></li></ol><ol type="1" id="fd72c561-d2f1-4f20-9788-67e74973c1d1" class="numbered-list" start="2"><li>The next change to <code>imu_task.py</code> comes after printing our usual debug messages and we&#x27;re ready to save our data:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="18b664f1-e9c0-4c79-a35b-fcc51a2302ab" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if self.data_file is not None:</code></pre><p id="df24116f-f5b4-4488-b2b3-5236d06a377e" class="">First thing we do is check that a data_file exists. If it doesn&#x27;t, that means something went wrong trying to create the data file (like an SD card isn&#x27;t present). </p><h3 id="02fc501a-b0a5-428f-8668-331f83ed5d46" class="">Encoding the data</h3><p id="4614c472-fe96-42f1-8ce2-b9bfd424cd08" class="">Then we want to save the <code>readings</code> dict by encoding it with <code>msgpack</code> and appending the binary data to our data file. Note that <code>msgpack</code> has to write to a buffer object. This works out perfectly for writing to files (since we&#x27;ve opened the file as a buffer object already). See the <a href="https://circuitpython.readthedocs.io/en/latest/shared-bindings/msgpack/index.html">CircuitPython msgpack docs</a> for other examples.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="72ee57aa-b7aa-4e55-9cfb-f8fb487d7d1f" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">with open(self.data_file,&#x27;ab&#x27;) as f:
+    msgpack.pack(readings,f)</code></pre><p id="288ca5b3-bf1f-41fa-a834-595a9e3c75c1" class="">What would this look like if we weren&#x27;t using msgpack?<div class="indented"><p id="30ad53a4-ce51-4b03-83d1-7194ae9d2301" class="">Imagine we want to write our <code>readings</code> dict to a file. We&#x27;ll just treat the whole dictionary as a string and save it as a single line on the file. (not advised to treat dict as string! notice the data loss)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a8bc7c74-9774-4844-8732-9c856d69c356" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">with open(self.data_file,&#x27;a&#x27;) as f:
+    f.write(str(readings)+&#x27;\n&#x27;)</code></pre></div></p><p id="c6db06c6-2985-4ba2-84fa-3f264b8ee2c9" class="">That&#x27;s it! Our data is now saved to the file: <code>/sd/data/imu00000.txt</code>. </p></li></ol><ol type="1" id="82ed96bb-e071-491f-a32d-de6052f758a8" class="numbered-list" start="3"><li>Next, we demonstrate checking file size, retrieving the encoded data from the file, and then either sending it using the radio or decoding it and printing to the terminal.<p id="1f32a563-c3de-45af-ae15-1ad664819105" class="">Performing <code>stat</code> on our datafile returns info about file. The index <code>[6]</code> contains the file size in bytes. <div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d79cf0d6-0ba3-41b0-9d0a-274a5ab013e2" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if stat(self.data_file)[6] &gt;= 256: # bytes</code></pre><p id="6974c621-f718-43a9-bf54-f9b91148067f" class="">We only want to print/send the data once we have a certain amount. For the purposes of this demo, the amount is quite small in order to increase how often you get to see it occur in the debug terminal.</p></div></p><h3 id="f23106e1-2d70-434e-a009-4851550ca735" class="">Sending the data</h3><p id="1463329f-fd81-495e-955e-80089774cb0b" class="">If the <code>SEND_DATA</code> variable (which you must manually set at the top of the <code>imu_task.py</code> file) is true, we can start reading and sending chunks of data:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="866b3d65-84c0-402c-bf89-b7d9d9870d3f" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if SEND_DATA:
+    with open(self.data_file,&#x27;rb&#x27;) as f:
+        chunk = f.read(64) # each IMU readings is 64 bytes when encoded
+        while chunk:
+            # we could send bigger chunks, radio packet can take 252 bytes
+            self.cubesat.radio1.send(chunk)
+            print(chunk)
+            chunk = f.read(64)</code></pre><p id="d44a979a-667d-4a19-b2eb-11bd4b9e99f8" class="">Since the <code>msgpack</code> encoded data is 64 bytes each time we save IMU readings, we open the current data file (as binary) and keep reading until we&#x27;ve reached the end of the file. This works because <code>f.read(64)</code> returns the number of bytes that were successfully read from the file. So even if we made a mistake somewhere and the size of the file isn&#x27;t exactly a multiple of 64, it&#x27;ll still return a non-zero value. Once <code>f.read(64)</code> returns <code>0</code>, that&#x27;s equivalent to <code>False</code> in Python so our while loop will terminate. </p><p id="30720805-1e7c-4599-90f3-e114deda283b" class="">We pass the <code>chunk</code> object to <code>radio1.send</code> each iteration through the while loop, and also print the raw bytes to the terminal. See the <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">Going Further</a> section of this write-up for receiving the transmitted data using another radio.</p></div></p><h3 id="a0786925-6ce2-4246-8e8c-8de4c697941a" class="">Decoding and printing the data</h3><p id="9042ce0d-9dab-497a-b4e3-418cee20f4a9" class="">If <code>SEND_DATA</code> is false, we want to read chunks of data from the data file and decode them.<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e6ea5484-e4d7-4dfc-8215-2cbd9f03e3b5" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">else:
+    # print the unpacked data from the file
+    with open(self.data_file,&#x27;rb&#x27;) as f:
+        while True:
+            try: print(&#x27;\t&#x27;,msgpack.unpack(f))
+            except: break</code></pre><p id="f2bf25f3-5552-4a0b-baea-0fe61992caab" class="">This isn&#x27;t immediately obvious, but <code>msgpack.unpack</code> takes a readable buffer as a input and spits out the decoded object. So each time we call <code>unpack</code> on our file object <code>f</code>, it&#x27;s going ingest bytes from <code>f</code> until it reaches an end of a chunk (which <code>msgpack</code> is able to determine). We don&#x27;t need to tell it how many bytes the encoded chunk should be, cool! We keep doing this until an exception is raised by <code>msgpack</code>, presumably because it reached the end of the file (EOF). Either way, our <code>try</code> / <code>except</code> catch breaks the while loop. </p></div></p></li></ol><ol type="1" id="76e973d1-2304-4262-8751-246dc3d0ba18" class="numbered-list" start="4"><li>Finally, we create a new (incremented) data file <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a7101ed8-1054-4768-82c0-598948285c7c" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.data_file=self.cubesat.new_file(&#x27;/data/imu&#x27;)</code></pre><p id="f19f78d9-0506-438c-8925-56fab2e2e8a5" class="">For this example, the next filename would be <code>/sd/data/imu00001.txt</code>.</p></li></ol><p id="c04ec0db-9efa-43e7-91b3-bbe3806bfc49" class="">
+</p><h2 id="f219759e-0d92-4c5f-8dc5-2f9fe1a7a42a" class="">2. Battery voltage task</h2><div id="23ae97f9-c9e9-4317-b9c6-7b7862969d2c" class="column-list"><div id="396a7a0c-4b39-492e-8093-91aed73ff2e8" style="width:12.5%" class="column"><p id="b1ffd7c0-44ad-4a67-a0dc-9037e1605b20" class="">Priority: 3</p></div><div id="9f9f1148-5fff-4a0a-b1a6-e4dcbd7151e4" style="width:62.5%" class="column"><p id="6333db01-308a-4acc-8dbe-f16a060dc5b5" class="">Frequency: <code>once every 10 seconds (0.1 Hz)</code></p></div><div id="d8ab5d3b-7c1e-4a7d-94e7-ed81b410dccd" style="width:25%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="b976a2c3-2f31-47c1-8173-537502d25363" class="">Previously, all we did in the <code>battery_task.py</code> task was print whether or not the battery voltage was below a threshold. Now we want to respond to a low battery condition.</p><ol type="1" id="60ee3c33-2ebb-4d27-bbde-95d15b6a0959" class="numbered-list" start="1"><li>All changes to this task occur after our original printing of the battery voltage. First we see if the low batt condition is met.<p id="311744b2-2095-405d-ac99-2499db4e0655" class="">If vbatt is below our desired threshold we set an NVM bit flag called <code>f_lowbatt</code>. This flag will persist between power cycles, unplugging/plugging into your computer, etc... </p><p id="736ec1ad-1b99-4c98-9ab2-47d7d21411de" class="">NOTE: See <a href="PyCubed%20NVM%20Bit%20Map%20&amp;%20Usage%20e830e6f25b5544c195e5ea227e163665.html"><span class="icon">📋</span>PyCubed NVM Bit Map &amp; Usage</a> for more details about the NVM bit map.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a892ec59-7716-4b28-8029-b0862363ead9" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.cubesat.f_lowbatt=True</code></pre></li></ol><ol type="1" id="9ccf3c1a-27d3-4a24-a4d0-637409595cb0" class="numbered-list" start="2"><li>Then we check the state of another NVM bit flag called <code>f_lowbtout</code>:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8ac17908-baa8-4f09-9cad-f9c4683341b6" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if self.cubesat.f_lowbtout:
+   self.debug(&#x27;lowbatt timeout flag set! skipping...&#x27;)
+else:</code></pre><p id="ae8d085c-e95a-4f37-a7be-92ad5bd91d30" class="">⭐This is a very important step!</p><p id="8f3bcbfb-c4db-48ca-a868-83b6b0835328" class="">We check if our low battery timeout flag has been set. This would be <code>True</code> in an instance where we&#x27;ve previously spent a long enough time in low power mode that <span style="border-bottom:0.05em solid">something must be wrong</span>. Rather than being stuck in low power mode for the remainder of our mission, we would set this flag if we want to SKIP entering low power mode ever again. </p><p id="d80438b5-927e-4003-a117-c5a2c151a999" class="">While playing with this example (or developing your own), an easy way to clear bit flags is through the REPL:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="50595fac-5f64-45c5-b5da-7592af2766b6" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">&gt;&gt;&gt; from pycubed import cubesat
+&gt;&gt;&gt; cubesat.f_lowbtout=False</code></pre><p id="cb473b93-de1e-44e5-a8f5-e8b60bca3f79" class="">or if you want to clear many flags at once, just set many of the NVM registers to <code>0</code> at once:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="152707b6-1753-42e9-8671-f3e06d82d6f6" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">&gt;&gt;&gt; from pycubed import cubesat
+&gt;&gt;&gt; cubesat.micro.nvm[:50]=bytearray(50) # clear the first 50 NVM registers</code></pre></div></p></li></ol><ol type="1" id="54601e66-02ae-43bd-af49-e3a49208ca6e" class="numbered-list" start="3"><li>If the <code>f_lowbtout</code> flag is not set, we can proceed with entering low power mode.<p id="d6a1c0b6-a8c8-42a9-aca8-8de202a5a714" class="">Start by calculating a time in the future that we should be out of low power mode before we reach it. This would be the current time (in seconds) + the maximum amount of time we should be in low power (<code>self.timeout</code>). The result is our temporary <code>_timer</code> variable. </p><p id="f2a6396e-6468-45ff-9965-8effdfb4117d" class="">Next, we <code>stop</code> every task we initialized when booting <code>main.py</code>:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e2918263-0f54-4a34-91e5-3e0d1b9c33ac" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all"># stop all tasks
+for t in self.cubesat.scheduled_tasks:
+    self.cubesat.scheduled_tasks[t].stop()</code></pre></div></p><p id="38cc97fc-0a8c-41bf-bd56-f60f013ae9fd" class="">Then we use a <code>pycubed.py</code> helper function to either shutdown or sleep every sensor, radio, and peripheral on the board with <code>self.cubesat.powermode(&#x27;minimum&#x27;)</code>.</p></li></ol><ol type="1" id="2c4ca3f4-860d-4102-80ef-0cd3e8365b92" class="numbered-list" start="4"><li>Now we reside in low power mode, sleeping for extended periods at a time to conserve power<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f4cc822f-24b2-4d39-848e-55811c24440e" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">while time.monotonic() &lt; _timer:</code></pre><p id="b910a0a4-c0f5-41de-95ee-f32e0b5628b8" class="">This while loop checks if the current time has exceeded our timeout time at the start of each iteration through the loop. This is more of a fail-safe to avoid getting stuck. We expect the timer check at the <strong><span style="border-bottom:0.05em solid">end</span></strong> of the loop to actually catch a timeout condition. </p><p id="93aad917-f291-4397-adc3-f002282ba608" class="">After calculating some amount of time to sleep (in this case it&#x27;s 10% of our total timeout time) we sleep for that duration.<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ae8a6877-6030-4264-b41b-a03232aab192" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">_sleeptime = self.timeout/10
+time.sleep(_sleeptime)</code></pre></div></p><p id="8cf78823-a840-419d-98aa-825b8be43940" class="">After emerging from sleep, we calculate vbatt again and check if we&#x27;re still below the threshold:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="efc1d859-4e10-4cab-8523-8bbd0ba30f47" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">vbatt=self.cubesat.battery_voltage
+if vbatt &gt; self.cubesat.vlowbatt:
+    self.debug(&#x27;batteries above threshold&#x27;,2)
+    self.cubesat.f_lowbatt=False
+    break</code></pre><p id="a6076954-66ae-40f0-b4e7-fbeae66372cb" class="">this <code>break</code> is what pulls us from the low power while loop.</p></div></p><p id="67b5782c-29d5-421f-bd88-6e733c793459" class="">Otherwise, we check if we&#x27;ve exceeding our timeout time. If we have, that means something is wrong and we want to escape from low power mode by setting the <code>f_lowbtout</code> flag. <div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a469c453-22b6-4e85-9837-be5120a1ee40" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if time.monotonic() &gt; _timer:
+    self.debug(&#x27;low batt timeout!&#x27;,2)
+    # set timeout flag so we know to bypass
+    self.cubesat.f_lowbtout = True</code></pre></div></p></li></ol><ol type="1" id="4704e346-eb40-484a-b619-3c9543b40e66" class="numbered-list" start="5"><li>Whether it&#x27;s because the battery voltage has risen above our threshold or we&#x27;ve reached the timeout, we exit the low power <code>while</code> loop and need to turn everything back on and start our state machine again.<p id="69ec4e50-e53f-4d36-ad63-e5e79875c5d0" class=""><code>self.cubesat.powermode(&#x27;normal&#x27;)</code> will turn on or wake up all the sensors, radios, and other peripherals on the mainboard. We then pause for a few seconds as everything powers up before starting all of our state machine tasks again:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1746b3c2-20f4-4999-9a66-458eb21a5d18" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all"># restart all tasks
+for t in self.cubesat.scheduled_tasks:
+    self.cubesat.scheduled_tasks[t].start()</code></pre><p id="b3299204-e87c-4ec7-a252-72c8ded9093c" class="">This obviously assumes we want all the tasks running again. A change you might make here is only starting a subset of tasks (maybe indicated by an attribute of the <code>task</code> class). Another option would be storing a list of task names that were running before entering low power, and only restarting those.</p></div></p></li></ol><h2 id="d39ee51c-7665-431f-b4e3-d76e01cf28ab" class="">3. Beacon task</h2><div id="b8a2a93f-6a24-4e43-bf97-3e6f1d62e132" class="column-list"><div id="208ad9ca-a74e-490f-991f-b160b361190d" style="width:12.5%" class="column"><p id="5206ee3c-c469-4e17-8cfc-f65f4a685f94" class="">Priority: 1</p></div><div id="47557fc2-7cd8-48ee-a57f-a93707967a11" style="width:62.5%" class="column"><p id="5104d5c3-6b2c-46a2-a564-4bff7dee0421" class="">Frequency: <code>once every 30 seconds (0.03 Hz)</code></p></div><div id="5141ebaf-fac6-48c8-92b8-b690f8915a49" style="width:25%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="3d0f9ee0-c639-4a8e-b50b-72f9af75b2c7" class="">The listening portion of our beacon task is the perfect place to catch <span style="border-bottom:0.05em solid">command packets</span> from a ground station (for example). Note that attaching an antenna is required for the advanced features of this demo. See the antenna discussion as part of <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a> for more details.</p><figure id="99174e55-8c36-4822-a926-c7b85c91f4f1" class="image"><a href="Untitled%2025.png"><img style="width:576px" src="Untitled%2025.png"/></a><figcaption>Advanced beacon task receiving a &quot;query&quot; command and responding</figcaption></figure><ol type="1" id="758d5ef6-4c7f-441d-a2c3-7650904d26d0" class="numbered-list" start="1"><li>Recall that our radio library <code>pycubed_rfm9x.py</code> is an adaptation of the Adafruit library <code>adafruit_rfm9x.py</code>. This is important because it contains the basics of a popular radio library/scheme called <a href="https://www.airspayce.com/mikem/arduino/RadioHead/">RadioHead</a> (RH). We haven&#x27;t been exposed to it yet since the library does this behind the scenes, but it follows <span style="border-bottom:0.05em solid"><strong>SOME</strong></span><strong> </strong>RH conventions, such as the packet header. <p id="0f9fe776-d34c-464a-ba04-4adb2c9587b9" class="">Four bytes get added to the front of every packet we send:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="76adaea5-5212-4fdc-aa74-53318303c5d1" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">  1    2   3     4
+[FROM][TO][ID][FLAGS]</code></pre><p id="6e076413-9237-448b-8c09-ec98d5ae62e1" class="">This header is helpful in keeping track of messages, but is usually stripped from the front of a received packet so we don&#x27;t have to see it.</p></div></p><p id="38425ffd-6a1a-453a-849a-1859cbc9fb4f" class="">We want to set the <code>[FROM]</code> and <code>[TO]</code> designators in our task&#x27;s <code>init</code> method:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3f9228cb-95c2-4d09-b545-f2a60a6cafec" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">self.cubesat.radio1.node = 0xFA # our ID
+self.cubesat.radio1.destination = 0xAB # target&#x27;s ID</code></pre><p id="b53a7269-025d-4d08-a85a-6d90d5d21cf7" class="">Note that the <code>node</code> attribute refers to the <code>[FROM]</code> byte and the <code>destination</code> attribute is <code>[TO]</code>. The values of <code>0xFA</code> for the spacecraft and <code>0xAB</code> for the ground station were just chosen arbitrarily for this example. </p></div></p></li></ol><ol type="1" id="db2e4486-4456-4060-96f7-a187354ca8cc" class="numbered-list" start="2"><li>Compared to the basic example, there is a modification to the <code>receive</code> function that is very helpful when attempting to contact a spacecraft. It will ACK (acknowledge) and received packets addressed to it.<p id="f5f7ce2c-70f9-4651-a41b-66754c49555b" class="">⭐ The ACK is very helpful since it lets us know the spacecraft has received our message, regardless if the passcode and command are valid. <div class="indented"><p id="d20a5271-46b7-48d2-a99e-1441e64fa9e7" class="">ACK functionality is enabled on the spacecraft side-of-things with:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="cfad7e1c-3dce-41c8-a392-254befef7544" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">response = self.cubesat.radio1.receive(keep_listening=True,with_ack=ANTENNA_ATTACHED)</code></pre><p id="93dd3c60-7e0d-45d4-b5dc-ae2d7f31dea8" class="">but it must also be enabled on the ground station side-of-things. See the <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">Going Further</a> section of this write-up for examples on how to send an addressed message and listen for an ACK. </p><p id="6920d252-f1f5-46fc-88af-64f67a73775b" class="">Also note that we&#x27;re using <code>ANTENNA_ATTACHED</code> for double purpose here as way of setting <code>with_ack</code> argument to <code>True</code> only when there&#x27;s an antenna attached. </p></div></p></li></ol><ol type="1" id="d8714d8a-bf91-4c11-b9f0-d5e5fed9d2e5" class="numbered-list" start="3"><li>After the beaconing/listening activities described in the basic example, we now add our command handling.<p id="4b8d1d69-31f8-4cf8-98d3-ba54bf897986" class="">For this demo, we only consider a command if the packet first contains our 4-byte &quot;super secret code.&quot; This 4-byte passcode <span style="border-bottom:0.05em solid"><strong>is not a very secure</strong></span> means of commanding the spacecraft, but it&#x27;s sufficient for this demo. If the <code>super_secret_code</code> is correct, we then check for a command code, which we&#x27;ve chosen to be a 2-byte designator.</p><p id="357c4d0e-0fd9-4c6a-a805-cfc0405ff1e2" class="">Therefore, in order for the command packet to be valid, it needs to be at least 6 bytes long. So that is the first thing we check:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="84c76bba-9da7-4407-8127-b92ff2f882be" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if len(response) &gt;= 6:</code></pre></div></p><p id="50aca30e-8070-4b4e-88d8-5d540df7741f" class="">If the packet length is correct and we have an antenna attached, we proceed to verifying the <code>super_secret_code</code> and saving the two command bytes:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3c2852e-8500-4eb4-8b38-d24831f9c39e" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if response[:4]==self.super_secret_code:
+    cmd=bytes(response[4:6]) # [pass-code(4 bytes)] [cmd (2 bytes)]</code></pre><p id="c453b8b8-8f1c-4ca1-b187-12a7a9ceed69" class="">we also know that if the packet is longer than 6 bytes, then the command likely has arguments that follow.<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="dae75ef3-b9b4-4587-bcfe-381f8a4f534c" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if len(response) &gt; 6:
+   cmd_args=response[6:] # arguments are everything after</code></pre></div></p></div></p></li></ol><ol type="1" id="0805257d-2582-4273-a5ee-e45b5b4c22d9" class="numbered-list" start="4"><li>The command needs to be verified and then the appropriate action can be executed.<h3 id="1715195b-c6c9-45a9-abe2-479d40d672ce" class="">Command dispatch</h3><p id="a177a455-838f-4e9b-a96f-adf2108890e8" class="">This advanced demo includes a new file called <code>cdh.py</code> (cdh=&quot;command &amp; data handling&quot;) that can reside in either the root of your <code>PYCUBED</code> drive or its <code>/lib/</code> folder. We import this file at the top of our <code>beacon_task.py</code> file, thereby giving us access to dictionary inside called <code>commands</code> as well as a handful of functions.</p><p id="f2a605ca-2ab2-438e-a1d0-6e0a46c22d00" class="">We verify the received 2-byte command code by checking it against the keys inside the <code>cdh.commands</code> dict:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="899adb1d-1ccc-4d10-84bc-bc95529861a0" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if cmd in cdh.commands:</code></pre><p id="26a67f8a-afa2-4595-baec-f2cd780cff42" class="">inside the <code>cdh.py</code> file, the actual <code>commands</code> dict looks like this:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="674482fd-adeb-4252-9515-7a3f64fdf77b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">commands = {
+    b&#x27;\x8eb&#x27;: &#x27;no-op&#x27;,
+    b&#x27;\xd4\x9f&#x27;: &#x27;hreset&#x27;,
+    b&#x27;\x12\x06&#x27;: &#x27;shutdown&#x27;,
+    b&#x27;8\x93&#x27;: &#x27;query&#x27;,
+    b&#x27;\x96\xa2&#x27;: &#x27;exec_cmd&#x27;,
+}</code></pre><p id="6c586654-e20c-4d9a-b16b-4c7f2f31a9d0" class="">where the key is a 2-byte command code randomly generated for this demo, and the value is the command&#x27;s &quot;name&quot; so to speak. </p></div></p><p id="70542d43-5e57-427d-b70b-5a4331d8ecf6" class="">If the received command code matches a key in the <code>cdh.commands</code> dict, then we use the value of that <code>cdh.commands</code> key to retrieve the function from the <code>cmd_dispatch</code> dict initialized at the top of beacon task definition:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fcd44bd1-9482-48e4-a976-5412cbcb1a14" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">cmd_dispatch = {
+    &#x27;no-op&#x27;:        cdh.noop,
+    &#x27;hreset&#x27;:       cdh.hreset,
+    &#x27;shutdown&#x27;:     cdh.shutdown,
+    &#x27;query&#x27;:        cdh.query,
+    &#x27;exec_cmd&#x27;:     cdh.exec_cmd,
+}</code></pre><p id="a52b82ab-3137-4c30-9d4f-e474053c92cf" class="">note that the values for each dictionary item are functions that exist in <code>cdh.py</code>. Accessing the values in this dict lets call the appropriate command while passing it whatever arguments we want. Sweet!</p></div></p><p id="16422d10-0722-4a87-9aa7-3a2b0fd8b942" class="">Now all we have to do is dispatch the command:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c062ab44-fd1d-430e-a62e-886d616227f0" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">if cmd in cdh.commands:
+    try:
+        if cmd_args is None:
+            self.debug(&#x27;running {} (no args)&#x27;.format(cdh.commands[cmd]))
+            self.cmd_dispatch[cdh.commands[cmd]](self)
+        else:
+            self.debug(&#x27;running {} (with args: {})&#x27;.format(cdh.commands[cmd],cmd_args))
+            self.cmd_dispatch[cdh.commands[cmd]](self,cmd_args)
+    except Exception as e:
+        self.debug(&#x27;something went wrong: {}&#x27;.format(e))
+        self.cubesat.radio1.send(str(e).encode())</code></pre><p id="3bad64c6-e691-4a57-8f0e-4f2a9a3649a3" class="">Notice how we wrap this command dispatch part in its own <code>try</code> and <code>except</code> catch. That way if anything goes wrong, we transmit the error message back so we can (hopefully) troubleshoot what went wrong and whether it was the spacecraft&#x27;s or ground station&#x27;s fault.</p><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="454a789f-672b-46b6-9bf4-b9a0d17554fd"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">Using a dictionary as a function dispatcher is a powerful technique in Python. Make sure you understand how <code>self.cmd_dispatch[cdh.commands[cmd]](self)</code> actually works. </div></figure><p id="9af52818-8b93-4c51-bc05-26c89cad9579" class="">It&#x27;s important that we pass <code>self</code> as an argument to the command so that we have access not only to the beacon <code>task</code> but more importantly access to the <code>cubesat</code> object. Now we can query and adjust anything remotely!</p></div></p></li></ol><ol type="1" id="797a7476-6b72-4365-801d-a8ea937203ee" class="numbered-list" start="5"><li>Finally, whether a valid command was received and executed or not, the task still finishes by putting the radio to sleep with <code>self.cubesat.radio1.sleep()</code>.</li></ol><p id="fb8a719f-4ca9-4a5b-aec5-2a86d441fb79" class="">
+</p><div id="ead8e79f-01a0-4bd4-b64e-4cce15090d7f" class="column-list"><div id="121ca780-aa82-4469-a4d2-3159eb20e6c7" style="width:68.75%" class="column"><h2 id="59ad353b-b1af-4e5d-b683-3167eec6f266" class="">Command Explanations</h2></div><div id="45a3e85e-8a15-45ae-b4ae-11b5e1499476" style="width:31.25%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="b74cd788-f031-4687-a169-d602a70c1807" class="">By this point, the no-op and reset commands from <code>cdh.py</code> should be fairly self explanatory. </p><h3 id="dbdf08a5-5e28-4871-af00-872e8ca89f01" class="">Shutdown Command</h3><p id="713e8bbb-79bd-4527-bf77-9a8b6fc6236f" class="">For <code>shutdown</code>, we accept an additional argument as yet another level of verification before actually shutting the spacecraft down. In this case, another 4-byte passcode must match the one hard-coded into the function. Then it proceeds to stop all tasks and set the power mode to minimum (just like low power mode) before starting a never-ending sleep loop. This is pretty silly... What if we ever want to wake up? See the <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">Going Further</a> section for some suggestions on better options.</p><h3 id="eac6fcce-3bb0-4add-beeb-a759b693f02a" class="">Query &amp; Exec Commands</h3><p id="67ffd386-2391-4618-a28c-9ecaf85f4902" class="">Now this is where things get <strong>REALLY</strong> cool (and dangerous 😈). </p><p id="ca221db9-eef7-487f-ab35-81ce0de0299a" class="">In Python, <code>eval()</code> and <code>exec()</code> are <a href="https://docs.python.org/3/library/functions.html#eval">built-in functions</a> that literally let you run a python program INSIDE your python program.<div class="indented"><ul id="b2884824-f8a4-479d-893e-27579dfaa3ef" class="bulleted-list"><li style="list-style-type:disc"><code>eval()</code> evaluates the argument (which is a string) as a single Python expression and returns the value (if any) of the expression.</li></ul><ul id="c9649f31-2d78-43cc-a9d2-e943026878b2" class="bulleted-list"><li style="list-style-type:disc"><code>exec()</code> executes the argument (also a string) as an entire block of Python code but doesn&#x27;t return anything. </li></ul><p id="eb9497f8-deab-4003-8481-10cdfdb06b7b" class="">Therefore, you can think of <code>eval()</code> as typing individual python statements into the REPL and it returning the result and <code>exec()</code> as typing <code>import FILENAME</code> into the REPL and running all the code inside FILENAME. </p><p id="ed3f63d3-0f3f-4ab9-bb12-a89c728c25eb" class="">This analogy holds pretty well, but there are some subtle exceptions. Research &quot;Python3 eval vs exec&quot; online to learn more.</p></div></p><p id="11240900-5f11-4569-b3df-d19c8d9b5eeb" class="">In any case, with these two functions available to us over-the-air the possibilities are endless now that we can remotely execute any code we want. But with great power comes great responsibility! This also means we can quite easily crash our state machine if we&#x27;re not careful. </p><p id="b24c07fa-711e-43fe-9810-5788d7ff0b81" class="">Based on the definitions above, it&#x27;s clear to see why our <code>query</code> command uses the <code>eval</code> function and sends the result as a string using the radio:</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="27719e73-b7eb-4bbc-86f9-bbb01aebbac0" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">def query(self,args):
+    self.debug(&#x27;query: {}&#x27;.format(args))
+    self.cubesat.radio1.send(data=str(eval(args)))</code></pre><p id="96e31764-2481-45ac-bfe9-2c8f457f37a6" class="">and the <code>exec_cmd</code> uses the <code>exec</code> function and doesn&#x27;t send anything back over the radio.</p><p id="be0378a0-7b48-4b9d-bb93-5f3b539e007d" class="">See the relevant <a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">Going Further</a> section for example usage of these commands.<br/><br/></p><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="84ab5b5b-3437-4c25-bded-3fc5e3c46b80"><div style="font-size:1.5em"><span class="icon">⭐</span></div><div style="width:100%">As mentioned above, with <code>eval</code> and <code>exec</code> the over-the-air possibilities become ENDLESS. We can now remotely: change the value of a variable, upload new files, even edit the existing code files, just to name a few.<br/><br/>This functionality will be discussed in greater detail at <br/><a href="Over-the-air%20Updates%20(coming%20soon!)%206e09a2c8b96b4e2a8fe7ab09a68c03d6.html"><span class="icon">🚀</span>Over-the-air Updates (coming soon!)</a> </div></figure><p id="6a354982-4ba7-42d8-9470-9cae11952fce" class="">
+</p><div id="83cee54a-bf48-479c-8ac7-b94df178ad71" class="column-list"><div id="a5c0cc13-7ac7-47a5-986a-47c2b5eac179" style="width:75%" class="column"><h1 id="674d2b41-71dc-4fec-a814-93ca9656fcdd" class="block-color-teal_background">Going Further</h1></div><div id="2befddfe-d975-46d1-ad42-61c0d96687d2" style="width:25%" class="column"></div></div><hr id="60b2b981-ded6-446f-9efd-5a04b73239a7"/><h2 id="235299f1-cf2b-47af-9263-f0410931a60b" class="">Receiving down-linked data</h2><hr id="4ce3cdef-4c83-4550-b528-5bf90b95480e"/><p id="14679ead-e550-4075-94ed-9fb5924fcf17" class="">As discussed in the Going Further section of the <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html"><span class="icon">📻</span>Beep-Sat (basic)</a> example, we&#x27;ll need another radio capable of transmitting a 433 MHz LoRa packet in order to receive any beacon or, in this case, down-link packets. </p><ol type="1" id="b5ebb7d6-827f-4a08-a99f-69ff7f5074c0" class="numbered-list" start="1"><li>Ensure you can successfully transmit a message to the beep-sat following <a href="Beep-Sat%20(basic)%20a3074e1925d74835bd3e2e3543819981.html">these instructions</a> from the basic example. </li></ol><ol type="1" id="158d8974-200e-4a7f-97a0-f489264cb2b2" class="numbered-list" start="2"><li>If we can transmit a message to our beep-sat then we we can receive a down-link packet. All we need to do in ensure we&#x27;re processing the received packets fast enough such that we don&#x27;t miss any chunks of the file. <p id="cd6cda36-2fbe-4cbf-a9dd-cceee25bd3e9" class="">Below is example <code>main.py</code> code for down-linking beep-sat data for each of the previously described radio platforms.</p><ul id="b98264c0-518a-4eeb-b765-7c760b500bb7" class="toggle"><li><details open=""><summary>Second PyCubed board</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="890de44c-a822-4629-ba74-ec733a8c196b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from pycubed import cubesat
+
+cubesat.radio1.ack_retries = 2
+cubesat.radio1.ack_wait = 2
+cubesat.radio1.node = 0xAB # this radio&#x27;s radiohead ID
+cubesat.radio1.destination = 0xFA # target sat&#x27;s radiohead ID
+
+while True:
+    print(cubesat.radio1.receive(timeout=10))</code></pre></details></li></ul><ul id="040fa64c-64a3-4642-905e-702d494260a2" class="toggle"><li><details open=""><summary>Radio Breakout</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c7256668-b5dd-472c-bd0d-30c0662d7d07" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board
+import busio
+import digitalio
+import pycubed_rfm9x
+
+# Configure pins and SPI bus
+CS= digitalio.DigitalInOut(board.D5)
+RESET= digitalio.DigitalInOut(board.D6)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+rfm9x.ack_retries = 2
+rfm9x.ack_wait = 2
+rfm9x.node = 0xAB # this radio&#x27;s radiohead ID
+rfm9x.destination = 0xFA # target sat&#x27;s radiohead ID
+
+while True:
+    print(rfm9x.receive(timeout=10))</code></pre></details></li></ul><ul id="6be93a37-0957-40d3-84c6-ea43f753a44c" class="toggle"><li><details open=""><summary>Combo board</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ba30d4ec-1212-4499-a0e3-17cc2786e566" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board
+import busio
+import digitalio
+import pycubed_rfm9x
+import time
+
+# Configure pins and SPI bus
+CS = digitalio.DigitalInOut(board.RFM9X_CS)
+RESET = digitalio.DigitalInOut(board.RFM9X_RST)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+rfm9x.ack_retries = 2
+rfm9x.ack_wait = 2
+rfm9x.node = 0xAB # this radio&#x27;s radiohead ID
+rfm9x.destination = 0xFA # target sat&#x27;s radiohead ID
+
+while True:
+    print(rfm9x.receive(timeout=10))</code></pre></details></li></ul></li></ol><div id="705d1176-5dc2-4401-83df-83d0aa196dc6" class="column-list"><div id="b52882d5-3886-4f55-a924-ddff2f1871fb" style="width:75%" class="column"><h2 id="77ab6311-7bf4-416a-9854-fe167c49ea35" class="">Sending commands</h2></div><div id="9981d770-0250-4dd0-a1e0-e463c7841f86" style="width:25%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><hr id="d635310d-823b-4fa7-8b13-171c07cd83dc"/><p id="418da628-c0b2-454c-aeb1-507fb0c2d818" class="">Before attempting to receive ACKs or send commands, first confirm you can down-link data as discussed above. This verifies your hardware configurations are working properly. </p><div id="45265931-8493-4a81-a4aa-a76dc5e9bb65" class="column-list"><div id="16204b9e-4d38-424d-ba56-61f4c1a2688d" style="width:75%" class="column"><h3 id="f041aa3b-638b-4a43-a1cf-f1479e7bc91a" class="">Receiving an ACK</h3></div><div id="cb72c30e-beff-4b08-81a6-3758c3bedb6d" style="width:24.999999999999996%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="25c39d3b-b915-461e-8753-4410a9ec3fb2" class="">After properly initializing the hardware for your respective platform exactly as we did above:<div class="indented"><ol type="1" id="36c495a5-136a-4f14-8753-c9e3caaa2347" class="numbered-list" start="1"><li>Note that setting the following attributes (as included in the software examples above) ensures we&#x27;ll be able to request and receive ACK packets.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4505a63d-0dd7-49da-a686-13633d0364e2" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">rfm9x.ack_retries = 2
+rfm9x.ack_wait = 2
+rfm9x.node = 0xAB # this radio&#x27;s radiohead ID
+rfm9x.destination = 0xFA # target sat&#x27;s radiohead ID</code></pre><p id="f2f62d9b-84a7-4937-b6f1-4049ccd55044" class="">We must set the <code>[FROM]</code> (aka rfm9x.node) and <code>[TO]</code> (aka rfm9x.destination) attributes of the RadioHead header in order to trigger an ACK response from the spacecraft. The library is designed to not respond to ACK requests addressed to the default broadcast ID of <code>0xFF</code>.</p></li></ol><ol type="1" id="2a37bc93-de3b-4cb8-b888-9d1f807ffac8" class="numbered-list" start="2"><li>Next, since we know our beep-sat always listens right AFTER transmitting a beacon packet, we want our code to wait until it hears a beacon packet before transmitting a packet of its own:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="429ebc6e-edd8-4ec6-8541-c1d048c4f282" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">while True:
+    beacon=rfm9x.receive(timeout=10)
+    if beacon is not None:
+        ack = rfm9x.send_with_ack(&#x27;Hi BeepSat!&#x27;)
+        print(&#x27;received ACK?&#x27;,ack)</code></pre><p id="0519809e-1981-4e39-926f-454bc93249a5" class="">This code runs forever listening for any received packet. If the beacon variable is not <code>None</code> then we received something (for this example we just assume the packet we receive is our beacon packet). So we immediately perform <code>rfm9x.send_with_ack()</code> . It doesn&#x27;t really matter what our message here says, just that we transmitted something with the <code>send_with_ack</code> function. This function automatically requests an ACK from recipient as communicated in the radiohead <code>[FLAG]</code> header byte.</p></li></ol><ol type="1" id="b7cd6530-e719-40a4-86cf-0b42cc248ab5" class="numbered-list" start="3"><li>The <code>send_with_ack</code> function returns a boolean value indicating whether or not it received an ACK packet from the destination ID. We print this to the terminal to indicate whether or not we were successful in receiving an ACK. </li></ol></div></p><div id="cf9c651f-105d-472c-bdeb-15f79eb852bf" class="column-list"><div id="327a2392-7b1a-486b-9a15-da3e0fc283c7" style="width:75%" class="column"><h3 id="39986cbb-a746-4667-a59f-d5da45dba771" class="">Command &amp; response examples</h3></div><div id="c561a6d6-5b41-48b6-8a9c-6ee93c3e2ca0" style="width:24.999999999999996%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="33464060-d96d-454d-a309-dc22eb28e5e9" class="">Once you can successfully receive an ACK as described above, then sending commands and listening for responses will be a piece of cake. </p><p id="240af35d-3185-46b8-b2d1-c474e7e52e04" class="">Below is example <code>main.py</code> code that makes it easy to send commands (using the proper command codes) and listens for responses for each of the previously described radio platforms.<div class="indented"><ul id="74597385-d3f3-46bb-8ded-cf69795cff66" class="toggle"><li><details open=""><summary>Second PyCubed board</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ccef476b-649a-48f9-a94c-2e1e0f1cb99b" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">from pycubed import cubesat
+
+cubesat.radio1.ack_retries = 2
+cubesat.radio1.ack_wait = 2
+cubesat.radio1.node = 0xAB # this radio&#x27;s radiohead ID
+cubesat.radio1.destination = 0xFA # target sat&#x27;s radiohead ID
+
+# create a command dictionary to make this easier
+commands = {
+    # command name : command code
+    &#x27;no-op&#x27;:b&#x27;\x8eb&#x27;,       # does nothing
+    &#x27;hreset&#x27;:b&#x27;\xd4\x9f&#x27;,   # hard reset
+    ######## cmds with args ########
+    &#x27;shutdown&#x27;:b&#x27;\x12\x06&#x27;, # shutdown sat
+    &#x27;query&#x27;:b&#x27;8\x93&#x27;,       # eval
+    &#x27;exec_cmd&#x27;:b&#x27;\x96\xa2&#x27;, # exec
+}
+
+# initialize cmd variable with default pass-code
+cmd =  b&#x27;p\xba\xb8C&#x27;
+
+# next specify cmd by editing the string below
+CHOOSE_CMD = &#x27;query&#x27;
+print(&#x27;\nWill send command after hearing beacon:&#x27;,CHOOSE_CMD)
+
+# then we add the cmd code for our chosen cmd string
+cmd += commands[CHOOSE_CMD]
+
+# finally we add any arguments (if necessary)
+# P.S. we&#x27;re doing it this way to illustrate each piece that goes into the cmd packet
+if CHOOSE_CMD == &#x27;shutdown&#x27;:
+    cmd += b&#x27;\x0b\xfdI\xec&#x27; # shutdown confirmation code
+elif CHOOSE_CMD == &#x27;query&#x27;:
+    cmd += b&#x27;time.monotonic()&#x27; # our query argument. try your own!
+elif CHOOSE_CMD == &#x27;exec_cmd&#x27;:
+    cmd += b&#x27;a=1\nprint(a)&#x27;
+
+while True:
+    response=rfm9x.receive(timeout=10)
+    if response is not None:
+        print(&#x27;Beacon Packet:&#x27;,response)
+        ack = rfm9x.send_with_ack(cmd)
+        if ack is not None:
+            if ack: print(&#x27;ACK RSSI:&#x27;,rfm9x.last_rssi-137)
+        # only listen for a response if we&#x27;re expecting one
+        if CHOOSE_CMD in (&#x27;shutdown&#x27;,&#x27;query&#x27;,&#x27;exec_cmd&#x27;):
+            response=rfm9x.receive(timeout=10)
+            if response is not None:
+                print(&#x27;Response:&#x27;,response)</code></pre></details></li></ul><ul id="415ab7f3-dc34-45e6-b9a0-e5891e40d30f" class="toggle"><li><details open=""><summary>Radio Breakout</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="05bcdf7d-ad24-4580-9cc7-3f170ed7a9de" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board
+import busio
+import digitalio
+import pycubed_rfm9x
+
+# Configure pins and SPI bus
+CS= digitalio.DigitalInOut(board.D5)
+RESET= digitalio.DigitalInOut(board.D6)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+rfm9x.ack_retries = 2
+rfm9x.ack_wait = 2
+rfm9x.node = 0xAB # this radio&#x27;s radiohead ID
+rfm9x.destination = 0xFA # target sat&#x27;s radiohead ID
+
+# create a command dictionary to make this easier
+commands = {
+    # command name : command code
+    &#x27;no-op&#x27;:b&#x27;\x8eb&#x27;,       # does nothing
+    &#x27;hreset&#x27;:b&#x27;\xd4\x9f&#x27;,   # hard reset
+    ######## cmds with args ########
+    &#x27;shutdown&#x27;:b&#x27;\x12\x06&#x27;, # shutdown sat
+    &#x27;query&#x27;:b&#x27;8\x93&#x27;,       # eval
+    &#x27;exec_cmd&#x27;:b&#x27;\x96\xa2&#x27;, # exec
+}
+
+# initialize cmd variable with default pass-code
+cmd =  b&#x27;p\xba\xb8C&#x27;
+
+# next specify cmd by editing the string below
+CHOOSE_CMD = &#x27;query&#x27;
+print(&#x27;\nWill send command after hearing beacon:&#x27;,CHOOSE_CMD)
+
+# then we add the cmd code for our chosen cmd string
+cmd += commands[CHOOSE_CMD]
+
+# finally we add any arguments (if necessary)
+# P.S. we&#x27;re doing it this way to illustrate each piece that goes into the cmd packet
+if CHOOSE_CMD == &#x27;shutdown&#x27;:
+    cmd += b&#x27;\x0b\xfdI\xec&#x27; # shutdown confirmation code
+elif CHOOSE_CMD == &#x27;query&#x27;:
+    cmd += b&#x27;time.monotonic()&#x27; # our query argument. try your own!
+elif CHOOSE_CMD == &#x27;exec_cmd&#x27;:
+    cmd += b&#x27;a=1\nprint(a)&#x27;
+
+while True:
+    response=rfm9x.receive(timeout=10)
+    if response is not None:
+        print(&#x27;Beacon Packet:&#x27;,response)
+        ack = rfm9x.send_with_ack(cmd)
+        if ack is not None:
+            if ack: print(&#x27;ACK RSSI:&#x27;,rfm9x.last_rssi-137)
+        # only listen for a response if we&#x27;re expecting one
+        if CHOOSE_CMD in (&#x27;shutdown&#x27;,&#x27;query&#x27;,&#x27;exec_cmd&#x27;):
+            response=rfm9x.receive(timeout=10)
+            if response is not None:
+                print(&#x27;Response:&#x27;,response)# create a command dictionary to make this easier</code></pre></details></li></ul><ul id="0ead421f-3962-48a4-a497-2d08db9eba61" class="toggle"><li><details open=""><summary>Combo board</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a1ea7a26-8184-40b5-8ac7-b602d01388f6" class="code"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import board
+import busio
+import digitalio
+import pycubed_rfm9x
+import time
+
+# Configure pins and SPI bus
+CS = digitalio.DigitalInOut(board.RFM9X_CS)
+RESET = digitalio.DigitalInOut(board.RFM9X_RST)
+spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
+
+# Initialize RFM radio
+rfm9x = pycubed_rfm9x.RFM9x(spi,CS,RESET,433.0,code_rate=8,baudrate=1320000)
+rfm9x.enable_crc=True
+rfm9x.ack_retries = 2
+rfm9x.ack_wait = 2
+rfm9x.node = 0xAB # this radio&#x27;s radiohead ID
+rfm9x.destination = 0xFA # target sat&#x27;s radiohead ID
+
+commands = {
+    # command name : command code
+    &#x27;no-op&#x27;:b&#x27;\x8eb&#x27;,       # does nothing
+    &#x27;hreset&#x27;:b&#x27;\xd4\x9f&#x27;,   # hard reset
+    ######## cmds with args ########
+    &#x27;shutdown&#x27;:b&#x27;\x12\x06&#x27;, # shutdown sat
+    &#x27;query&#x27;:b&#x27;8\x93&#x27;,       # eval
+    &#x27;exec_cmd&#x27;:b&#x27;\x96\xa2&#x27;, # exec
+}
+
+# initialize cmd variable with default pass-code
+cmd =  b&#x27;p\xba\xb8C&#x27;
+
+# next specify cmd by editing the string below
+CHOOSE_CMD = &#x27;query&#x27;
+print(&#x27;\nWill send command after hearing beacon:&#x27;,CHOOSE_CMD)
+
+# then we add the cmd code for our chosen cmd string
+cmd += commands[CHOOSE_CMD]
+
+# finally we add any arguments (if necessary)
+# P.S. we&#x27;re doing it this way to illustrate each piece that goes into the cmd packet
+if CHOOSE_CMD == &#x27;shutdown&#x27;:
+    cmd += b&#x27;\x0b\xfdI\xec&#x27; # shutdown confirmation code
+elif CHOOSE_CMD == &#x27;query&#x27;:
+    cmd += b&#x27;time.monotonic()&#x27; # our query argument. try your own!
+elif CHOOSE_CMD == &#x27;exec_cmd&#x27;:
+    cmd += b&#x27;a=1\nprint(a)&#x27;
+
+while True:
+    response=rfm9x.receive(timeout=10)
+    if response is not None:
+        print(&#x27;Beacon Packet:&#x27;,response)
+        ack = rfm9x.send_with_ack(cmd)
+        if ack is not None:
+            if ack: print(&#x27;ACK RSSI:&#x27;,rfm9x.last_rssi-137)
+        # only listen for a response if we&#x27;re expecting one
+        if CHOOSE_CMD in (&#x27;shutdown&#x27;,&#x27;query&#x27;,&#x27;exec_cmd&#x27;):
+            response=rfm9x.receive(timeout=10)
+            if response is not None:
+                print(&#x27;Response:&#x27;,response)</code></pre></details></li></ul></div></p><p id="2bcb2e99-214a-4348-8d3f-cebb36d51d82" class="">Upon running the secondary radio code 👆 while our example beep-sat code is running, you should see debug messages indicating the exchange was successful (make sure you have a terminal opened for the beep-sat as well as the secondary radio). </p><p id="99089cf6-36fb-4ad3-a96d-1f55763527ca" class="">By default, the example code above sends a <code>query</code> command questing the beep-sat&#x27;s current time. You can change what command you send by editing the <code>CHOOSE_CMD = &#x27;query&#x27;</code> value. A successful exchange prints the following on their respective terminals:</p><div id="05ebda77-d179-4364-b991-f53b46e36a58" class="column-list"><div id="9696dc83-2dd3-476d-9126-c7c63658c0a5" style="width:50%" class="column"><p id="6c070e7f-904b-4f64-b29f-dfdd90fec37a" class="">Secondary radio:</p><figure id="cc1ab839-3eec-40e9-bf8b-317de418e2fe" class="image"><a href="Untitled%2026.png"><img style="width:482px" src="Untitled%2026.png"/></a></figure></div><div id="85a0a801-359c-44ab-8d2a-c76566146c8b" style="width:50%" class="column"><p id="7d5b5fea-b6a9-4af4-9b3d-6d4f33831dcd" class="">Beep-Sat</p><figure id="4cf3de01-e065-422a-97d5-58e5e3560cbc" class="image"><a href="Untitled%2027.png"><img style="width:645px" src="Untitled%2027.png"/></a></figure></div></div><p id="392b1343-ada9-4043-bf7c-1a763b47c273" class="">Awesome! 🎉</p><p id="b5a019e4-b425-4deb-b2a9-e33d2822c2ea" class="">Now if we were to edit the query command argument in your <code>main.py</code> code to be <code>b&#x27;cubesat.c_boot&#x27;</code> (for example), we should receive a response containing how many times our mainboard has booted (recently):</p><div id="33b530c6-40c8-4026-99c2-349ecce03113" class="column-list"><div id="5a2205fc-20da-4a40-bb94-40a80808c10f" style="width:50%" class="column"><p id="1e6034c1-c635-4c42-ab68-36f02158f4af" class="">Secondary radio:</p><figure id="a2b72218-4d26-4f0a-9b8d-0830f4769107" class="image"><a href="Untitled%2028.png"><img style="width:463px" src="Untitled%2028.png"/></a></figure></div><div id="305940c9-242b-4d4d-80f0-c38937bbe0a6" style="width:50%" class="column"><p id="e6b222c4-b43e-4c01-babf-0001248ee7ee" class="">Beep-Sat</p><figure id="b1dbde19-0d88-4b46-ab01-eace5c7e5161" class="image"><a href="Untitled%2029.png"><img style="width:629px" src="Untitled%2029.png"/></a></figure></div></div><p id="2c05a3d5-a973-4eb6-b4b0-2ec361cb5d9e" class="">Now play around with the <code>exec_cmd</code> command and see what cool chaos you can cause. Don&#x27;t forget: there are absolutely zero safety nets when using <code>eval</code> and <code>exec</code> commands in Python. But you wont break anything permanently, the code can always be restarted, so don&#x27;t be afraid to try cool stuff! </p><p id="4d1fadbd-afa8-458b-8e18-c5cddeb40615" class="">This feature will be discussed in more detail in <a href="Over-the-air%20Updates%20(coming%20soon!)%206e09a2c8b96b4e2a8fe7ab09a68c03d6.html"><span class="icon">🚀</span>Over-the-air Updates (coming soon!)</a>.</p><div id="98258154-f449-4f7e-8900-68c2d254e9cb" class="column-list"><div id="59215f12-ab27-46f0-9efc-166bd3f8208d" style="width:75%" class="column"><h2 id="09522725-c4ad-496d-b33e-f0c1de7b4e8d" class="">Features to add yourself</h2></div><div id="77593a0d-19c8-45d5-bf64-e4f8cb155006" style="width:25%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><hr id="ca01d8f4-6055-4412-a27c-56bb6534bc1d"/><figure class="block-color-yellow_background callout" style="white-space:pre-wrap;display:flex" id="bcd2bbe5-d6cd-42f5-b6b5-abca87c6e006"><div style="font-size:1.5em"><span class="icon">⭐</span></div><div style="width:100%">Devised an awesome solution to one of the features below? Maybe a cool feature we haven&#x27;t even mentioned? <br/>Share it on the <br/><a href="https://pycubed.org/forums">💬 PyCubed Forums</a>!</div></figure><ol type="1" id="c21417de-4283-41c7-be52-a30ba6efd4d0" class="numbered-list" start="1"><li>A &quot;listen again&quot; flag settable when sending an over-the-air command<p id="acdbe46a-b89c-42e5-8780-43e18b768de7" class="">After playing with the command examples above, you&#x27;ll quickly find yourself frustrated with having to wait 30s until the next beacon task before you can issue another command. This is because our beacon task is set up to stop listening after receiving a packet. Wouldn&#x27;t it be nice if you could tell beep-sat to keep listening at the same time as you are sending it a command? <div class="indented"><ul id="141079f7-07a6-49cc-83c2-2b35a3a6144b" class="bulleted-list"><li style="list-style-type:disc">One option is to use part of the RadioHead <code>[FLAG]</code> byte. If you read through the <code>pycubed_rfm9x.py</code> library, you&#x27;ll find that the lower 4 bits of the <code>[FLAG]</code> byte can be used for whatever you want! Then you&#x27;d need to devise a way of checking these bits before the beacon task stops listening. <p id="2a084447-5d98-46dd-8db8-502e4c47d02e" class="">Sounds like fun!</p></li></ul></div></p></li></ol><ol type="1" id="57a61b61-bffc-4f78-9ec5-fc9113de5f5d" class="numbered-list" start="2"><li>Even though having over-the-air access to <code>exec</code> is basically like having keys to castle, there are a handful of routine commands that would be useful to already have implemented in <code>cdh.py</code>. <p id="2e6d36c2-4963-489e-8651-125715cd051f" class="">A few that come to mind:<div class="indented"><ul id="b78f9ccc-947f-41c0-94da-2a8fcfb600c9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">A wake-up command to complement the shutdown command. <br/>(This is also briefly mentioned in the task description above)<br/></span><div class="indented"></div></li></ul><ul id="21f3d839-a828-4e23-ac41-19b705ebb2b7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Send the contents of our default <code>log.txt</code> file</span><div class="indented"></div></li></ul><ul id="932d080e-2d93-4dd0-b2e2-1404a0513312" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Delete one or more files</span><div class="indented"></div></li></ul><ul id="35423929-a55a-447b-89de-339d89eaee69" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Upload a file<br/>Since we&#x27;re limited to 252 bytes per radio packet, this should be able to create a new file and/or append to an existing file.  <br/></span><div class="indented"></div></li></ul><ul id="d0e1a0ac-95a0-4d96-9839-dd38eea71e9e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">CRC a file</span><div class="indented"><p id="c6e04dba-d0ac-40ef-a770-73fd2c83f7db" class="">If we&#x27;re uploading files, we should also have a way of checking them. A cyclic redundant check (CRC) is one of many ways you could do this.</p></div></li></ul></div></p></li></ol><ol type="1" id="14339062-fd53-49bf-abf1-deb1d1e02775" class="numbered-list" start="3"><li>When sending a file, each packet should include an index so you can tell if a packet was missed. (1 of 10, 2 of 10, etc...)</li></ol><ol type="1" id="610f47b2-3171-449c-a422-cc4b41b8e59f" class="numbered-list" start="4"><li>and many many more 😇</li></ol><p id="5432ee66-56f0-43ee-a3fa-7db49f4fffaf" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1f2f4103-d26c-40d7-9925-5582b7945140"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">P.S. <p id="13fe4caa-598b-4789-83d3-02cc164454a6" class="">We have a Beep-Sat “Advanced-2” example in the works that implements some of the above features as well as demonstrating deep sleep, rapid over-the-air commanding, and more! The flight software is available under the <a href="https://github.com/pycubed/software_example_beepsat/tree/dev-advanced-2/advanced2">dev-advanced-2</a> branch of the PyCubed repo if you want to check it out. It’s fully functional but we’re still testing and refining. </p></div></figure><div id="19f685a8-cb28-401a-921e-c0c5b05044a7" class="column-list"><div id="a8f1f487-dca0-4059-a44e-e9ae386e0eab" style="width:75%" class="column"><h1 id="1889214a-637c-47af-908e-aa8de33ed060" class="block-color-gray_background"><mark class="highlight-red">Next Section </mark>→ <a href="Next%20Steps%20f280449625804a38a3ed9c9358249374.html"><img class="icon" src="7.png"/>Next Steps</a> </h1></div><div id="94caa7c5-206e-493c-846a-a3faee255d84" style="width:25.000000000000007%" class="column"><div><p id="894d8264-1b7f-4f25-a80e-22219e3bc24e" class=""><a href="Beep-Sat%20(advanced)%202d93fbe63d1a42cc8ce084b6f19535ba.html">(top ⬆)</a></p></div></div></div><p id="d83c42f2-2dd1-49d7-892d-9dd934897767" class=""><br/><br/><br/><br/></p><hr id="a333230c-1b96-4e95-b5cd-20c081fbf91a"/><p id="abc401ce-4f34-49c7-bc8b-3b4a4af39276" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

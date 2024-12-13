@@ -1,0 +1,703 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>PyCubed Burn Wire Info &amp; Usage</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="796c1f07-ef81-4ecc-a38f-92eeb02e22ff" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🔥</span></div><h1 class="page-title">PyCubed Burn Wire Info &amp; Usage</h1><p class="page-description"></p></header><div class="page-body"><div id="b261339f-b3a6-4ef0-8efb-e85014b8dee2" class="column-list"><div id="99c6ca4b-d63c-4c20-90dd-5769c10b8ef9" style="width:50%" class="column"><p id="e895fae5-cdc3-4e61-b3c4-9e1fd74a1aa1" class="block-color-blue_background"><strong>In this Section</strong></p><nav id="b37e124e-b45d-4a5a-a1be-92291d42714c" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#eb6583ce-3d7f-4814-9cca-70d9476d4e44">What is A Burn Wire?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8b1ab2b9-302b-43fc-ae65-48eaf405a241">PyCubed Burn Wires</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a83188b6-29b4-42d3-9b29-f49c6163e838">Common Pitfalls of Nichrome Wire Burn Wires</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c7f16a15-d9c8-4b91-9522-96de12800677">Material Choices</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#dec12e24-ddb9-445d-b6f7-731e979bd56e">Nichrome Wire</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#093eda0e-4337-4fed-b589-2237b5a37465">Fishing Line</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1fc2fcc1-ff30-4b18-89d3-1858285b2d4a">Using the <code>pycubed.py</code> burn wire methods</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e6516957-cd24-40f3-aafd-2a4c44d41248"><code>cubesat.burn()</code> theory of operation</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#643feedb-4514-4535-8cc6-0e4345d9a5a9">1. open the relay</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#0ba9ba9d-0b10-4bb5-99e7-946ecc1eb05a">2. enable the burn wire circuit for a certain amount of time</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#01c8c69f-4b83-4667-b485-a0bccd128930">3. disable the burn wire circuit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#65bf8733-0680-4fc0-aa51-f5ba35a07074">Using <code>cubesat.burn()</code></a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#32fc10bf-c8a4-4546-831c-5b5d6cb3da8c">Initial burn testing</a></div></nav></div><div id="905264d2-8bb2-40cd-b3d6-ccc1b7054a9c" style="width:11.424731182795702%" class="column"><p id="02ba6b94-b7c1-43d0-ba94-36f88ca851ad" class="">
+</p></div><div id="19df3204-9e49-4419-8296-80fbeae28833" style="width:38.57526881720432%" class="column"><div><p id="d5802a9f-2ea3-4197-b3b9-6397d75ea28f" class=""><a href="index.html">↩ Return Home</a></p><p id="424bdd87-6df5-4e2b-b6a2-5424d9b0c869" class=""><a href="All%20PyCubed%20Resources%208738cab0dd0743239a3cde30c6066452.html">↩ Return to Resources</a></p></div></div></div><p id="06917fe7-cace-4198-b559-d4e8e2761164" class="">
+</p><p id="5a949558-17c0-4bb4-92f6-6f43c4aafdd0" class="block-color-gray">This page explains what CubeSat burn wires are, some common methods and materials to implement them, and then how to use the PyCubed burn wire circuits and helper function.</p><hr id="8a8c6855-56c2-4527-9ab4-947c8c8820e1"/><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="5ae744a4-69ca-4554-9cc8-01b2c693bef3"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">If you don&#x27;t read anything else on this page, read <a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html">→THIS.←</a></div></figure><hr id="b9348e01-4b10-4e43-be79-372d9fc50873"/><p id="c0b70c68-7b8b-4d4b-b977-4dee6747e79b" class=""><br/><br/><br/></p><h1 id="eb6583ce-3d7f-4814-9cca-70d9476d4e44" class="block-color-teal_background">What is A Burn Wire?</h1><hr id="b975cbdc-388f-470e-87a4-f54682adec73"/><p id="edf784ef-6ebe-4869-925b-c04b991531ac" class="">The concept of a burn wire (as a deployment mechanism) is simple:<div class="indented"><p id="2e6c6067-7c75-4722-bb1f-2832f7fa0bef" class="">Tie a deployable down with fishing line using a loop of nichrome wire as the tie-off location on the spacecraft. When it&#x27;s time to deploy, heat the nichrome wire → melt the fishing line → deploy the panel/antenna/etc..</p></div></p><h1 id="8b1ab2b9-302b-43fc-ae65-48eaf405a241" class="block-color-teal_background">PyCubed Burn Wires</h1><hr id="9d97a066-136f-4d47-864e-8714379c04e5"/><p id="ad6a3b90-6166-4d3e-b5ce-04f17f29b12d" class="">PyCubed mainboard has two independent burn wire circuits:<div class="indented"><ul id="f9042aa1-4bf4-4437-9f6a-47afb11bf219" class="bulleted-list"><li style="list-style-type:disc">each burn wire can be controlled independently</li></ul><ul id="4204c718-a4ea-447a-ab2c-bf0f2ade369c" class="bulleted-list"><li style="list-style-type:disc">designed with radiation resilient components </li></ul><ul id="5bc46dc6-4a89-4f1e-a300-ab65211bb9b0" class="bulleted-list"><li style="list-style-type:disc">fault tolerant &amp; protected by dual interlocks<p id="1ce48113-6d04-4680-b2bd-12faaf2c0c35" class="">(see usage tutorial below for more details on fault handling)</p></li></ul></div></p><figure id="9ca44031-0779-4629-bf62-b104147022b2" class="image"><a href="Untitled-2021-06-25-1438(1).png"><img style="width:528px" src="Untitled-2021-06-25-1438(1).png"/></a><figcaption>See the mainboard schematic for specific details on the burn wire circuits and their respective component choices</figcaption></figure><div id="f0086ecd-1efe-4a53-83dc-c96e927c15e8" class="column-list"><div id="c165892a-ac2b-4989-ad25-a7aae73b7f3b" style="width:31.25%" class="column"><p id="20a6c012-9ac5-412b-9f85-4abc214a3d5c" class="">Nichrome wire is commonly used as a heating element (in many applications) since it has a high melting point and low oxidation rate. The PyCubed burn wire scheme is designed to use a piece of nichrome wire (or other resistive heating element) to complete the circuit between the burn wire output (<code>BURN1</code> or <code>BURN2</code>) and ground. </p></div><div id="536d687a-b4ac-49c3-b6fb-684bebdfe6b6" style="width:68.75%" class="column"><figure id="94f12645-aeda-45f9-a315-c2d5dad697cb" class="image"><a href="Untitled%2034.png"><img style="width:799px" src="Untitled%2034.png"/></a></figure></div></div><h1 id="a83188b6-29b4-42d3-9b29-f49c6163e838" class="block-color-teal_background">Common Pitfalls of Nichrome Wire Burn Wires</h1><hr id="b4ec67c4-a430-47e0-b106-d437c8a9e2dd"/><ol type="1" id="25d29cfe-b936-4aa1-bab3-3122a82cf59b" class="numbered-list" start="1"><li>Inconsistent burn times between boards<ul id="e5571e81-15c4-4ca0-a60f-53241d1ae0ad" class="toggle"><li><details open=""><summary>Cause &amp; Solution</summary><p id="2a3d6589-9b19-49af-b738-ec01847b7418" class="">Nichrome wire does <strong>NOT </strong>solder well. This results in inconsistent implementations of the nichrome wire loop for the burn wire which will have different resistances and therefore heating rates. </p><p id="e9eaed35-2979-45da-9d3c-90e942022f89" class="">Use the most aggressive flux you have when soldering the nichrome wire to a PCB. Also make sure to weave the wire through a few holes on the PCB prior to soldering to achieve better mechanical support.</p></details></li></ul></li></ol><ol type="1" id="63b0081f-0c81-4b82-af74-24b605a87896" class="numbered-list" start="2"><li>Nichrome wire breaking<ul id="748f9486-b0d8-4c26-bba8-ab7f82ccbacf" class="toggle"><li><details open=""><summary>Cause &amp; Solution</summary><p id="bde0e41a-922d-4bb1-a289-71ef68f4fa51" class="">The nichrome wire gets <mark class="highlight-red"><strong>very hot</strong></mark> during a burn. Any oils from your hands or other contaminates can react with the nichrome causing pitting, cracks, and eventually failure. Also take care not to &quot;kink&quot; the wire or make a sharp bend in the exposed loop. </p></details></li></ul></li></ol><ol type="1" id="826a71fb-4d9b-415b-8739-8965ed5433b4" class="numbered-list" start="3"><li>Power system fails when attempting to burn<ul id="ece9f2a6-6c50-4a47-8abf-b9b8160109ec" class="toggle"><li><details open=""><summary>Cause &amp; Solution</summary><p id="9d72ca26-4d46-4b67-8b8a-3e1c4a7cec94" class="">This nichrome burn wire scheme is essentially just short-circuiting the battery. </p><p id="7048e74d-7ed3-48f8-a540-df8951710523" class="">Most battery packs will engage their short-circuit protection if current is drawn this quickly. In the case of the PyCubed software, we turn the burn wire circuit on and off very quickly (PWM) as a way of <span style="border-bottom:0.05em solid">regulating the current below the short-circuit threshold</span> of common battery packs (PyCubed Battery included).  </p></details></li></ul></li></ol><p id="0617caa6-7a81-40b6-ab7c-255fe83c9f04" class="">
+</p><h1 id="c7f16a15-d9c8-4b91-9522-96de12800677" class="block-color-teal_background">Material Choices</h1><hr id="a3df6cb8-0cfa-4da1-b915-4be38f2e28d1"/><h2 id="dec12e24-ddb9-445d-b6f7-731e979bd56e" class="">Nichrome Wire</h2><div id="605e87da-4497-442c-94cd-ef14feb98749" class="column-list"><div id="ff20e44a-7b48-4bc6-b77b-285bd666b11a" style="width:50%" class="column"><p id="ea39ce14-928c-454e-98e1-44657ad5caed" class="">We&#x27;ve successfully used <a href="https://temcoindustrial.com/30-awg-250-ft-nichrome-80-resistance-wire/">TEMCo&#x27;s RW0341</a> for a number of missions. This particular product is 30 AWG &quot;Nichrome 80.&quot;</p><p id="ed272211-bfac-4639-adc7-8cb6bc62b587" class="">
+</p><p id="4b5117e5-1eb7-4f7c-90b2-208bd3d74707" class="">Choosing the appropriate nichrome wire diameter is a balance between:<div class="indented"><ol type="1" id="9adaf662-4df1-4905-8e2e-c306905c23d0" class="numbered-list" start="1"><li>being thick enough to mechanically serve as a tie down for the deployer </li></ol><ol type="1" id="25453ade-78f9-493b-b306-6b9f28bd9408" class="numbered-list" start="2"><li>but thicker wire will have <span style="border-bottom:0.05em solid">less resistance</span> and therefore require a <span style="border-bottom:0.05em solid">longer burn time</span>. You want to minimize burn time since other aspects of the burn circuit (cables, transistors, etc...) are heating up during the burn as well. </li></ol></div></p></div><div id="00410a12-ec1f-4601-a1ce-4ac6944eebe2" style="width:50%" class="column"><figure id="9809064e-d60b-45b7-a2bb-948a09890fb7" class="image"><a href="Untitled%2035.png"><img style="width:336px" src="Untitled%2035.png"/></a></figure></div></div><h2 id="093eda0e-4337-4fed-b589-2237b5a37465" class="">Fishing Line</h2><div id="c778918f-88c0-472f-bb40-bc43f5f8d14e" class="column-list"><div id="e51475a1-8105-4f69-a348-fdb3067130fd" style="width:50%" class="column"><p id="4f6001f5-a1d8-4e11-8ebb-f0fd23fdf620" class="">Lots of different kinds of finishing line work for burn wire tie downs. One brand we&#x27;ve used before is &quot;FireLine.&quot; <div class="indented"><ul id="db8c882f-eaed-4aa7-8843-b6b9a7354762" class="bulleted-list"><li style="list-style-type:disc">20lb (9kg) worked well for our antenna deployment</li></ul><ul id="973457f5-506f-43ab-a1fc-37d71671c2e4" class="bulleted-list"><li style="list-style-type:disc">this particular product is stranded and made with &quot;Dyneema&quot;</li></ul><ul id="3574c791-b532-4ef0-bf2f-dac44fdf5e47" class="bulleted-list"><li style="list-style-type:disc">it&#x27;s important to <strong><span style="border-bottom:0.05em solid">avoid</span></strong> a fishing line that melts and oozes around the nichrome wire. </li></ul><p id="19b37c14-84eb-4743-a52c-fc7026570f63" class="">
+</p><p id="1ce8d041-f06a-4eb4-91fe-955d4988ff25" class="block-color-yellow_background">Best thing to do is buy an assortment of finish line and <mark class="highlight-red"><span style="border-bottom:0.05em solid"><strong>try them.</strong></span></mark></p></div></p></div><div id="53c3c32a-6dcd-457c-8a51-b4f1b15ce464" style="width:50%" class="column"><figure id="9004ab1b-8ad5-4fdd-b35b-53c1f8aa12e4" class="image"><a href="Untitled%2036.png"><img style="width:240px" src="Untitled%2036.png"/></a></figure></div></div><p id="c314ec64-8d2d-4d7a-8105-8e40d30f96b9" class="">
+</p><h1 id="1fc2fcc1-ff30-4b18-89d3-1858285b2d4a" class="block-color-teal_background">Using the <code>pycubed.py</code> burn wire methods</h1><hr id="d498b569-3e9d-43ac-9698-01a6db08f74d"/><p id="847de70c-596c-4a16-85b9-5fcc5bcc27fd" class="">The pycubed helper library (<a href="pycubed%20py%20b80aabda74284488bfd9b8ef46a0eba2.html"><span class="icon">⭐</span>pycubed.py</a>) has a reliable and fault-tolerant method for operating the burn wire circuits. Note that enabling the burn wire circuits wont do anything unless a nichrome wire has been installed into the circuit as <a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html">discussed above</a>.</p><h2 id="e6516957-cd24-40f3-aafd-2a4c44d41248" class=""><code>cubesat.burn()</code> theory of operation</h2><p id="4a67b597-7d45-429d-8e3d-8783c7b65cb7" class="">As we learned from the <a href="PyCubed%20Burn%20Wire%20Info%20&amp;%20Usage%20796c1f07ef814ecca38f92eeb02e22ff.html">overview diagram</a> above, PyCubed has two burn wire circuits that are downstream from a protection relay. At a high level, <code>cubesat.burn()</code> needs to do the following:<div class="indented"><ol type="1" id="d228373a-1b56-4048-a4ce-426a32ab542b" class="numbered-list" start="1"><li>open the relay</li></ol><ol type="1" id="fbb0cd47-ca8a-4817-b9f8-6e0dab709387" class="numbered-list" start="2"><li>enable the burn wire circuit for a certain amount of time</li></ol><ol type="1" id="ea4aff1a-df33-47d5-a5f5-d2ea238dea62" class="numbered-list" start="3"><li>disable the burn wire circuit</li></ol><ol type="1" id="9435fe3a-f2a8-47dc-beba-1984f2e046e6" class="numbered-list" start="4"><li>close the relay</li></ol></div></p><p id="bb7a255b-d1bf-4243-a755-043c0d01b33b" class="">
+</p><p id="c73293e6-7f3b-4734-b387-fa229159f095" class="">Now we will discuss how each of those steps are performed in more detail</p><h3 id="643feedb-4514-4535-8cc6-0e4345d9a5a9" class="">1. open the relay</h3><p id="f79f331a-f79e-4534-b09d-c76aa42e0d7c" class="">We use a general purpose input/output (aka GPIO) from the SAMD microcontroller to control the relay enable pin. As an extra layer of fault protection, the default state of this GPIO pin uses a &quot;Drive Mode&quot; called <code>OPEN_DRAIN</code> meaning even if a radiation-induced bit flip were to set the GPIO value to &quot;high&quot; it would not be able to open the relay.<div class="indented"><ul id="c2ac5fcb-8c4f-4739-8963-3be25b4594a9" class="bulleted-list"><li style="list-style-type:disc">Therefore, the first thing we do is configure the GPIO pin (called <code>_relayA</code>) to have a &quot;Drive Mode&quot; of <code>PUSH_PULL</code> </li></ul><ul id="5baee7d7-a612-4ab3-80e6-eb997079e393" class="bulleted-list"><li style="list-style-type:disc">then we set the pin value to &quot;high&quot; (aka <code>True</code>, or <code>1</code>) to open the relay</li></ul><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3208a706-b8ae-4ec9-a5b0-3f6d3e13a0bc" class="code"><code class="language-Python">self._relayA.drive_mode=digitalio.DriveMode.PUSH_PULL
+self._relayA.value = 1</code></pre></div></p><h3 id="0ba9ba9d-0b10-4bb5-99e7-946ecc1eb05a" class="">2. enable the burn wire circuit for a certain amount of time</h3><p id="641ed3da-5be7-4c1b-b92a-404f1a2ad443" class="">Enabling the burn wire circuit isn&#x27;t as straight forward as the relay because we need to pulse-width module (PWM) the transistor that controls the burn wire circuit in order to regulate the amount of current allowed through the circuit.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="3e7e6a57-ec7a-44f6-bd71-dd36f04a6121"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">The burn wire circuit <mark class="highlight-red"><strong>MUST</strong></mark> be PWM&#x27;d or the Li-ion battery pack will think it&#x27;s been short-circuited and momentarily enter short-circuit protection mode and stop supplying power to the satellite (causing a reset). This is a safety feature present on most all commercial Li-ion packs. </div></figure><figure id="d91b9a86-5869-4f4e-9f17-a493f87769b8" class="image"><a href="Untitled%2037.png"><img style="width:432px" src="Untitled%2037.png"/></a><figcaption>Wikipedia&#x27;s illustration of <a href="https://en.wikipedia.org/wiki/Pulse-width_modulation">PWM</a> as a function of duty cycle for a fixed frequency. Frequency = 1/(peak-to-peak duration), duty cycle = percentage of frequency is spent &quot;on&quot; or &quot;high.&quot;</figcaption></figure><p id="6581fbc6-4508-4070-bf2e-5f3189f64ba3" class="">We configure the appropriate burn wire control pin for PWM with the following:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b715fe89-60c4-4cda-8a02-9a954fc80a54" class="code"><code class="language-Python">if &#x27;1&#x27; in burn_num:
+    burnwire = pwmio.PWMOut(board.BURN1, frequency=freq, duty_cycle=0)
+elif &#x27;2&#x27; in burn_num:
+    burnwire = pwmio.PWMOut(board.BURN2, frequency=freq, duty_cycle=0)</code></pre><p id="5ebfcede-9567-4a64-8727-8c623f903ea6" class="">It&#x27;s important to note that the duty cycle is purposefully set to 0 upon configuring the PWM pin. This allows use to control when we want to engage the PWM (like after opening the relay). </p></div></p><p id="fa61c70f-6a6c-4321-85dd-88b91c3fd0b6" class="">
+</p><p id="0fff33fa-4fc6-46c0-86aa-f9626b0fb4f6" class="">We pause for a brief moment to ensure the relay is open before setting the duty cycle above 0% with the following:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9e8b81b1-ae4a-4780-90f2-a291f1da1dca" class="code"><code class="language-Python">burnwire.duty_cycle=dtycycl</code></pre><p id="82b98414-94ff-4180-85ac-84c6479ffda5" class="">duty cycle for the circuitpython <code>pwmio.PWMOut()</code> object can be confusing. It&#x27;s defined as &quot;a 16-bit value representing the fraction of each pulse which is high.&quot; This means <code>duty_cycle=0</code> will always be low, and <code>duty_cycle=0x7fff</code> will be high for half the time. </p><p id="d1841c50-5283-41ac-8f85-670e0665a3a4" class="">Our <code>cubesat.burn()</code> method relieves this confusion by converting its <code>dutycycle</code> argument to a percentage (0.0 to 100). If you&#x27;re curious, that is accomplished like this: <code>dtycycl=int((dutycycle/100)*(0xFFFF))</code></p></div></p><p id="dffb547e-c4b1-491c-8c06-07301b02e59e" class="">
+</p><p id="cb2ad04c-680b-4e7b-9458-391e2ed0bdfa" class="">With the duty cycle now set above 0%, all we have to do is wait for the desired duration:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="566e63a8-94bb-4c67-a80f-8d54ecce4677" class="code"><code class="language-Python">time.sleep(duration)</code></pre></div></p><h3 id="01c8c69f-4b83-4667-b485-a0bccd128930" class="">3. disable the burn wire circuit</h3><p id="e2ee5b40-43ae-4388-a147-f2931cd2ec26" class="">Now all we have to do is clean up. </p><p id="632d9792-9428-4e8a-bfeb-417d83dee239" class="">Start by setting the PWM duty cycle back to 0%<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="373d4c2e-3ae0-43ec-9806-869090edfc89" class="code"><code class="language-Python">burnwire.duty_cycle=0</code></pre></div></p><p id="b5434213-b1c9-47a5-bb12-31165c917d38" class="">Next, we no longer need to keep the PWM object we created, so we de-initialize it:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="28c90a5c-9923-4dc1-849c-5d3a111f9a1d" class="code"><code class="language-Python">burnwire.deinit()</code></pre></div></p><p id="c64b20e0-2984-4108-a569-45782e9bd409" class="">Finally, we configure the GPIO pin controlling the relay back to it&#x27;s <code>OPEN_DRAIN</code> configuration:<div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="06410bb1-0647-44d8-b2e2-ed3ec798d35f" class="code"><code class="language-Python">self._relayA.drive_mode=digitalio.DriveMode.OPEN_DRAIN</code></pre></div></p><p id="789b4525-1b05-4ff2-88ad-97f122c714fe" class="">
+</p><h2 id="65bf8733-0680-4fc0-aa51-f5ba35a07074" class="">Using <code>cubesat.burn()</code></h2><p id="080bd2ae-77d1-41eb-8c0f-4f762224c309" class="">Now we understand what the <code>burn()</code> method is doing, let&#x27;s review how to use it.</p><p id="cc1011c5-0a57-4757-a822-5e32d59889a8" class=""><code>cubesat.burn(burn_num, dutycycle, freq)</code> method takes the following arguments:<div class="indented"><ol type="1" id="e9cf257b-25ab-4fdd-9baf-8067d3cf8e8d" class="numbered-list" start="1"><li><code>burn_num</code> (string) identifies which burn wire circuit to operate, must be EITHER &#x27;1&#x27; or &#x27;2&#x27;</li></ol><ol type="1" id="387b633c-87eb-4c7f-ba47-1ef4985f722e" class="numbered-list" start="2"><li><code>dutycycle</code> (float) duty cycle percent, must be 0.0 to 100<figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="552e4927-ea0e-4633-9dc1-fcfbf1cfc7e6"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">CAUTION: too <strong>high</strong> of duty cycle will fry your burn wire circuit or trip battery pack protection. This depends on the resistance of your nichrome burn wire implementation.</div></figure></li></ol><ol type="1" id="ae66d64e-0b95-4a7f-a222-b609a97ef479" class="numbered-list" start="3"><li><code>freq</code> (float) frequency in Hz of the PWM pulse, default is 1000 Hz<figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="3103b8a4-0659-4f6d-9edc-5ed8ce9e511d"><div style="font-size:1.5em"><span class="icon">⚠️</span></div><div style="width:100%">CAUTION: too <strong>low</strong> of frequency will fry your burn wire circuit or trip battery pack protection. This depends on the resistance of your nichrome burn wire implementation.</div></figure></li></ol><ol type="1" id="80bd5861-10d2-4722-88f2-a103bb5d3eec" class="numbered-list" start="4"><li><code>duration</code> (float) duration in seconds the burn wire should be on</li></ol><p id="b87bf3b1-52e2-4867-b662-38e9f2301bf9" class="">(how each of the input arguments impact its usage have already been discussed above)</p></div></p><h3 id="32fc10bf-c8a4-4546-831c-5b5d6cb3da8c" class="">Initial burn testing</h3><p id="5b96a33e-381e-4924-b4e9-0d0564c32b43" class="">As the many caution statement above have said, we need to be careful when using the burn wire circuit because INHERENTLY it is capable of permanent damage to the burn wire circuits. </p><p id="7929f248-4e3b-421f-8b78-bf7725fcc3f8" class="">
+</p><p id="402fc9fa-b7f5-4685-9e06-f9b3c9e880bd" class="">Begin with the following values and test using a complete burn wire + fishing line setup in order to dial in your burn wire configuration. SLOWLY increase duty cycle by <code>0.05</code> increments and retest.<div class="indented"><p id="0063be07-dc32-47f6-a3c6-fe3d15595223" class="">Remember: you don&#x27;t want the fishing line to slowing ooze over the nichrome wire, you want it to cleanly &quot;pop.&quot;</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="de977578-ec1d-4010-be5b-7d8f8779b997" class="code"><code class="language-Python">burn_num  = &#x27;1&#x27;  # or &#x27;2&#x27;, doesn&#x27;t matter
+dutycycle = 0.05 # START WITH THIS 
+freq      = 1000 # don&#x27;t change this unless you become really familiar
+duration  = 1    # avg optimal time to burn your fishing line and double it</code></pre><p id="52120eaa-f82c-48d1-9e1d-1972f1a98e82" class="">don&#x27;t expect a duty cycle of <code>0.05</code> to burn your fishing line in 1 second, this is just where we want to start (to play it safe). While testing, also remember to maintain tension on the fishing line (but not SO much that you kink or break your nichrome). <div class="indented"><ol type="1" id="6d557334-1146-4147-8c9c-392296b5aab5" class="numbered-list" start="1"><li>With your burn wire test all set up, open the REPL and use the following code to issue a test:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d4b3d91b-4a91-485f-9384-361ceb839f24" class="code"><code class="language-Python">&gt;&gt;&gt; from pycubed import cubesat
+&gt;&gt;&gt; cubesat.burn(burn_num=&#x27;1&#x27;,dutycycle=0.05,duration=1)</code></pre><p id="6f051a31-add7-41cb-a4f7-e72b3d1c9a59" class="">you should hear the CLICK 🎵 of the relay opening (and the RGB LED turns <mark class="highlight-red"><strong>red</strong></mark>) </p><p id="a0b28785-bf36-400b-a77f-c5a8a697a010" class="">and you should see the following printout in the terminal:</p><figure id="29172078-d37a-4ecf-be11-26c8b621dfd4" class="image"><a href="Untitled%2038.png"><img style="width:433px" src="Untitled%2038.png"/></a></figure></li></ol><ol type="1" id="16b0aef4-2c37-450b-979c-bef2f8cfb300" class="numbered-list" start="2"><li>Assuming a duty cycle of  <code>0.05</code>  doesn&#x27;t burn your fishing line, we will need to increment the duty cycle. Increasing by a value of <code>0.05</code> is reasonable. But before you run the next test...</li></ol><ol type="1" id="4df73c03-a64f-4608-ae77-6150f15a3f0c" class="numbered-list" start="3"><li>So you have something to compare against...<p id="4d2dda1a-4c66-4be1-b661-8cec5156d2d7" class="">When testing with this exact nichrome burn wire setup:</p><figure id="6618a8a0-9c05-42e7-88b6-57c12f626516" class="image"><a href="Untitled%2034.png"><img style="width:240px" src="Untitled%2034.png"/></a></figure><p id="1e111061-13c5-45b0-b62f-49d65c738d7f" class="">We measure a resistance (directly across the nichrome wire) of 0.2 ohms used the same nichrome wire and fishing line linked earlier in this write-up. A PyCubed battery board was used to supply power. Pack voltage measured 8.1V. <div class="indented"><ul id="e486a185-c2aa-459e-bc08-8b6cabd586e8" class="bulleted-list"><li style="list-style-type:disc">given these variables, our burn wires burned consistently in ~0.5s with a duty cycle of 0.13% (<code>dutycycle=0.13</code>). Peak current during the burn was measured to be 1.49A.</li></ul></div></p></li></ol><ol type="1" id="dbd5c3d5-ad36-4d03-98cc-66db29f18eb4" class="numbered-list" start="4"><li>Equipped with the above example as a baseline, now run the test again with: <code>cubesat.burn(burn_num=&#x27;1&#x27;,dutycycle=0.10,duration=1)</code></li></ol><ol type="1" id="d014a661-9b0a-4717-85eb-f70d312479c5" class="numbered-list" start="5"><li>Rinse, repeat, and be careful! </li></ol></div></p></div></p><p id="be7c4417-10a3-413d-8ca1-272ddf41297f" class=""><br/><br/><br/><br/><br/><br/></p><hr id="cd564135-aa5e-4d8b-9223-580e526a9a48"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

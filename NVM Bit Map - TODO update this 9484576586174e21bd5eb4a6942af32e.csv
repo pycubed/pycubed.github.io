@@ -1,0 +1,3 @@
+﻿Byte Name,Location,Description
+BOOT_COUNT,0x00,Number of times the CircuitPython VM has been initialized.
+,,
